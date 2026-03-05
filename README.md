@@ -6,7 +6,7 @@ Collection of GitHub Copilot Agent Plugins, each designed to embed a specialized
 
 | Plugin | Description |
 |---|---|
-| [`sdd-team`](#sdd-team-plugin) | A full software-development team powered by Specification-Driven Development (SDD) |
+| [`sdd-team`](src/sdd-team/README.md) | A full software-development team powered by Specification-Driven Development (SDD) |
 
 ---
 
