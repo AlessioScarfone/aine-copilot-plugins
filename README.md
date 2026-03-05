@@ -19,20 +19,14 @@ AINE is a collection of GitHub Copilot Agent Plugins, each designed to embed a s
 
 ## Installation
 
-Agent Plugins are installed directly from a GitHub repository. No marketplace listing or extension file is required.
+**Manual installation (local build):** Clone this repository, run `nvm use && npm ci && npm run build`. Then follow instruction here: [Use local plugins](https://code.visualstudio.com/docs/copilot/customization/agent-plugins#_use-local-plugins). 
 
-1. Open VS Code and make sure the **GitHub Copilot** extension is installed and signed in.
-2. Open the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`) and run:
-   ```
-   GitHub Copilot: Install Chat Extension from GitHub
-   ```
-3. Enter the repository path and plugin name when prompted:
-   ```
-   github/aine-team-copilot-plugin
-   ```
-4. VS Code will discover the plugin manifests under `plugins/` and let you choose which plugin to install.
-
-> **Manual installation (local build):** Clone this repository, run `npm run build`, then install from the generated `plugins/<plugin-name>/.github/plugin/plugin.json` using the same command above and pointing to the local path.
+Example:
+```json
+"chat.plugins.paths": {
+      "path/aine-copilot-plugins/plugins/sdd-team": true
+   },
+```
 
 After installation, the agents and skills are immediately available in the Copilot Chat panel.
 

@@ -1,8 +1,7 @@
 {
   "name": "aine-copilot-plugins",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "build": "node ./scripts/build.mjs",
     "plugin:create": "node ./scripts/create-plugin.mjs"
