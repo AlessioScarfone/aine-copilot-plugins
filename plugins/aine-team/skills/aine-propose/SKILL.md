@@ -3,7 +3,10 @@ name: aine-propose
 description: 'Propose a change — creates all artifacts and updates PRD, UX, and Architecture in one pipeline'
 ---
 
-Use agent: @aine-pm-agent
+> [!IMPORTANT]
+> This skill is designed to be used with the **aine-team:aine-pm-agent.agent** agent.
+> Switch to it in the agent selector before invoking this skill for the full interactive experience.
+> If you are already using **aine-team:aine-pm-agent.agent**, proceed with the workflow below.
 
 Propose a change that updates all global project documents and creates all change artifacts — in one automated pipeline.
 

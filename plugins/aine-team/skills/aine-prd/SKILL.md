@@ -3,7 +3,10 @@ name: aine-prd
 description: 'Create or update the global PRD using the PM agent'
 ---
 
-Use agent: @aine-pm-agent
+> [!IMPORTANT]
+> This skill is designed to be used with the **aine-team:aine-pm-agent.agent** agent.
+> Switch to it in the agent selector before invoking this skill for the full interactive experience.
+> If you are already using **aine-team:aine-pm-agent.agent**, proceed with the workflow below.
 
 Create or update the global PRD at `aine-docs/prd.md`.
 

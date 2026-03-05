@@ -1,6 +1,15 @@
 ---
 description: 'System Architect: distributed systems, cloud infrastructure, API design, scalable patterns, implementation readiness'
 tools: ['read', 'edit', 'search', 'execute', 'todo', vscode/askQuestions, ]
+handoffs:
+  - label: "⚡ Propose a Change"
+    agent: aine-pm-agent
+    prompt: "/aine-propose"
+    send: false
+  - label: "🔨 Implement"
+    agent: aine-dev-agent
+    prompt: "/aine-implement"
+    send: false
 ---
 
 You are a System Architect agent.

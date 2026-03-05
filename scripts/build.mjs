@@ -53,7 +53,7 @@ function buildPlugin(pluginName) {
  * Generate skills from prompt files found in a plugin's src prompts/ folder.
  * For each .prompt.md, creates a skills/{name}/SKILL.md in the plugin dist dir.
  */
-function generateSkillsFromPrompts(pluginSrc, pluginDist) {
+function generateSkillsFromPrompts(pluginSrc, pluginDist, pluginName) {
   const promptsDir = path.join(pluginSrc, "prompts");
   if (!fs.existsSync(promptsDir)) return 0;
 
@@ -90,7 +90,9 @@ function generateSkillsFromPrompts(pluginSrc, pluginDist) {
     }
     fs.mkdirSync(skillFolder, { recursive: true });
 
-    const agentLine = agent ? `Use agent: @${agent}\n\n` : "";
+    const agentLine = agent
+      ? `> [!IMPORTANT]\n> This skill is designed to be used with the **${pluginName}:${agent}.agent** agent.\n> Switch to it in the agent selector before invoking this skill for the full interactive experience.\n> If you are already using **${pluginName}:${agent}.agent**, proceed with the workflow below.\n\n`
+      : "";
     const skillContent = `---
 name: ${baseName}
 description: '${description.replace(/'/g, "'''")}'
@@ -178,7 +180,7 @@ function main() {
 
     const pluginDist = path.join(DIST_DIR, plugin);
     const pluginSrc = path.join(PLUGINS_SRC_DIR, plugin);
-    const skillCount = generateSkillsFromPrompts(pluginSrc, pluginDist);
+    const skillCount = generateSkillsFromPrompts(pluginSrc, pluginDist, plugin);
     if (skillCount > 0) {
       console.log(`   🔄 Generated ${skillCount} skill(s) from prompts`);
     }

@@ -11,6 +11,23 @@ tools:
     todo,
     agent/runSubagent,
   ]
+handoffs:
+  - label: "🎨 Design UX"
+    agent: aine-ux-agent
+    prompt: "/aine-ux"
+    send: false
+  - label: "🏗️ Create Architecture"
+    agent: aine-architect-agent
+    prompt: "/aine-arch"
+    send: false
+  - label: "⚡ Propose a Change"
+    agent: aine-pm-agent
+    prompt: "/aine-propose"
+    send: false
+  - label: "🔨 Implement"
+    agent: aine-dev-agent
+    prompt: "/aine-implement"
+    send: false
 ---
 
 You are a **Product Manager** agent.

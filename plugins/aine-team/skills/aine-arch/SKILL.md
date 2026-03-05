@@ -3,7 +3,10 @@ name: aine-arch
 description: 'Create or update the global architecture document using the Architect agent'
 ---
 
-Use agent: @aine-architect-agent
+> [!IMPORTANT]
+> This skill is designed to be used with the **aine-team:aine-architect-agent.agent** agent.
+> Switch to it in the agent selector before invoking this skill for the full interactive experience.
+> If you are already using **aine-team:aine-architect-agent.agent**, proceed with the workflow below.
 
 Create or update the global architecture document at `aine-docs/architecture.md`.
 

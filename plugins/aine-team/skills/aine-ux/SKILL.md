@@ -3,7 +3,10 @@ name: aine-ux
 description: 'Create or update the global UX design document using the UX Designer agent'
 ---
 
-Use agent: @aine-ux-agent
+> [!IMPORTANT]
+> This skill is designed to be used with the **aine-team:aine-ux-agent.agent** agent.
+> Switch to it in the agent selector before invoking this skill for the full interactive experience.
+> If you are already using **aine-team:aine-ux-agent.agent**, proceed with the workflow below.
 
 Create or update the global UX design document at `aine-docs/ux.md`.
 

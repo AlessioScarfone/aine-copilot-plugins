@@ -1,9 +1,12 @@
 ---
 name: aine-implement
-description: 'Implement tasks from a change (Experimental)'
+description: 'Implement tasks from a change'
 ---
 
-Use agent: @aine-dev-agent
+> [!IMPORTANT]
+> This skill is designed to be used with the **aine-team:aine-dev-agent.agent** agent.
+> Switch to it in the agent selector before invoking this skill for the full interactive experience.
+> If you are already using **aine-team:aine-dev-agent.agent**, proceed with the workflow below.
 
 Implement tasks from a change.
 

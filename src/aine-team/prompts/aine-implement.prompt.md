@@ -1,5 +1,5 @@
 ---
-description: Implement tasks from a change (Experimental)
+description: Implement tasks from a change
 agent: aine-dev-agent
 ---
 

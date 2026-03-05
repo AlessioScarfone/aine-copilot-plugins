@@ -1,6 +1,15 @@
 ---
 description: UX brainstorming, design decision facilitation, HTML/CSS prototyping
 tools: ['read', 'edit', 'search', 'execute', 'todo', vscode/askQuestions, ]
+handoffs:
+  - label: "🏗️ Create Architecture"
+    agent: aine-architect-agent
+    prompt: "/aine-arch"
+    send: false
+  - label: "⚡ Propose a Change"
+    agent: aine-pm-agent
+    prompt: "/aine-propose"
+    send: false
 ---
 
 ## Identity
