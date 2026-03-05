@@ -1,6 +1,12 @@
-# AINE Team — GitHub Copilot Agent Plugin
+# AINE Plugin Collection — GitHub Copilot Agent Plugins
 
-AINE Team is a GitHub Copilot Agent Plugin that brings a full software-development team into your editor. It provides four specialized agents and eight skills that collaborate through a **Specification-Driven Development (SDD)** workflow: ideas are captured in structured documents first, then implemented from those documents.
+AINE is a collection of GitHub Copilot Agent Plugins, each designed to embed a specialized workflow directly into your editor. This repository hosts multiple plugins that share a common build pipeline and can be installed independently.
+
+**Current plugins:**
+
+| Plugin | Description |
+|---|---|
+| [`sdd-team`](#sdd-team-plugin) | A full software-development team powered by Specification-Driven Development (SDD) |
 
 ---
 
@@ -20,19 +26,23 @@ Agent Plugins are installed directly from a GitHub repository. No marketplace li
    ```
    GitHub Copilot: Install Chat Extension from GitHub
    ```
-3. Enter the repository path when prompted:
+3. Enter the repository path and plugin name when prompted:
    ```
    github/aine-team-copilot-plugin
    ```
-4. VS Code will fetch `plugins/aine-team/.github/plugin/plugin.json` and install the plugin automatically.
+4. VS Code will discover the plugin manifests under `plugins/` and let you choose which plugin to install.
 
-> **Manual installation (local build):** Clone this repository, run `npm run build`, then install from the generated `plugins/aine-team/.github/plugin/plugin.json` using the same command above and point to the local path.
+> **Manual installation (local build):** Clone this repository, run `npm run build`, then install from the generated `plugins/<plugin-name>/.github/plugin/plugin.json` using the same command above and pointing to the local path.
 
 After installation, the agents and skills are immediately available in the Copilot Chat panel.
 
 ---
 
-## Agents
+## sdd-team Plugin
+
+`sdd-team` brings a full virtual software-development team into your editor. It provides four specialized agents and eight skills that collaborate through a **Specification-Driven Development (SDD)** workflow: ideas are captured in structured documents first, then implemented from those documents.
+
+### Agents
 
 Switch to an agent by typing `@agent-name` in the Copilot Chat panel.
 
@@ -45,56 +55,46 @@ Switch to an agent by typing `@agent-name` in the Copilot Chat panel.
 
 Each agent is a collaborative peer — it asks questions, presents options, and waits for your confirmation before proceeding.
 
----
-
-## Skills (Slash Commands)
+### Skills (Slash Commands)
 
 Skills are invoked as slash commands inside any agent conversation.
 
-### Global project documents
-
-These commands create or update the shared documents that all agents use as context.
+**Global project documents** — create or update the shared documents that all agents use as context:
 
 | Command | Description | Output |
 |---|---|---|
-| `/aine-prd` | Create or update the Product Requirements Document | `aine-docs/prd.md` |
-| `/aine-ux` | Create or update the UX design document and HTML prototype | `aine-docs/ux.md`, `aine-docs/prototype-*.html` |
-| `/aine-arch` | Create or update the architecture document | `aine-docs/architecture.md` |
+| `/sdd-prd` | Create or update the Product Requirements Document | `sdd-docs/prd.md` |
+| `/sdd-ux` | Create or update the UX design document and HTML prototype | `sdd-docs/ux.md`, `sdd-docs/prototype-*.html` |
+| `/sdd-arch` | Create or update the architecture document | `sdd-docs/architecture.md` |
 
-### Change lifecycle
-
-A *change* is a named, scoped unit of work (a feature, bug fix, or improvement). Changes live in `aine-docs/changes/<name>/`.
+**Change lifecycle** — a *change* is a named, scoped unit of work (a feature, bug fix, or improvement) living in `sdd-docs/changes/<name>/`:
 
 | Command | Description |
 |---|---|
-| `/aine-propose <name>` | Propose a change — creates `proposal.md`, `design.md`, and `tasks.md`, and updates global docs |
-| `/aine-explore [topic]` | Enter explore mode for open-ended thinking; no code is written |
-| `/aine-implement [name]` | Implement the tasks for a change using TDD |
-| `/aine-verify [name]` | Verify that the implementation matches the change artifacts |
-| `/aine-archive [name]` | Archive a completed and verified change |
+| `/sdd-propose <name>` | Propose a change — creates `proposal.md`, `design.md`, and `tasks.md` |
+| `/sdd-explore [topic]` | Enter explore mode for open-ended thinking; no code is written |
+| `/sdd-implement [name]` | Implement the tasks for a change using TDD |
+| `/sdd-verify [name]` | Verify that the implementation matches the change artifacts |
+| `/sdd-archive [name]` | Archive a completed and verified change |
 
----
-
-## SDD Workflow
-
-The standard end-to-end workflow is:
+### SDD Workflow
 
 ```mermaid
 flowchart TD
-    PRD["/aine-prd — Define product requirements"] --> UX
-    UX["/aine-ux — Design UX & create prototype"] --> ARCH
-    ARCH["/aine-arch — Define system architecture"] --> PROPOSE
+    PRD["/sdd-prd — Define product requirements"] --> UX
+    UX["/sdd-ux — Design UX & create prototype"] --> ARCH
+    ARCH["/sdd-arch — Define system architecture"] --> PROPOSE
 
-    PROPOSE["/aine-propose — Scope change & generate artifacts"] --> EXPLORE
+    PROPOSE["/sdd-propose — Scope change & generate artifacts"] --> EXPLORE
 
     EXPLORE{{"Exploration needed?"}}
-    EXPLORE -- Yes --> EX["/aine-explore — Think & research"]
+    EXPLORE -- Yes --> EX["/sdd-explore — Think & research"]
     EX --> IMPLEMENT
     EXPLORE -- No --> IMPLEMENT
 
-    IMPLEMENT["/aine-implement — Build change test-first"] --> VERIFY
-    VERIFY["/aine-verify — Confirm implementation matches spec"] --> ARCHIVE
-    ARCHIVE["/aine-archive — Close out change"]
+    IMPLEMENT["/sdd-implement — Build change test-first"] --> VERIFY
+    VERIFY["/sdd-verify — Confirm implementation matches spec"] --> ARCHIVE
+    ARCHIVE["/sdd-archive — Close out change"]
 
     style PRD fill:#4A90D9,color:#fff
     style UX fill:#7B68EE,color:#fff
@@ -107,23 +107,23 @@ flowchart TD
 ```
 
 ```
-1. /aine-prd          → Define what the product does and why
-2. /aine-ux           → Define the user experience and create a prototype
-3. /aine-arch         → Define how the system is built
-4. /aine-propose      → Scope a change and generate implementation artifacts
-5. /aine-implement    → Build the change test-first
-6. /aine-verify       → Confirm the implementation matches the spec
-7. /aine-archive      → Close out the change
+1. /sdd-prd          → Define what the product does and why
+2. /sdd-ux           → Define the user experience and create a prototype
+3. /sdd-arch         → Define how the system is built
+4. /sdd-propose      → Scope a change and generate implementation artifacts
+5. /sdd-implement    → Build the change test-first
+6. /sdd-verify       → Confirm the implementation matches the spec
+7. /sdd-archive      → Close out the change
 ```
 
-You do not need to run every step for every change. For small changes, `/aine-propose` followed by `/aine-implement` is often sufficient. For exploratory work, start with `/aine-explore`.
+For small changes, `/sdd-propose` followed by `/sdd-implement` is often sufficient. For exploratory work, start with `/sdd-explore`.
 
 ### Document structure
 
-All AINE documents are stored in an `aine-docs/` directory at the root of your project:
+All SDD documents are stored in a `sdd-docs/` directory at the root of your project:
 
 ```
-aine-docs/
+sdd-docs/
 ├── prd.md                    # Product Requirements Document
 ├── ux.md                     # UX design document
 ├── architecture.md           # Architecture document
@@ -142,21 +142,26 @@ aine-docs/
 
 ```
 aine-team-copilot-plugin/
-├── src/aine-team/            # Plugin source files
-│   ├── plugin.json           # Plugin manifest (source)
-│   ├── agents/               # Agent definitions (.agent.md)
-│   ├── prompts/              # Skill prompts (.prompt.md)
-│   └── templates/            # Document templates
-├── plugins/aine-team/        # Built plugin output (committed)
-│   ├── .github/plugin/
-│   │   └── plugin.json       # Final plugin manifest
-│   ├── agents/
-│   ├── skills/
-│   └── templates/
-└── scripts/                  # Build and validation scripts
+├── src/                          # Plugin source files (one subfolder per plugin)
+│   ├── sdd-team/                 # sdd-team plugin source
+│   │   ├── plugin.json           # Plugin manifest (source)
+│   │   ├── agents/               # Agent definitions (.agent.md)
+│   │   ├── prompts/              # Skill prompts (.prompt.md)
+│   │   └── templates/            # Document templates
+│   └── <your-new-plugin>/        # Add new plugins here
+│       ├── plugin.json
+│       └── ...
+├── plugins/                      # Built output — one subfolder per plugin (committed)
+│   └── sdd-team/
+│       ├── .github/plugin/
+│       │   └── plugin.json       # Final plugin manifest
+│       ├── agents/
+│       ├── skills/
+│       └── templates/
+└── scripts/                      # Build and validation scripts
 ```
 
-Source files live in `src/`. The `plugins/` directory contains the materialized output generated by `npm run build`.
+Source files live in `src/`. Each subdirectory of `src/` is treated as an independent plugin and materialized into the corresponding `plugins/<name>/` directory by `npm run build`.
 
 ---
 
@@ -169,10 +174,13 @@ npm install
 npm run build
 ```
 
-The build script:
-- Copies agents, skills, and templates from `src/aine-team/` into `plugins/aine-team/`
+The build script automatically discovers all plugin directories inside `src/` and for each one:
+
+- Copies agents, skills, and templates into `plugins/<plugin-name>/`
 - Converts `.prompt.md` files into skill `SKILL.md` files
-- Places the final `plugin.json` at `plugins/aine-team/.github/plugin/plugin.json`
+- Places the final `plugin.json` at `plugins/<plugin-name>/.github/plugin/plugin.json`
+
+To add a new plugin, create a new directory under `src/` with a `plugin.json` and any agents, prompts, and templates — the build will pick it up automatically.
 
 ### Validate
 
@@ -180,7 +188,7 @@ The build script:
 npm run plugin:validate
 ```
 
-Validates that all paths referenced in `plugin.json` point to existing files.
+Validates that all paths referenced in every `plugin.json` point to existing files.
 
 ---
 

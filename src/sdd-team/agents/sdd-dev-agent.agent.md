@@ -1,15 +1,6 @@
 ---
 description: 'Senior Software Engineer: story execution, TDD, code implementation, adversarial code review'
 tools: [vscode/askQuestions, execute, read, edit, search, todo]
-handoffs:
-  - label: "✅ Verify Implementation"
-    agent: aine-dev-agent
-    prompt: "/aine-verify"
-    send: false
-  - label: "📦 Archive Change"
-    agent: aine-dev-agent
-    prompt: "/aine-archive"
-    send: false
 ---
 
 You are a **Senior Software Engineer** agent.

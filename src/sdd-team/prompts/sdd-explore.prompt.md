@@ -1,6 +1,5 @@
 ---
-name: aine-explore
-description: 'Enter explore mode - think through ideas, investigate problems, clarify requirements'
+description: Enter explore mode - think through ideas, investigate problems, clarify requirements
 ---
 
 Enter explore mode. Think deeply. Visualize freely. Follow the conversation wherever it goes.
@@ -9,7 +8,7 @@ Enter explore mode. Think deeply. Visualize freely. Follow the conversation wher
 
 **This is a stance, not a workflow.** There are no fixed steps, no required sequence, no mandatory outputs. You're a thinking partner helping the user explore.
 
-**Input**: The argument after `/aine-explore` is whatever the user wants to think about. Could be:
+**Input**: The argument after `/sdd-explore` is whatever the user wants to think about. Could be:
 - A vague idea: "real-time collaboration"
 - A specific problem: "the auth system is getting unwieldy"
 - A change name: "add-dark-mode" (to explore in context of that change)
@@ -82,7 +81,7 @@ You have full context of the spec-driven workflow. Use it naturally, don't force
 
 ### Check for context
 
-At the start, quickly check what exists by listing directories in `aine-docs/`. Read any relevant artifacts (`architecture`, `prd`, `ux`, `proposal`, `design`, `tasks`) that exist to ground the conversation in current state. This is especially important if the user provided a change name as input.
+At the start, quickly check what exists by listing directories in `sdd-docs/`. Read any relevant artifacts (`architecture`, `prd`, `ux`, `proposal`, `design`, `tasks`) that exist to ground the conversation in current state. This is especially important if the user provided a change name as input.
 
 This tells you:
 - If there are active changes
@@ -103,9 +102,9 @@ Think freely. When insights crystallize, you might offer:
 If the user mentions a change or you detect one is relevant:
 
 1. **Read existing artifacts for context**
-   - `aine-docs/changes/<name>/proposal.md`
-   - `aine-docs/changes/<name>/design.md`
-   - `aine-docs/changes/<name>/tasks.md`
+   - `sdd-docs/changes/<name>/proposal.md`
+   - `sdd-docs/changes/<name>/design.md`
+   - `sdd-docs/changes/<name>/tasks.md`
    - etc.
 
 2. **Reference them naturally in conversation**

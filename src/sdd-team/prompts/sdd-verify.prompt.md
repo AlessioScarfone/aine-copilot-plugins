@@ -1,22 +1,21 @@
 ---
-name: aine-verify
-description: 'Verify implementation matches change artifacts before archiving'
+description: Verify implementation matches change artifacts before archiving
 ---
 
 Verify that an implementation matches the change artifacts (specs, tasks, design).
 
-**Input**: Optionally specify a change name after `/aine-verify` (e.g., `/aine-verify add-auth`). If omitted, check if it can be inferred from conversation context. If vague or ambiguous you MUST prompt for available changes.
+**Input**: Optionally specify a change name after `/sdd-verify` (e.g., `/sdd-verify add-auth`). If omitted, check if it can be inferred from conversation context. If vague or ambiguous you MUST prompt for available changes.
 
 Before writing, read the global project documents for context:
-- aine-docs/prd.md — product requirements, user journeys, functional requirements
-- aine-docs/architecture.md — tech stack, architectural decisions, naming conventions
-- aine-docs/ux.md — UX design decisions, component inventory (if exists)
+- sdd-docs/prd.md — product requirements, user journeys, functional requirements
+- sdd-docs/architecture.md — tech stack, architectural decisions, naming conventions
+- sdd-docs/ux.md — UX design decisions, component inventory (if exists)
 
 **Steps**
 
 1. **If no change name provided, prompt for selection**
 
-   List directories in `aine-docs/changes/` (excluding `archive`) to get available changes. Use the **AskUserQuestion tool** to let the user select.
+   List directories in `sdd-docs/changes/` (excluding `archive`) to get available changes. Use the **AskUserQuestion tool** to let the user select.
 
    Show changes that have implementation tasks (`tasks.md` exists).
    Mark changes with incomplete tasks as "(In Progress)".
@@ -25,7 +24,7 @@ Before writing, read the global project documents for context:
 
 2. **Inspect the change directory**
 
-   List files in `aine-docs/changes/<name>/` to understand which artifacts are present:
+   List files in `sdd-docs/changes/<name>/` to understand which artifacts are present:
    - `proposal.md` — change scope and goals
    - `design.md` — technical approach
    - `tasks.md` — implementation steps
@@ -33,7 +32,7 @@ Before writing, read the global project documents for context:
 
 3. **Load all available artifacts**
 
-   Read all files found in `aine-docs/changes/<name>/` and its subdirectories.
+   Read all files found in `sdd-docs/changes/<name>/` and its subdirectories.
 
 4. **Initialize verification report structure**
 
@@ -55,7 +54,7 @@ Before writing, read the global project documents for context:
      - Recommendation: "Complete task: <description>" or "Mark as done if already implemented"
 
    **Spec Coverage**:
-   - If delta specs exist in `aine-docs/changes/<name>/specs/`:
+   - If delta specs exist in `sdd-docs/changes/<name>/specs/`:
      - Extract all requirements (marked with "### Requirement:")
      - For each requirement:
        - Search codebase for keywords related to the requirement

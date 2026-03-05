@@ -4,13 +4,13 @@ description: Archive a completed change in the experimental workflow
 
 Archive a completed change in the experimental workflow. Automatically syncs all delta specs and moves the change to the archive — no confirmation prompts.
 
-**Input**: Optionally specify a change name after `/aine-archive` (e.g., `/aine-archive add-auth`). If omitted, check if it can be inferred from conversation context. If vague or ambiguous you MUST prompt for available changes (you can use the **AskUserQuestion tool**).
+**Input**: Optionally specify a change name after `/sdd-archive` (e.g., `/sdd-archive add-auth`). If omitted, check if it can be inferred from conversation context. If vague or ambiguous you MUST prompt for available changes (you can use the **AskUserQuestion tool**).
 
 **Steps**
 
 1. **If no change name provided, prompt for selection**
 
-   List directories in `aine-docs/changes/` (excluding `archive`) to get available changes. Use the **AskUserQuestion tool** to let the user select.
+   List directories in `sdd-docs/changes/` (excluding `archive`) to get available changes. Use the **AskUserQuestion tool** to let the user select.
 
    Show only active changes (not already archived).
 
@@ -18,7 +18,7 @@ Archive a completed change in the experimental workflow. Automatically syncs all
 
 2. **Check artifact completion status**
 
-   List files in `aine-docs/changes/<name>/` to determine which artifacts exist. The expected artifacts are: `proposal.md`, `design.md`, `tasks.md`, and any files under `specs/`.
+   List files in `sdd-docs/changes/<name>/` to determine which artifacts exist. The expected artifacts are: `proposal.md`, `design.md`, `tasks.md`, and any files under `specs/`.
 
    **If any expected artifacts are missing:**
    - Note the missing artifacts in the final summary
@@ -38,11 +38,11 @@ Archive a completed change in the experimental workflow. Automatically syncs all
 
 4. **Sync all delta specs**
 
-   Check for delta specs at `aine-docs/changes/<name>/specs/`. If none exist, skip this step.
+   Check for delta specs at `sdd-docs/changes/<name>/specs/`. If none exist, skip this step.
 
    **If delta specs exist, automatically sync all of them:**
-   - For each delta spec, compare with its corresponding main spec at `aine-docs/specs/<capability>/spec.md`
-   - Apply all changes (adds, modifications, removals, renames) directly to the main specs under `aine-docs/specs/`
+   - For each delta spec, compare with its corresponding main spec at `sdd-docs/specs/<capability>/spec.md`
+   - Apply all changes (adds, modifications, removals, renames) directly to the main specs under `sdd-docs/specs/`
    - Record which specs were synced for the final summary
 
    Do NOT prompt — always sync automatically.
@@ -51,7 +51,7 @@ Archive a completed change in the experimental workflow. Automatically syncs all
 
    Create the archive directory if it doesn't exist:
    ```bash
-   mkdir -p aine-docs/changes/archive
+   mkdir -p sdd-docs/changes/archive
    ```
 
    Generate target name using current date: `YYYY-MM-DD-<change-name>`
@@ -61,7 +61,7 @@ Archive a completed change in the experimental workflow. Automatically syncs all
    - If no: Move the change directory to archive
 
    ```bash
-   mv aine-docs/changes/<name> aine-docs/changes/archive/YYYY-MM-DD-<name>
+   mv sdd-docs/changes/<name> sdd-docs/changes/archive/YYYY-MM-DD-<name>
    ```
 
 6. **Display summary**
@@ -78,7 +78,7 @@ Archive a completed change in the experimental workflow. Automatically syncs all
 ## Archive Complete
 
 **Change:** <change-name>
-**Archived to:** aine-docs/changes/archive/YYYY-MM-DD-<name>/
+**Archived to:** sdd-docs/changes/archive/YYYY-MM-DD-<name>/
 **Specs synced:** spec-a, spec-b
 
 All artifacts complete. All tasks complete.
@@ -90,7 +90,7 @@ All artifacts complete. All tasks complete.
 ## Archive Complete
 
 **Change:** <change-name>
-**Archived to:** aine-docs/changes/archive/YYYY-MM-DD-<name>/
+**Archived to:** sdd-docs/changes/archive/YYYY-MM-DD-<name>/
 **Specs:** No delta specs
 
 All artifacts complete. All tasks complete.
@@ -102,7 +102,7 @@ All artifacts complete. All tasks complete.
 ## Archive Complete (with warnings)
 
 **Change:** <change-name>
-**Archived to:** aine-docs/changes/archive/YYYY-MM-DD-<name>/
+**Archived to:** sdd-docs/changes/archive/YYYY-MM-DD-<name>/
 **Specs synced:** spec-a, spec-b
 
 **Warnings:**
@@ -116,7 +116,7 @@ All artifacts complete. All tasks complete.
 ## Archive Failed
 
 **Change:** <change-name>
-**Target:** aine-docs/changes/archive/YYYY-MM-DD-<name>/
+**Target:** sdd-docs/changes/archive/YYYY-MM-DD-<name>/
 
 Target archive directory already exists.
 

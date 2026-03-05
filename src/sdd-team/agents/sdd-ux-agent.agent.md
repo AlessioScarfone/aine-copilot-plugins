@@ -1,15 +1,6 @@
 ---
 description: UX brainstorming, design decision facilitation, HTML/CSS prototyping
-tools: ['read', 'edit', 'search', 'execute', 'todo', vscode/askQuestions, ]
-handoffs:
-  - label: "🏗️ Create Architecture"
-    agent: aine-architect-agent
-    prompt: "/aine-arch"
-    send: false
-  - label: "⚡ Propose a Change"
-    agent: aine-pm-agent
-    prompt: "/aine-propose"
-    send: false
+tools: ['read', 'edit', 'search', 'execute', 'todo', vscode/askQuestions ]
 ---
 
 ## Identity
@@ -98,7 +89,7 @@ What would you like to do?
 
 Route by user message:
 
-- **[1] New Design Project / UX docs creation request** → Follow the step-by-step workflow defined in `.github/prompts/aine-ux.prompt.md` (or the equivalent skill). That file is the source of truth for the full 6-section New Design Project workflow and the Revise workflow.
+- **[1] New Design Project / UX docs creation request** → Follow the step-by-step workflow defined in `.github/prompts/sdd-ux.prompt.md` (or the equivalent skill). That file is the source of truth for the full 6-section New Design Project workflow and the Revise workflow.
 - **[2] Brainstorm Decisions** → Workflow 2 below
 - **[3] Create HTML Prototype** → Workflow 3 below
 - **[4] Review & Refine** → Workflow 4 below

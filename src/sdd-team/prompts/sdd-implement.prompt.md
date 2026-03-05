@@ -1,16 +1,16 @@
 ---
 description: Implement tasks from a change
-agent: aine-dev-agent
+agent: sdd-dev-agent
 ---
 
 Implement tasks from a change.
 
-**Input**: Optionally specify a change name (e.g., `/aine-implement add-auth`). If omitted, check if it can be inferred from conversation context. If vague or ambiguous you MUST prompt for available changes.
+**Input**: Optionally specify a change name (e.g., `/sdd-implement add-auth`). If omitted, check if it can be inferred from conversation context. If vague or ambiguous you MUST prompt for available changes.
 
 Before writing, read the global project documents for context:
-- aine-docs/prd.md — product requirements, user journeys, functional requirements
-- aine-docs/architecture.md — tech stack, architectural decisions, naming conventions
-- aine-docs/ux.md — UX design decisions, component inventory (if exists)
+- sdd-docs/prd.md — product requirements, user journeys, functional requirements
+- sdd-docs/architecture.md — tech stack, architectural decisions, naming conventions
+- sdd-docs/ux.md — UX design decisions, component inventory (if exists)
 
 **Steps**
 
@@ -19,12 +19,12 @@ Before writing, read the global project documents for context:
    If a name is provided, use it. Otherwise:
    - Infer from conversation context if the user mentioned a change
    - Auto-select if only one active change exists
-   - If ambiguous, list directories in `aine-docs/changes/` (excluding `archive`) and use the **AskUserQuestion tool** to let the user select
+   - If ambiguous, list directories in `sdd-docs/changes/` (excluding `archive`) and use the **AskUserQuestion tool** to let the user select
 
-   Always announce: "Using change: <name>" and how to override (e.g., `/aine-implement <other>`).
+   Always announce: "Using change: <name>" and how to override (e.g., `/sdd-implement <other>`).
 
 2. **Inspect the change directory**
-   List files in `aine-docs/changes/<name>/` to understand which artifacts are present:
+   List files in `sdd-docs/changes/<name>/` to understand which artifacts are present:
    - `proposal.md` — what & why
    - `design.md` — how
    - `tasks.md` — implementation steps
@@ -32,16 +32,16 @@ Before writing, read the global project documents for context:
 
 3. **Read the tasks and context**
 
-   Read `aine-docs/changes/<name>/tasks.md` to get the task list and progress.
+   Read `sdd-docs/changes/<name>/tasks.md` to get the task list and progress.
 
    **Handle states:**
-   - If `tasks.md` is missing: show message, suggest using `/aine-propose` first
+   - If `tasks.md` is missing: show message, suggest using `/sdd-propose` first
    - If all tasks are marked `[x]`: congratulate, suggest archiving
    - Otherwise: proceed to implementation
 
 4. **Read context files**
 
-   Read all available artifacts from `aine-docs/changes/<name>/`:
+   Read all available artifacts from `sdd-docs/changes/<name>/`:
    - `proposal.md` — change scope and goals
    - `design.md` — technical approach and decisions
    - `tasks.md` — task list and progress
@@ -104,7 +104,7 @@ Working on task 4/7: <task description>
 - [x] Task 2
 ...
 
-All tasks complete! You can archive this change with `/aine-archive`.
+All tasks complete! You can archive this change with `/sdd-archive`.
 ```
 
 **Output On Pause (Issue Encountered)**

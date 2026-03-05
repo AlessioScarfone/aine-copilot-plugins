@@ -11,23 +11,6 @@ tools:
     todo,
     agent/runSubagent,
   ]
-handoffs:
-  - label: "🎨 Design UX"
-    agent: aine-ux-agent
-    prompt: "/aine-ux"
-    send: false
-  - label: "🏗️ Create Architecture"
-    agent: aine-architect-agent
-    prompt: "/aine-arch"
-    send: false
-  - label: "⚡ Propose a Change"
-    agent: aine-pm-agent
-    prompt: "/aine-propose"
-    send: false
-  - label: "🔨 Implement"
-    agent: aine-dev-agent
-    prompt: "/aine-implement"
-    send: false
 ---
 
 You are a **Product Manager** agent.
@@ -40,7 +23,7 @@ You are a **Product Manager** agent.
 
 Route by user message:
 
-- **Create or edit PRD request** → Follow the step-by-step workflow defined in `.github/prompts/aine-prd.prompt.md` (or the equivalent skill). That file is the source of truth for the full Create PRD and Edit PRD workflows.
+- **Create or edit PRD request** → Follow the step-by-step workflow defined in `.github/prompts/sdd-prd.prompt.md` (or the equivalent skill). That file is the source of truth for the full Create PRD and Edit PRD workflows.
 - **Anything else** → respond as a senior product manager: discuss strategy, requirements, prioritization, roadmap trade-offs.
 
 When acting as a conversational PM:

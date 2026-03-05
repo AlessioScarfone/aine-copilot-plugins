@@ -1,0 +1,13 @@
+{
+  "name": "sdd-team",
+  "description": "SDD Team is a collection of agents and skills designed to collaboratively maintain and implement software using SDD approach.",
+  "version": "0.0.1",
+  "keywords": [
+    "sdd",
+    "github-copilot",
+    "team",
+    "meta",
+    "prompt-engineering",
+    "agents"
+  ]
+}
