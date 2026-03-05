@@ -30,8 +30,8 @@ Clone this repository, run `nvm use && npm ci && npm run build`. Then follow ins
 Example:
 ```json
 "chat.plugins.paths": {
-      "path/aine-copilot-plugins/plugins/sdd-team": true
-   },
+   "path/aine-copilot-plugins/plugins/sdd-team": true
+},
 ```
 
 After installation, the agents and skills are immediately available in the Copilot Chat panel.
