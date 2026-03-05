@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node ./scripts/build.mjs",
-    "plugin:validate": "node ./scripts/validate-plugins.mjs"
+    "plugin:create": "node ./scripts/create-plugin.mjs"
   },
   "author": "",
   "license": "ISC",

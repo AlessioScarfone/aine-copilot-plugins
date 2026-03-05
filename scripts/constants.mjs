@@ -6,8 +6,8 @@ const __dirname = import.meta.dirname
 
 const ROOT_FOLDER = path.join(__dirname, "..");
 const PLUGINS_DIR = path.join(ROOT_FOLDER, "plugins");
+const DIST_DIR = PLUGINS_DIR
 const PLUGINS_SRC_DIR = path.join(ROOT_FOLDER, "src");
-const DIST_DIR = path.join(ROOT_FOLDER, "plugins");
 const DOCS_DIR = path.join(ROOT_FOLDER, "docs");
 const SKILLS_DIR = path.join(ROOT_FOLDER, "skills");
 // Agent Skills validation constants

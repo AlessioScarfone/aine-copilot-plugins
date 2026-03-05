@@ -2,7 +2,7 @@
 
 import fs from "fs";
 import path from "path";
-import { PLUGINS_SRC_DIR } from "./constants.mjs";
+import { DIST_DIR } from "./constants.mjs";
 
 // Validation functions
 function validateName(name, folderName) {
@@ -163,7 +163,7 @@ function validatePlugin(pluginDir) {
 }
 
 // Main validation function
-function validatePlugins(pluginsDir = PLUGINS_SRC_DIR) {
+function validatePlugins(pluginsDir = DIST_DIR) {
   if (!fs.existsSync(pluginsDir)) {
     console.log("No plugins directory found - validation skipped");
     return true;

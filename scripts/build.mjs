@@ -185,11 +185,14 @@ function main() {
       console.log(`   🔄 Generated ${skillCount} skill(s) from prompts`);
     }
 
-    // Copy root README.md into the plugin dist folder
+    // Copy plugin README.md into the plugin dist folder (falls back to root README.md)
+    const pluginReadme = path.join(pluginSrc, "README.md");
     const rootReadme = path.join(ROOT_FOLDER, "README.md");
-    if (fs.existsSync(rootReadme)) {
-      fs.copyFileSync(rootReadme, path.join(pluginDist, "README.md"));
-      console.log(`   📄 Copied root README.md → dist/${plugin}/README.md`);
+    const readmeSrc = fs.existsSync(pluginReadme) ? pluginReadme : rootReadme;
+    const readmeLabel = fs.existsSync(pluginReadme) ? `src/${plugin}/README.md` : "README.md (root fallback)";
+    if (fs.existsSync(readmeSrc)) {
+      fs.copyFileSync(readmeSrc, path.join(pluginDist, "README.md"));
+      console.log(`   📄 Copied ${readmeLabel} → dist/${plugin}/README.md`);
     }
   }
 
