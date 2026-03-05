@@ -1,6 +1,6 @@
 # AINE Plugin Collection — GitHub Copilot Agent Plugins
 
-AINE is a collection of GitHub Copilot Agent Plugins, each designed to embed a specialized workflow directly into your editor. This repository hosts multiple plugins that share a common build pipeline and can be installed independently.
+Collection of GitHub Copilot Agent Plugins, each designed to embed a specialized workflow directly into your editor. This repository hosts multiple plugins that share a common build pipeline and can be installed independently.
 
 **Current plugins:**
 
