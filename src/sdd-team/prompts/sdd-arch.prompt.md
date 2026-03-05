@@ -114,7 +114,7 @@ Present findings. Resolve critical issues with user before completing.
 ### Step 8 — Completion
 
 1. Save final `architecture.md` to `sdd-docs/architecture.md` using the template structure.
-2. Present a **completion recap in chat**: decisions made, patterns defined, structure finalized, gaps found, suggested next steps.
+2. Present a **completion recap in chat**: decisions made, patterns defined, structure finalized, gaps found.
 
 ---
 
@@ -156,7 +156,7 @@ Structured improvement of an existing architecture document.
 ### Step 4 — Completion
 
 1. Apply all edits directly to `sdd-docs/architecture.md`.
-2. Present a **completion recap**: sections modified, decisions changed, new patterns/conventions, consistency check results, suggested next steps.
+2. Present a **completion recap**: sections modified, decisions changed, new patterns/conventions, consistency check results.
 
 ---
 

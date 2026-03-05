@@ -228,7 +228,7 @@ Structured improvement of an existing UX document.
 ### Step 4 — Completion
 
 1. Apply all edits to `sdd-docs/ux.md` (and `sdd-docs/prototype-[project-name].html` if the prototype changed).
-2. Present a **completion recap**: sections modified, decisions changed, suggested next steps.
+2. Present a **completion recap**: sections modified, decisions changed.
 
 ---
 

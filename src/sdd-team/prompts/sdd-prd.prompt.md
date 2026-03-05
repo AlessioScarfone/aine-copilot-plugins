@@ -181,7 +181,7 @@ Present and refine. Append.
 3. **Quality check:** information density, zero fluff, no anti-patterns ("the system will allow users to..." → "Users can...").
 4. Preserve all essential content — consolidate, don't remove.
 5. Save final `sdd-docs/prd.md`.
-6. Present a **completion recap**: sections created, key decisions captured, PRD quality assessment, suggested next steps.
+6. Present a **completion recap**: sections created, key decisions captured, PRD quality assessment.
 7. Suggest: "`/arch` for architecture or `/ux` for UX design."
 
 ---
@@ -215,7 +215,7 @@ Structured improvement of an existing PRD.
 ### Step 4 — Completion
 
 1. Apply all edits directly to `sdd-docs/prd.md`.
-2. Present a **completion recap**: sections modified, changes applied, quality assessment, suggested next steps.
+2. Present a **completion recap**: sections modified, changes applied, quality assessment.
 
 ---
 
