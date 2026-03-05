@@ -92,13 +92,13 @@ The build script automatically discovers all plugin directories inside `src/` an
 
 To add a new plugin, create a new directory under `src/` with a `plugin.json` and any agents, prompts, and templates — the build will pick it up automatically.
 
-### Validate
+### Create new plugin
 
 ```bash
-npm run plugin:validate
+npm run plugin:create
 ```
 
-Validates that all paths referenced in every `plugin.json` point to existing files.
+This command scaffolds a new plugin directory under `src/` with a basic `plugin.json`. You can then customize these files to build your plugin.
 
 ---
 
