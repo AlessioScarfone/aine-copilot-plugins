@@ -14,7 +14,7 @@ This covers:
 - Updating `sdd-docs/prd.md` with any new requirements - if update is needed
 - Updating `sdd-docs/ux.md` and HTML prototype with UX changes - if exists
 - Updating `sdd-docs/architecture.md` with technical changes - if exists
-- Creating change artifacts (`proposal.md`, `design.md`, `tasks.md`)
+- Creating change artifacts (`proposal.md`, `design.md`, `tasks.md`, `specs/*`)
 
 The output is a fully updated project documentation set + a ready-to-implement change.
 
