@@ -1,0 +1,17 @@
+{
+  "name": "aine-team-copilot-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./scripts/build.mjs",
+    "plugin:validate": "node ./scripts/validate-plugins.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+   "dependencies": {
+    "js-yaml": "^4.1.1",
+    "vfile": "^6.0.3",
+    "vfile-matter": "^5.0.1"
+  }
+}
