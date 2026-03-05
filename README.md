@@ -12,7 +12,7 @@ AINE is a collection of GitHub Copilot Agent Plugins, each designed to embed a s
 
 ## Requirements
 
-- **VS Code** 1.99 or later
+- **VS Code** 1.100 or later
 - **GitHub Copilot** subscription with Agent mode enabled
 
 ---
