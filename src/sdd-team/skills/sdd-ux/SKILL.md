@@ -1,7 +1,12 @@
 ---
-description: Create or update the global UX design document using the UX Designer agent
-agent: sdd-ux-agent
+name: sdd-ux
+description: 'Create or update the global UX design document using the UX Designer agent'
 ---
+
+> [!IMPORTANT]
+> This skill is designed to be used with the **sdd-team:sdd-ux-agent.agent** agent.
+> Switch to it in the agent selector before invoking this skill for the full interactive experience.
+> If you are already using **sdd-team:sdd-ux-agent.agent**, proceed with the workflow below.
 
 Create or update the global UX design document at `sdd-docs/ux.md`.
 
@@ -11,7 +16,7 @@ This is a **global project document** — not tied to any specific change. It de
 
 **Output**: `sdd-docs/ux.md` and `sdd-docs/prototype-[project-name].html`
 
-**Template**: Use `templates/ux.md` as the document structure.
+**Template**: Use `./templates/ux.md` and `./templates/prototype-template.html` as the document structure.
 
 **Prerequisites**: `sdd-docs/prd.md` should exist. If not, inform: "Create the PRD first with `/prd`."
 
@@ -151,7 +156,7 @@ Ask: "Anything to add or remove from this scope?" Present C/R/A. On C, move to S
 
 **Purpose:** Generate the working, standalone HTML prototype.
 
-Start from the official template at `templates/prototype-template.html`. Read that file first — it contains base design tokens, reset, layout utilities, and component styles. Extend and customise it; never start from a blank file.
+Start from the official template at `./templates/prototype-template.html`. Read that file first — it contains base design tokens, reset, layout utilities, and component styles. Extend and customise it; never start from a blank file.
 
 **HTML rules:**
 - `<!DOCTYPE html>` with proper `<head>` (charset, viewport, title)

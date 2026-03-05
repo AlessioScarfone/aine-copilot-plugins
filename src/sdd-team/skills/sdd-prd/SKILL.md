@@ -1,7 +1,12 @@
 ---
-description: Create or update the global PRD using the PM agent
-agent: sdd-pm-agent
+name: sdd-prd
+description: 'Create or update the global PRD using the PM agent'
 ---
+
+> [!IMPORTANT]
+> This skill is designed to be used with the **sdd-team:sdd-pm-agent.agent** agent.
+> Switch to it in the agent selector before invoking this skill for the full interactive experience.
+> If you are already using **sdd-team:sdd-pm-agent.agent**, proceed with the workflow below.
 
 Create or update the global PRD at `sdd-docs/prd.md`.
 
@@ -11,7 +16,7 @@ This is a **global project document** — not tied to any specific change. It de
 
 **Output**: `sdd-docs/prd.md`
 
-**Template**: Use `templates/prd.md` as the document structure.
+**Template**: Use `./templates/prd.md` as the document structure.
 
 ---
 

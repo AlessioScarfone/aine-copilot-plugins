@@ -1,7 +1,12 @@
 ---
-description: Create or update the global architecture document using the Architect agent
-agent: sdd-architect-agent
+name: sdd-arch
+description: 'Create or update the global architecture document using the Architect agent'
 ---
+
+> [!IMPORTANT]
+> This skill is designed to be used with the **sdd-team:sdd-architect-agent.agent** agent.
+> Switch to it in the agent selector before invoking this skill for the full interactive experience.
+> If you are already using **sdd-team:sdd-architect-agent.agent**, proceed with the workflow below.
 
 Create or update the global architecture document at `sdd-docs/architecture.md`.
 
@@ -11,7 +16,7 @@ This is a **global project document** — not tied to any specific change. It de
 
 **Output**: `sdd-docs/architecture.md`
 
-**Template**: Use `templates/architecture.md` as the document structure.
+**Template**: Use `./templates/architecture.md` as the document structure.
 
 **Prerequisites**: `sdd-docs/prd.md` should exist. If not, ask user for a prd or suggest to "Create the PRD"
 

@@ -1,5 +1,6 @@
 ---
-description: Archive a completed change in the experimental workflow
+name: sdd-archive
+description: 'Archive a completed change in the experimental workflow'
 ---
 
 Archive a completed change in the experimental workflow. Automatically syncs all delta specs and moves the change to the archive — no confirmation prompts.

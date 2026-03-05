@@ -1,7 +1,12 @@
 ---
-description: Implement tasks from a change
-agent: sdd-dev-agent
+name: sdd-implement
+description: 'Implement tasks from a change'
 ---
+
+> [!IMPORTANT]
+> This skill is designed to be used with the **sdd-team:sdd-dev-agent.agent** agent.
+> Switch to it in the agent selector before invoking this skill for the full interactive experience.
+> If you are already using **sdd-team:sdd-dev-agent.agent**, proceed with the workflow below.
 
 Implement tasks from a change.
 

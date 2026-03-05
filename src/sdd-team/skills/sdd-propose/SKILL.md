@@ -1,7 +1,12 @@
 ---
-description: Propose a change — creates all artifacts and updates PRD, UX, and Architecture in one pipeline
-agent: sdd-pm-agent
+name: sdd-propose
+description: 'Propose a change — creates all artifacts and updates PRD, UX, and Architecture in one pipeline'
 ---
+
+> [!IMPORTANT]
+> This skill is designed to be used with the **sdd-team:sdd-pm-agent.agent** agent.
+> Switch to it in the agent selector before invoking this skill for the full interactive experience.
+> If you are already using **sdd-team:sdd-pm-agent.agent**, proceed with the workflow below.
 
 Propose a change that updates all global project documents and creates all change artifacts — in one automated pipeline.
 
@@ -82,27 +87,27 @@ The output is a fully updated project documentation set + a ready-to-implement c
    Use the **TodoWrite tool** to track progress through the following artifacts (in creation order):
 
    a. **`proposal.md`** — what & why (must be created first)
-      - Read `templates/proposal.md` for structure
+      - Read `./templates/proposal.md` for structure
       - Use the confirmed change description, PRD context, and summaries from Phases 1–3 as input
       - Save to `sdd-docs/changes/<name>/proposal.md`
       - Verify the file exists before continuing
 
    b. **`design.md`** — how (requires proposal)
-      - Read `templates/design.md` for structure
+      - Read `./templates/design.md` for structure
       - Read `sdd-docs/changes/<name>/proposal.md` for context
       - Incorporate Architecture decisions from Phase 3
       - Save to `sdd-docs/changes/<name>/design.md`
       - Verify the file exists before continuing
 
    c. **`tasks.md`** — implementation steps (requires design)
-      - Read `templates/tasks.md` for structure
+      - Read `./templates/tasks.md` for structure
       - Read `sdd-docs/changes/<name>/design.md` for context
       - If API surface changed, include a task for README update
       - Save to `sdd-docs/changes/<name>/tasks.md`
       - Verify the file exists before continuing
 
    d. **`specs/<capability>/spec.md`** — only if new capabilities are introduced
-      - Read `templates/spec.md` for structure
+      - Read `./templates/spec.md` for structure
       - Can be created alongside design
       - Save to `sdd-docs/changes/<name>/specs/<capability>/spec.md`
 

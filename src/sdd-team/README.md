@@ -108,6 +108,21 @@ sdd-docs/
 
 ---
 
+## Templates
+
+Each skill that **generates** documents includes its own templates in a `templates/` subdirectory:
+
+- **sdd-prd**: `prd.md` — template for the product requirements document
+- **sdd-ux**: `ux.md` and `prototype-template.html` — templates for UX design and HTML prototype
+- **sdd-arch**: `architecture.md` — template for the architecture document
+- **sdd-propose**: `proposal.md`, `design.md` — templates for change proposals
+
+Skills that only **read** documents (sdd-implement, sdd-explore, sdd-verify, sdd-archive) do not include templates.
+
+The build process automatically includes these templates in the plugin distribution.
+
+---
+
 ## VS Code Documentation
 
 For more information on Agent Plugins, see the official VS Code documentation:  

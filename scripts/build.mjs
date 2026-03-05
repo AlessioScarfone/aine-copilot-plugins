@@ -24,6 +24,26 @@ function copyRootFiles(src, dest) {
   }
 }
 
+function copySkillTemplates(skillsDir) {
+  if (!fs.existsSync(skillsDir)) return;
+  
+  const skillFolders = fs
+    .readdirSync(skillsDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory());
+
+  for (const skillFolder of skillFolders) {
+    const skillPath = path.join(skillsDir, skillFolder.name);
+    const templatesPath = path.join(skillPath, "templates");
+    
+    if (fs.existsSync(templatesPath)) {
+      const files = fs.readdirSync(templatesPath);
+      if (files.length > 0) {
+        console.log(`      📋 ${skillFolder.name}: ${files.length} template(s)`);
+      }
+    }
+  }
+}
+
 function buildPlugin(pluginName) {
   const src = path.join(PLUGINS_SRC_DIR, pluginName);
   const dest = path.join(DIST_DIR, pluginName);
@@ -44,6 +64,9 @@ function buildPlugin(pluginName) {
       path.join(dest, subdir)
     );
   }
+
+  // Verify that skill templates were copied
+  copySkillTemplates(path.join(dest, "skills"));
 
   // Copy root-level files (e.g. README.md)
   copyRootFiles(src, dest);
@@ -180,6 +203,7 @@ function main() {
 
     const pluginDist = path.join(DIST_DIR, plugin);
     const pluginSrc = path.join(PLUGINS_SRC_DIR, plugin);
+    
     const skillCount = generateSkillsFromPrompts(pluginSrc, pluginDist, plugin);
     if (skillCount > 0) {
       console.log(`   🔄 Generated ${skillCount} skill(s) from prompts`);
