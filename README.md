@@ -73,6 +73,10 @@ aine-team-copilot-plugin/
 
 Source files live in `src/`. Each subdirectory of `src/` is treated as an independent plugin and materialized into the corresponding `plugins/<name>/` directory by `npm run build`.
 
+Each skill that **generates** documents includes its own templates in a `templates/` subdirectory.
+Skills that only **read** documents (sdd-implement, sdd-explore, sdd-verify, sdd-archive) do not include templates.
+The build process automatically includes these templates in the plugin distribution.
+
 ---
 
 ## Development

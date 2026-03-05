@@ -3,15 +3,14 @@
 `sdd-team` brings a full virtual software-development team into your editor. It provides four specialized agents and eight skills that collaborate through a **Specification-Driven Development (SDD)** workflow: ideas are captured in structured documents first, then implemented from those documents.
 
 ## Agents
-
 Switch to an agent by typing `@agent-name` in the Copilot Chat panel.
 
 | Agent | Handle | Role |
 |---|---|---|
-| Product Manager | `@pm` | PRD creation, requirements discovery, stakeholder alignment |
-| System Architect | `@architect` | Architecture documentation, system design, trade-off analysis |
-| Senior Software Engineer | `@dev` | TDD implementation, code review, story execution |
-| Design Studio | `@ux-designer` | UX brainstorming, design decisions, HTML/CSS prototyping |
+| Product Manager | `sdd-pm-agent` | PRD creation, requirements discovery, stakeholder alignment |
+| System Architect | `sdd-architect-agent` | Architecture documentation, system design, trade-off analysis |
+| Senior Software Engineer | `sdd-dev-agent` | TDD implementation, code review, story execution |
+| Design Studio | `sdd-ux-designer-agent` | UX brainstorming, design decisions, HTML/CSS prototyping |
 
 Each agent is a collaborative peer — it asks questions, presents options, and waits for your confirmation before proceeding.
 
@@ -19,29 +18,29 @@ Each agent is a collaborative peer — it asks questions, presents options, and 
 
 ## Skills (Slash Commands)
 
-Skills are invoked as slash commands inside any agent conversation.
+Skills are invoked as slash commands inside any agent conversation. Suggested to use the appropriate agent for each skill, but you can also call any skill from any agent.
 
 ### Global project documents
 
 These commands create or update the shared documents that all agents use as context.
 
-| Command | Description | Output |
-|---|---|---|
-| `/sdd-prd` | Create or update the Product Requirements Document | `sdd-docs/prd.md` |
-| `/sdd-ux` | Create or update the UX design document and HTML prototype | `sdd-docs/ux.md`, `sdd-docs/prototype-*.html` |
-| `/sdd-arch` | Create or update the architecture document | `sdd-docs/architecture.md` |
+| Command | Description | Output | Suggested Agent |
+|---|---|---|---|
+| `/sdd-prd` | Create or update the Product Requirements Document | `sdd-docs/prd.md` | `sdd-pm-agent` |
+| `/sdd-ux` | Create or update the UX design document and HTML prototype | `sdd-docs/ux.md`, `sdd-docs/prototype-*.html` | `sdd-ux-designer-agent` |
+| `/sdd-arch` | Create or update the architecture document | `sdd-docs/architecture.md` | `sdd-architect-agent` |
 
 ### Change lifecycle
 
 A *change* is a named, scoped unit of work (a feature, bug fix, or improvement). Changes live in `sdd-docs/changes/<name>/`.
 
-| Command | Description |
-|---|---|
-| `/sdd-propose <name>` | Propose a change — creates `proposal.md`, `design.md`, and `tasks.md` |
-| `/sdd-explore [topic]` | Enter explore mode for open-ended thinking; no code is written |
-| `/sdd-implement [name]` | Implement the tasks for a change using TDD |
-| `/sdd-verify [name]` | Verify that the implementation matches the change artifacts |
-| `/sdd-archive [name]` | Archive a completed and verified change |
+| Command | Description | Output | Suggested Agent |
+|---|---|---|---|
+| `/sdd-propose <name>` | Propose a change — creates `proposal.md`, `design.md`, and `tasks.md` | `sdd-docs/changes/<name>/proposal.md`, `sdd-docs/changes/<name>/design.md`, `sdd-docs/changes/<name>/tasks.md` | `sdd-pm-agent` |
+| `/sdd-explore [topic]` | Enter explore mode for open-ended thinking; no code is written | `-` | `-` |
+| `/sdd-implement [name]` | Implement the tasks for a change using TDD | `implementation code & tests` | `sdd-dev-agent` |
+| `/sdd-verify [name]` | Verify that the implementation matches the change artifacts | `-` | `-` |
+| `/sdd-archive [name]` | Archive a completed and verified change | `sdd-docs/changes/<name>/archive/` | `-` |
 
 ---
 
@@ -84,7 +83,8 @@ flowchart TD
 7. /sdd-archive      → Close out the change
 ```
 
-For small changes, `/sdd-propose` followed by `/sdd-implement` is often sufficient. For exploratory work, start with `/sdd-explore`.
+For small changes, `/sdd-propose` followed by `/sdd-implement` is often sufficient. 
+For exploratory work, start with `/sdd-explore`.
 
 ---
 
@@ -100,26 +100,14 @@ sdd-docs/
 ├── prototype-<project>.html  # Interactive HTML prototype
 └── changes/
     ├── <change-name>/
-    │   ├── proposal.md       # What & why
+    │   ├── specs
+    │   │   └── <capacity>
+    │   │       └── spec.md   # Scenarios
+    │   ├── proposal.md       # How
     │   ├── design.md         # How
     │   └── tasks.md          # Implementation steps
     └── archive/              # Completed changes
 ```
-
----
-
-## Templates
-
-Each skill that **generates** documents includes its own templates in a `templates/` subdirectory:
-
-- **sdd-prd**: `prd.md` — template for the product requirements document
-- **sdd-ux**: `ux.md` and `prototype-template.html` — templates for UX design and HTML prototype
-- **sdd-arch**: `architecture.md` — template for the architecture document
-- **sdd-propose**: `proposal.md`, `design.md` — templates for change proposals
-
-Skills that only **read** documents (sdd-implement, sdd-explore, sdd-verify, sdd-archive) do not include templates.
-
-The build process automatically includes these templates in the plugin distribution.
 
 ---
 
