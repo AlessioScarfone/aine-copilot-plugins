@@ -1,5 +1,5 @@
 ---
-name: sdd-guide
+name: sdd-help
 description: 'Learn about the SDD process and artifacts — quick overview, deep dives into each document type, team roles, and skill commands'
 ---
 
@@ -7,12 +7,12 @@ Answer questions about the Specification-Driven Development (SDD) approach, its 
 
 **This is a knowledge and reference skill — it does not create or modify any files.** Use it when you want to understand the workflow, explore what an artifact should contain, or figure out what to do next.
 
-**Input**: The argument after `/sdd-guide` is your question or topic, for example:
-- `/sdd-guide` — show the overview and navigation menu
-- `/sdd-guide artifacts` — explain every artifact type
-- `/sdd-guide process` — walk through the full SDD lifecycle
-- `/sdd-guide prd` — deep dive on a specific artifact
-- `/sdd-guide what's next` — suggest the next step based on what exists in `sdd-docs/`
+**Input**: The argument after `/sdd-help` is your question or topic, for example:
+- `/sdd-help` — show the overview and navigation menu
+- `/sdd-help artifacts` — explain every artifact type
+- `/sdd-help process` — walk through the full SDD lifecycle
+- `/sdd-help prd` — deep dive on a specific artifact
+- `/sdd-help what's next` — suggest the next step based on what exists in `sdd-docs/`
 
 ---
 
@@ -29,7 +29,7 @@ Answer questions about the Specification-Driven Development (SDD) approach, its 
 3. **Display the Navigation Menu** after any response longer than a quick answer, so the user can continue exploring:
 
 ```
-📖 sdd-guide — What would you like to explore?
+📖 sdd-help — What would you like to explore?
 
 [1] SDD Overview        — What SDD is and why it works
 [2] Full Process        — All 7 stages from idea to archive
@@ -316,7 +316,7 @@ sdd-docs/
 | `/sdd-implement [name]` | Change | Implement tasks test-first | `sdd-dev-agent` |
 | `/sdd-verify [name]` | Change | Verify implementation matches specs | Any |
 | `/sdd-archive [name]` | Change | Sync delta specs and archive completed change | Any |
-| `/sdd-guide [topic]` | Any | Learn about SDD process and artifacts | Any |
+| `/sdd-help [topic]` | Any | Learn about SDD process and artifacts | Any |
 
 ### Choosing the right skill
 
@@ -336,7 +336,7 @@ Done with implementation?
   → /sdd-archive to close out
 
 Lost or unsure what's next?
-  → /sdd-guide what's next
+  → /sdd-help what's next
 ```
 
 ---
