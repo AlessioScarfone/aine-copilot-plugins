@@ -30,7 +30,7 @@ These live at the root of `sdd-docs/` and apply to the whole project.
 
 **Purpose:** Defines how users experience the product — design decisions, component inventory, wireframes, and prototype spec.
 
-**Created by:** `/sdd-ux` with the `sdd-ux-designer-agent`
+**Created by:** `/sdd-ux` with the `sdd-ux-agent`
 
 **Key sections:**
 - Project Vision — platform, brand constraints, success definition
