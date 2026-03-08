@@ -352,14 +352,6 @@ Each agent brings a specialized perspective. Switch to the recommended agent for
 | Senior Software Engineer | `sdd-dev-agent` | TDD, code implementation, adversarial code review | `/sdd-implement`, `/sdd-verify`, code review |
 | Design Studio | `sdd-ux-designer-agent` | UX brainstorming, design decisions, HTML/CSS prototyping | `/sdd-ux`, design decisions, prototype iteration |
 
-### Switching agents
-
-In the Copilot Chat panel, type `@<agent-handle>` (e.g., `@sdd-pm-agent`) to switch. You can also use any skill from any agent — the agent recommendation is a suggestion, not a hard requirement.
-
-### Agent collaboration via subagents
-
-`/sdd-propose` is the only skill that coordinates multiple agents automatically. It dispatches PM, UX Designer, and Architect as subagents to update global documents before creating change artifacts. You don't need to switch agents manually during this pipeline.
-
 ---
 
 ## [6] What's Next
