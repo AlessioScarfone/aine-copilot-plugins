@@ -1,0 +1,34 @@
+# Skills & Commands
+
+| Command | Phase | Purpose | Suggested Agent |
+|---|---|---|---|
+| `/sdd-prd` | Setup | Create or update the PRD | `sdd-pm-agent` |
+| `/sdd-ux` | Setup | Create or update the UX design and prototype | `sdd-ux-designer-agent` |
+| `/sdd-arch` | Setup | Create or update the architecture document | `sdd-architect-agent` |
+| `/sdd-propose <name>` | Change | Create all change artifacts in one pipeline | `sdd-pm-agent` |
+| `/sdd-explore [topic]` | Change | Free-form thinking; read files, no code written | Any |
+| `/sdd-implement [name]` | Change | Implement tasks test-first | `sdd-dev-agent` |
+| `/sdd-verify [name]` | Change | Verify implementation matches specs | Any |
+| `/sdd-archive [name]` | Change | Sync delta specs and archive completed change | Any |
+| `/sdd-help [topic]` | Any | Learn about SDD process and artifacts | Any |
+
+## Choosing the right skill
+
+```
+Starting a new project?
+  → /sdd-prd first, then /sdd-ux and /sdd-arch
+
+Adding a feature or fixing a bug?
+  → /sdd-propose <change-name>
+  → /sdd-implement when artifacts are ready
+
+Not sure what to implement?
+  → /sdd-explore to think it through first
+
+Done with implementation?
+  → /sdd-verify to confirm spec compliance
+  → /sdd-archive to close out
+
+Lost or unsure what's next?
+  → /sdd-help what's next
+```
