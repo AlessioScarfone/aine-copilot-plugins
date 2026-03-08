@@ -7,7 +7,7 @@
     "plugin:create": "node ./scripts/create-plugin.mjs"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
    "dependencies": {
     "js-yaml": "^4.1.1",
     "vfile": "^6.0.3",
