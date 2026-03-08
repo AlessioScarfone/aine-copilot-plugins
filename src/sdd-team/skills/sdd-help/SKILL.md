@@ -16,7 +16,7 @@ Answer questions about the Specification-Driven Development (SDD) approach, its 
 
 ---
 
-## Entry Point
+## Entry point
 
 1. **Read what already exists** — list `sdd-docs/` and `sdd-docs/changes/` (if they exist) to understand the project's current SDD state.
 
