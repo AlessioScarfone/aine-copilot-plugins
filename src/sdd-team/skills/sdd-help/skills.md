@@ -5,7 +5,7 @@
 | `/sdd-prd` | Setup | Create or update the PRD | `sdd-pm-agent` |
 | `/sdd-ux` | Setup | Create or update the UX design and prototype | `sdd-ux-agent.agent` |
 | `/sdd-arch` | Setup | Create or update the architecture document | `sdd-architect-agent` |
-| `/sdd-propose <name>` | Change | Create all change artifacts in one pipeline | `sdd-pm-agent` |
+| `/sdd-propose <name>` | Change | Create all change artifacts in one pipeline; may also update PRD/UX/Architecture docs | `sdd-pm-agent` |
 | `/sdd-explore [topic]` | Change | Free-form thinking; read files, no code written | Any |
 | `/sdd-implement [name]` | Change | Implement tasks test-first | `sdd-dev-agent` |
 | `/sdd-verify [name]` | Change | Verify implementation matches specs | Any |
