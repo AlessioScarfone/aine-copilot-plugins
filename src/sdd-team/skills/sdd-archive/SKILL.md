@@ -3,7 +3,7 @@ name: sdd-archive
 description: 'Archive a completed change in the experimental workflow'
 ---
 
-Archive a completed change in the experimental workflow. Automatically syncs all delta specs and moves the change to the archive — no confirmation prompts.
+Archive a completed change in the workflow. Automatically syncs all delta specs and moves the change to the archive — no confirmation prompts.
 
 **Input**: Optionally specify a change name after `/sdd-archive` (e.g., `/sdd-archive add-auth`). If omitted, check if it can be inferred from conversation context. If vague or ambiguous you MUST prompt for available changes (you can use the **AskUserQuestion tool**).
 
