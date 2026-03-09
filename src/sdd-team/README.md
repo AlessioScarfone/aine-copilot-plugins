@@ -41,6 +41,7 @@ These commands create or update the shared documents that all agents use as cont
 
 | Command | Description | Output | Suggested Agent |
 |---|---|---|---|
+| `/sdd-init` | **Brownfield only** — bootstrap all shared docs from an existing codebase in one pipeline | `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`, `architecture.md`, `ux.md` (if UI detected), `sdd-tracker.yml` | `sdd-pm-agent` |
 | `/sdd-prd` | Create or update the Product Requirements Document | `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` | `sdd-pm-agent` |
 | `/sdd-ux` | Create or update the UX design document and HTML prototype | `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md`, `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-*.html` | `sdd-ux-designer-agent` |
 | `/sdd-arch` | Create or update the architecture document | `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md` | `sdd-architect-agent` |
@@ -63,6 +64,10 @@ A *change* is a named, scoped unit of work (a feature, bug fix, or improvement).
 
 ```mermaid
 flowchart TD
+    START(((START))) --> PROJECT_TYPE{{Greenfield or Brownfield}} -. Greenfield .-> PRD
+    PROJECT_TYPE   -. Brownfield .-> INIT
+    INIT["/sdd-init — Brownfield bootstrap"] --> PROPOSE
+
     PRD["/sdd-prd — Define product requirements"] --> UX
     UX["/sdd-ux — Design UX & create prototype"] --> ARCH
     ARCH["/sdd-arch — Define system architecture"] --> PROPOSE
@@ -77,6 +82,7 @@ flowchart TD
     VERIFY["/sdd-verify — Confirm implementation matches spec"] --> ARCHIVE
     ARCHIVE["/sdd-archive — Close out change"]
 
+    style INIT fill:#2E86AB,color:#fff
     style PRD fill:#4A90D9,color:#fff
     style UX fill:#7B68EE,color:#fff
     style ARCH fill:#5BA854,color:#fff
@@ -88,6 +94,7 @@ flowchart TD
 ```
 
 ```
+Greenfield project:
 1. /sdd-prd          → Define what the product does and why
 2. /sdd-ux           → Define the user experience and create a prototype
 3. /sdd-arch         → Define how the system is built
@@ -95,6 +102,11 @@ flowchart TD
 5. /sdd-implement    → Build the change test-first
 6. /sdd-verify       → Confirm the implementation matches the spec
 7. /sdd-archive      → Close out the change
+
+Brownfield project (existing code, no SDD docs yet):
+1. /sdd-init         → Inspect codebase and bootstrap all shared docs in one pipeline
+2. /sdd-propose      → Scope your first change from the generated docs
+   ...
 ```
 
 For small changes, `/sdd-propose` followed by `/sdd-implement` is often sufficient. 
