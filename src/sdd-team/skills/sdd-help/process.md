@@ -27,8 +27,8 @@ These three documents are **shared** — they apply to the whole project and are
 | 4 | `/sdd-propose <name>` | `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/` artifacts | Scope the change and generate implementation plan |
 | 5 *(optional)* | `/sdd-explore [topic]` | Thinking, diagrams, decisions | Investigate before or during implementation |
 | 6 | `/sdd-implement [name]` | Code and tests | Build the change test-first |
-| 7 | `/sdd-verify [name]` | Verification report | Confirm implementation matches the spec |
-| 8 | `/sdd-archive [name]` | Archived change + synced specs | Close out the change |
+| 7 | `/sdd-verify [name]` | Verification report + tracker status `verified` | Confirm implementation matches the spec; sets change as verified if no critical issues |
+| 8 | `/sdd-archive [name]` | Archived change + synced specs | Close out the change (requires status `verified`) |
 
 ## Flowchart
 

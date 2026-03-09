@@ -17,7 +17,25 @@ Archive a completed change in the SDD workflow. Automatically syncs all delta sp
 
    **IMPORTANT**: Do NOT guess or auto-select a change. Always let the user choose.
 
-2. **Check artifact completion status**
+2. **Check verification status**
+
+   Read `{ARTIFACT_MAIN_FOLDER}/sdd-tracker.yml` and find the entry for this change.
+
+   If the change `status` is **not** `verified`, stop immediately and output:
+
+   ```
+   ## Archive Blocked
+
+   **Change:** <change-name>
+   **Current status:** <status>
+
+   This change has not been verified yet.
+   Run `/sdd-verify <change-name>` and ensure all checks pass before archiving.
+   ```
+
+   Do not proceed further.
+
+3. **Check artifact completion status**
 
    List files in `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/` to determine which artifacts exist. The expected artifacts are: `proposal.md`, `design.md`, `tasks.md`, and any files under `specs/`.
 
@@ -25,7 +43,7 @@ Archive a completed change in the SDD workflow. Automatically syncs all delta sp
    - Note the missing artifacts in the final summary
    - Proceed automatically without prompting
 
-3. **Check task completion status**
+4. **Check task completion status**
 
    Read the tasks file (typically `tasks.md`) to check for incomplete tasks.
 
@@ -37,7 +55,7 @@ Archive a completed change in the SDD workflow. Automatically syncs all delta sp
 
    **If no tasks file exists:** Proceed without task-related note.
 
-4. **Sync all delta specs**
+5. **Sync all delta specs**
 
    Check for delta specs at `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/{SPECS_SUBFOLDER}/`. If none exist, skip this step.
 
@@ -48,7 +66,7 @@ Archive a completed change in the SDD workflow. Automatically syncs all delta sp
 
    Do NOT prompt — always sync automatically.
 
-5. **Perform the archive**
+6. **Perform the archive**
 
    Create the archive directory if it doesn't exist:
    ```bash
@@ -65,11 +83,11 @@ Archive a completed change in the SDD workflow. Automatically syncs all delta sp
    mv {ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name> {ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/archive/YYYY-MM-DD-<name>
    ```
 
-6. **Tracker Update**
+7. **Tracker Update**
 
    After the move succeeds, follow the **`sdd-tracker` skill** — set change `status` to `archived` and changelog entry "Archived on YYYY-MM-DD" for the change.
 
-7. **Display summary**
+8. **Display summary**
 
    Show archive completion summary including:
    - Change name

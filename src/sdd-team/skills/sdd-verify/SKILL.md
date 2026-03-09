@@ -137,6 +137,12 @@ Before writing, read the shared project documents for context:
    - If only warnings: "No critical issues. Y warning(s) to consider. Ready for archive (with noted improvements)."
    - If all clear: "All checks passed. Ready for archive."
 
+9. **Update tracker on full pass**
+
+   If the Final Assessment has **no CRITICAL issues** (all clear or warnings only), follow the **`sdd-tracker` skill** to set the change status to `verified` with changelog note `"Verification passed"`.
+
+   If CRITICAL issues were found, do **not** update the tracker — the status remains unchanged.
+
 **Verification Heuristics**
 
 - **Completeness**: Focus on objective checklist items (checkboxes, requirements list)

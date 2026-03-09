@@ -30,5 +30,5 @@ shared:
       changelog: []
 
 # ─── Changes (one entry per change folder) ───────────────────────────────────
-# status values: ready-for-dev | in-progress | done | archived
+# status values: ready-for-dev | in-progress | done | verified | archived
 changes: []

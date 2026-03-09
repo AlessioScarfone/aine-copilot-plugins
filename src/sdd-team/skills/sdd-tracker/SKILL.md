@@ -1,6 +1,6 @@
 ---
 name: sdd-tracker
-description: 'Internal skill — auto-invoked by sdd-prd, sdd-arch, sdd-ux, sdd-propose, sdd-implement, and sdd-archive to create and maintain the SDD workflow tracker file (sdd-tracker.yml). Read this skill whenever you need to update the tracker. Covers: file initialization from template, shared artifact tracking (shared.prd, shared.architecture, shared.ux.ux, shared.ux.prototype), change lifecycle management (ready-for-dev → in-progress → done → archived), changelog entries, and project.lastUpdate housekeeping.'
+description: 'Internal skill — auto-invoked by sdd-prd, sdd-arch, sdd-ux, sdd-propose, sdd-implement, sdd-verify, and sdd-archive to create and maintain the SDD workflow tracker file (sdd-tracker.yml). Read this skill whenever you need to update the tracker. Covers: file initialization from template, shared artifact tracking (shared.prd, shared.architecture, shared.ux.ux, shared.ux.prototype), change lifecycle management (ready-for-dev → in-progress → done → verified → archived), changelog entries, and project.lastUpdate housekeeping.'
 ---
 
 > [!NOTE]
@@ -84,6 +84,7 @@ Find the entry in `changes` where `id` matches the change name, then apply:
 |---|---|---|---|
 | `sdd-implement` begins first task | `in-progress` | today | `"Implementation started"` |
 | `sdd-implement` completes all tasks | `done` | today | `"Implementation complete"` |
+| `sdd-verify` — all checks pass (no CRITICAL issues) | `verified` | today | `"Verification passed"` |
 | `sdd-archive` | `archived` | today | `"Archived to <archive-path>"` |
 
 Always also set `project.lastUpdate` = today.
@@ -93,5 +94,7 @@ Always also set `project.lastUpdate` = today.
 ## Allowed status values (changes only)
 
 ```
-ready-for-dev → in-progress → done → archived
+ready-for-dev → in-progress → done → verified → archived
 ```
+
+> **Note:** `verified` is set only when `sdd-verify` reports no CRITICAL issues. `sdd-archive` requires status `verified` — it will not proceed if the status is anything else.
