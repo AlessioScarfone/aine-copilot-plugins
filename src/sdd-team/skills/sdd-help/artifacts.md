@@ -1,6 +1,6 @@
 # SDD Artifacts
 
-## Global documents
+## Shared documents
 
 These live at the root of `{ARTIFACT_MAIN_FOLDER}/` and apply to the whole project.
 
@@ -153,12 +153,12 @@ A *change* is a named, scoped unit of work — a feature, bug fix, or improvemen
 
 ```
 {ARTIFACT_MAIN_FOLDER}/
-├── {SHARED_SUBFOLDER}/           ← Global project documents
+├── {SHARED_SUBFOLDER}/           ← Shared project documents
 │   ├── prd.md              ← WHAT and WHY (whole product)
 │   ├── ux.md               ← UX design decisions
 │   ├── architecture.md     ← HOW the system is built
 │   └── prototype-*.html    ← Living HTML prototype
-├── {SPECS_SUBFOLDER}/  ← Global: permanent capability registry
+├── {SPECS_SUBFOLDER}/  ← Shared: permanent capability registry
 │   └── <capability>/
 │       └── spec.md
 └── {CHANGE_SUBFOLDER}/

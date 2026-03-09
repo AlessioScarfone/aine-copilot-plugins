@@ -35,7 +35,7 @@ Use `/sdd-help` to explore the Specification-Driven Development (SDD) workflow a
 
 Skills are invoked as slash commands inside any agent conversation. Suggested to use the appropriate agent for each skill, but you can also call any skill from any agent.
 
-### Global project documents
+### Shared project documents
 
 These commands create or update the shared documents that all agents use as context.
 
@@ -69,11 +69,11 @@ flowchart TD
 
     PROPOSE["/sdd-propose — Scope change & generate artifacts"] --> UPDATE
 
-    UPDATE{{"Is a Global Artifacts update needed?"}}
-    UPDATE -- Yes --> UDPATE_SHARED["Update shared docs (PRD, UX, Architecture)"] --> IMPLEMENT 
+    UPDATE{{"Is a Shared Artifacts update needed?"}}
+    UPDATE -. Yes .-> UDPATE_SHARED["Update shared docs (PRD, UX, Architecture)"] .-> IMPLEMENT 
     UPDATE -- No --> IMPLEMENT
 
-    IMPLEMENT["/sdd-implement — Build change test-first"] --> VERIFY
+    IMPLEMENT["/sdd-implement — Build change"] --> VERIFY
     VERIFY["/sdd-verify — Confirm implementation matches spec"] --> ARCHIVE
     ARCHIVE["/sdd-archive — Close out change"]
 
@@ -108,12 +108,12 @@ All SDD documents are stored in a `{ARTIFACT_MAIN_FOLDER}/` directory at the roo
 
 ```
 {ARTIFACT_MAIN_FOLDER}/
-├── {SHARED_SUBFOLDER}/                        # Global project documents
+├── {SHARED_SUBFOLDER}/                        # Shared project documents
 │   ├── prd.md                       # Product Requirements Document
 │   ├── ux.md                        # UX design document
 │   ├── architecture.md              # Architecture document
 │   └── prototype-<project>.html     # Interactive HTML prototype
-├── {SPECS_SUBFOLDER}/               # Global capability registry
+├── {SPECS_SUBFOLDER}/               # Shared capability registry
 │   └── <capability>/
 │       └── spec.md
 └── {CHANGE_SUBFOLDER}/              # Changes

@@ -68,7 +68,7 @@ Instead of jumping straight to code, SDD captures decisions in structured docume
 ### Key principle: specs before code
 
 Every change travels through three layers:
-1. **Global documents** (`prd.md`, `ux.md`, `architecture.md`) — shared context for the whole project
+1. **Shared documents** (`prd.md`, `ux.md`, `architecture.md`) — shared context for the whole project
 2. **Change artifacts** (`proposal.md`, `design.md`, `tasks.md`) — scoped context for one change
 3. **Capability specs** (`specs/<name>/spec.md`) — testable requirements for new capabilities
 

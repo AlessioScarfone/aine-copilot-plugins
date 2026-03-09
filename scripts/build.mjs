@@ -2,7 +2,7 @@
 
 import fs from "fs";
 import path from "path";
-import { DIST_DIR, PLUGINS_SRC_DIR, ROOT_FOLDER } from "./constants.mjs";
+import { PLUGINS_DIST_DIR, PLUGINS_SRC_DIR, ROOT_FOLDER } from "./constants.mjs";
 import { parseFrontmatter } from "./yaml-parser.mjs";
 import { validateSkills } from "./validate-skills.mjs";
 import { validatePlugins } from "./validate-plugins.mjs";
@@ -65,7 +65,8 @@ function copyIfExists(src, dest) {
 function copyRootFiles(src, dest) {
   const entries = fs.readdirSync(src, { withFileTypes: true });
   for (const entry of entries) {
-    if (entry.isFile() && entry.name !== "plugin.json") {
+    // Don't copy plugin.json (handled separately) or config.json (should not be bundled)
+    if (entry.isFile() && entry.name !== "plugin.json" && entry.name !== "config.json") {
       fs.copyFileSync(path.join(src, entry.name), path.join(dest, entry.name));
     }
   }
@@ -93,7 +94,7 @@ function copySkillTemplates(skillsDir) {
 
 function buildPlugin(pluginName) {
   const src = path.join(PLUGINS_SRC_DIR, pluginName);
-  const dest = path.join(DIST_DIR, pluginName);
+  const dest = path.join(PLUGINS_DIST_DIR, pluginName);
 
   fs.mkdirSync(dest, { recursive: true });
 
@@ -218,10 +219,10 @@ function main() {
   console.log("🔨 Building plugins...\n");
 
   // Step 1: Clean and create dist
-  if (fs.existsSync(DIST_DIR)) {
-    fs.rmSync(DIST_DIR, { recursive: true });
+  if (fs.existsSync(PLUGINS_DIST_DIR)) {
+    fs.rmSync(PLUGINS_DIST_DIR, { recursive: true });
   }
-  fs.mkdirSync(DIST_DIR, { recursive: true });
+  fs.mkdirSync(PLUGINS_DIST_DIR, { recursive: true });
   console.log("📁 Created dist directory");
 
   // Step 2: Discover plugins
@@ -248,7 +249,7 @@ function main() {
     buildPlugin(plugin);
     console.log(`   ✅ ${plugin} → dist/${plugin}`);
 
-    const pluginDist = path.join(DIST_DIR, plugin);
+    const pluginDist = path.join(PLUGINS_DIST_DIR, plugin);
     const pluginSrc = path.join(PLUGINS_SRC_DIR, plugin);
     
     const skillCount = generateSkillsFromPrompts(pluginSrc, pluginDist, plugin);
@@ -277,7 +278,7 @@ function main() {
 
   // Step 5: Validate skills and plugins
   for (const plugin of plugins) {
-    const skillsDir = path.join(DIST_DIR, plugin, "skills");
+    const skillsDir = path.join(PLUGINS_DIST_DIR, plugin, "skills");
     console.log(`\n🔄 Validating skills for ${plugin}...`);
     const skillsValid = validateSkills(skillsDir);
     if (!skillsValid) {
@@ -286,11 +287,11 @@ function main() {
     }
 
     console.log(`\n📝 Updating plugin.json manifest for ${plugin}...`);
-    generatePluginManifest(path.join(DIST_DIR, plugin));
+    generatePluginManifest(path.join(PLUGINS_DIST_DIR, plugin));
   }
 
   console.log("\n🔄 Validating plugins...");
-  const pluginsValid = validatePlugins(DIST_DIR);
+  const pluginsValid = validatePlugins(PLUGINS_DIST_DIR);
   if (!pluginsValid) {
     console.error("❌ Plugin validation failed");
     process.exit(1);

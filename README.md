@@ -30,7 +30,7 @@ Clone this repository, run `nvm use && npm ci && npm run build`. Then follow ins
 Example:
 ```json
 "chat.plugins.paths": {
-   "path/aine-copilot-plugins/plugins/sdd-team": true
+  "path/aine-copilot-plugins/dist/plugins/sdd-team": true
 },
 ```
 
@@ -56,22 +56,24 @@ aine-team-copilot-plugin/
 │   ├── sdd-team/                 # sdd-team plugin source
 │   │   ├── plugin.json           # Plugin manifest (source)
 │   │   ├── agents/               # Agent definitions (.agent.md)
-│   │   ├── prompts/              # Skill prompts (.prompt.md)
-│   │   └── templates/            # Document templates
+│   │   └── skills/               # Skill definitions (one subfolder per skill)
+│   │       ├── sdd-help/         # Example skill subfolder
+│   │       │    ├── SKILL.md      # Skill definition and prompt
+│   │       │    └── templates/    # Optional document templates used by the skill
+│   │       └── ...
 │   └── <your-new-plugin>/        # Add new plugins here
 │       ├── plugin.json
 │       └── ...
-├── plugins/                      # Built output — one subfolder per plugin
+├── dist/plugins/                   # Built output — one subfolder per plugin
 │   └── sdd-team/
 │       ├── .github/plugin/
 │       │   └── plugin.json       # Final plugin manifest
 │       ├── agents/
-│       ├── skills/
-│       └── templates/
+│       └── skills/
 └── scripts/                      # Build and validation scripts
 ```
 
-Source files live in `src/`. Each subdirectory of `src/` is treated as an independent plugin and materialized into the corresponding `plugins/<name>/` directory by `npm run build`.
+Source files live in `src/`. Each subdirectory of `src/` is treated as an independent plugin and materialized into the corresponding `dist/plugins/<name>/` directory by `npm run build`.
 
 Each skill that **generates** documents includes its own templates in a `templates/` subdirectory.
 Skills that only **read** documents (sdd-implement, sdd-explore, sdd-verify, sdd-archive) do not include templates.
@@ -90,12 +92,15 @@ npm run build
 
 The build script automatically discovers all plugin directories inside `src/` and for each one:
 
-- Copies agents, skills, and templates into `plugins/<plugin-name>/`
+- Copies agents, skills, and templates into `dist/plugins/<plugin-name>/`
 - Converts `.prompt.md` files into skill `SKILL.md` files
-- Places the final `plugin.json` at `plugins/<plugin-name>/.github/plugin/plugin.json`
+- Places the final `plugin.json` at `dist/plugins/<plugin-name>/.github/plugin/plugin.json`
 - Applies variable substitutions defined in `config.json` (see [Plugin variables](#plugin-variables) below)
 
-To add a new plugin, create a new directory under `src/` with a `plugin.json` and any agents, prompts, and templates — the build will pick it up automatically.
+To add a new plugin, create a new directory under `src/` with a `plugin.json` and any agents and skills — the build will pick it up automatically.
+
+> [!WARNING]
+> Plugin does not support `prompts`, but you can include a `prompts/` folder in your > > plugin and it will be converted into a skill by the build process.
 
 ### Plugin variables
 
@@ -132,6 +137,7 @@ npm run plugin:create
 ```
 
 This command scaffolds a new plugin directory under `src/` with a basic `plugin.json`. You can then customize these files to build your plugin.
+
 
 ---
 
