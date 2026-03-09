@@ -1,0 +1,34 @@
+# sdd-tracker.yml — SDD Workflow Tracker
+# Auto-managed by SDD skills. Do not edit manually unless necessary.
+# Location: {ARTIFACT_MAIN_FOLDER}/sdd-tracker.yml
+
+project:
+  name: ""
+  created: ""
+  lastUpdate: ""
+
+# ─── Shared artifacts (live across the whole project) ────────────────────────
+shared:
+  prd:
+    created: ~
+    lastUpdate: ~
+    changelog: []
+
+  architecture:
+    created: ~
+    lastUpdate: ~
+    changelog: []
+
+  ux:
+    ux:
+      created: ~
+      lastUpdate: ~
+      changelog: []
+    prototype:
+      created: ~
+      lastUpdate: ~
+      changelog: []
+
+# ─── Changes (one entry per change folder) ───────────────────────────────────
+# status values: ready-for-dev | in-progress | done | archived
+changes: []

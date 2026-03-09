@@ -224,6 +224,12 @@ Structured improvement of an existing PRD.
 
 ---
 
+## Tracker Update
+
+After saving `prd.md`, follow the **`sdd-tracker` skill** — update `shared.prd`.
+
+---
+
 ## Guardrails
 
 - **Adopt the PM agent's persona** — from: `agents/pm.agent.md`

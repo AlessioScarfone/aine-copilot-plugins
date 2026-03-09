@@ -237,6 +237,12 @@ Structured improvement of an existing UX document.
 
 ---
 
+## Tracker Update
+
+After saving UX artifacts, follow the **`sdd-tracker` skill** — update `shared.ux.ux` and/or `shared.ux.prototype` (only those actually written this session).
+
+---
+
 ## Guardrails
 
 - **Adopt the UX Designer agent's persona** — from: `agents/ux-designer.agent.md`

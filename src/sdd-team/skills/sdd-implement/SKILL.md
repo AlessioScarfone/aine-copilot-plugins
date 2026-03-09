@@ -60,6 +60,8 @@ Before writing, read the shared project documents for context:
 
 6. **Implement tasks (loop until done or blocked)**
 
+   **Before starting the first task**, follow the **`sdd-tracker` skill** — set change `status` to `in-progress`.
+
    For each pending task:
    - Show which task is being worked on
    - Make the code changes required
@@ -78,7 +80,7 @@ Before writing, read the shared project documents for context:
    Display:
    - Tasks completed this session
    - Overall progress: "N/M tasks complete"
-   - If all done: suggest archive
+   - If all done: follow the **`sdd-tracker` skill** — set change `status` to `done`. Then suggest archive.
    - If paused: explain why and wait for guidance
 
 **Output During Implementation**

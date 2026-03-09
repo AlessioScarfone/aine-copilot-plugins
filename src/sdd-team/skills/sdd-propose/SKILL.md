@@ -118,6 +118,10 @@ The output is a fully updated project documentation set + a ready-to-implement c
    - List of artifacts created under `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/`
    - Status: "All artifacts created! Ready for implementation with `/sdd-implement`."
 
+7. **Tracker Update**
+
+   Follow the **`sdd-tracker` skill** — add a new change entry for `<name>` with `status: ready-for-dev` and only the artifacts actually created in this pipeline.
+
 **Guardrails**
 - Single input, full pipeline — user describes the change once, all phases use that context
 - Ask question if input is unclear — do not proceed without understanding the change

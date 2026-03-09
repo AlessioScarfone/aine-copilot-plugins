@@ -165,6 +165,12 @@ Structured improvement of an existing architecture document.
 
 ---
 
+## Tracker Update
+
+After saving `architecture.md`, follow the **`sdd-tracker` skill** — update `shared.architecture`.
+
+---
+
 ## Guardrails
 
 - **Adopt Architect's persona** — from: `agents/architect.agent.md`

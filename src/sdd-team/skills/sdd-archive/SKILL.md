@@ -65,7 +65,11 @@ Archive a completed change in the SDD workflow. Automatically syncs all delta sp
    mv {ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name> {ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/archive/YYYY-MM-DD-<name>
    ```
 
-6. **Display summary**
+6. **Tracker Update**
+
+   After the move succeeds, follow the **`sdd-tracker` skill** — set change `status` to `archived`.
+
+7. **Display summary**
 
    Show archive completion summary including:
    - Change name
