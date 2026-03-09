@@ -3,20 +3,17 @@ name: sdd-prd
 description: 'Create or update the shared PRD using the PM agent'
 ---
 
+Create or update the shared PRD at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`.
+This is a **shared project document** — not tied to any specific change. It defines WHAT the product is and WHY, and serves as context for all future changes.
+
+**Output**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`
+
+**Template**: Use `templates/prd.md` as the document structure.
+
 > [!IMPORTANT]
 > This skill is designed to be used with the **sdd-team:sdd-pm-agent.agent** agent.
 > Switch to it in the agent selector before invoking this skill for the full interactive experience.
 > If you are already using **sdd-team:sdd-pm-agent.agent**, proceed with the workflow below.
-
-Create or update the shared PRD at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`.
-
-This is a **shared project document** — not tied to any specific change. It defines WHAT the product is and WHY, and serves as context for all future changes.
-
----
-
-**Output**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`
-
-**Template**: Use `./templates/prd.md` as the document structure.
 
 ---
 

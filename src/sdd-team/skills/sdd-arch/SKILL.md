@@ -3,22 +3,20 @@ name: sdd-arch
 description: 'Create or update the shared architecture document using the Architect agent'
 ---
 
+Create or update the shared architecture document at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`.
+This is a **shared project document** — not tied to any specific change. It defines HOW the system is built and serves as context for all future changes.
+
+**Output**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`
+
+**Template**: Use `templates/architecture.md` as the document structure.
+
+**Prerequisites**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` should exist. If not, ask user for a prd or suggest to "Create the PRD"
+
+
 > [!IMPORTANT]
 > This skill is designed to be used with the **sdd-team:sdd-architect-agent.agent** agent.
 > Switch to it in the agent selector before invoking this skill for the full interactive experience.
 > If you are already using **sdd-team:sdd-architect-agent.agent**, proceed with the workflow below.
-
-Create or update the shared architecture document at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`.
-
-This is a **shared project document** — not tied to any specific change. It defines HOW the system is built and serves as context for all future changes.
-
----
-
-**Output**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`
-
-**Template**: Use `./templates/architecture.md` as the document structure.
-
-**Prerequisites**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` should exist. If not, ask user for a prd or suggest to "Create the PRD"
 
 ---
 
