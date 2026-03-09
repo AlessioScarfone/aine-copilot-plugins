@@ -2,11 +2,11 @@
 
 ## Global documents
 
-These live at the root of `sdd-docs/` and apply to the whole project.
+These live at the root of `{ARTIFACT_MAIN_FOLDER}/` and apply to the whole project.
 
 ---
 
-### `sdd-docs/prd.md` — Product Requirements Document
+### `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` — Product Requirements Document
 
 **Purpose:** Defines WHAT the product is and WHY it exists. The highest-level shared truth.
 
@@ -26,7 +26,7 @@ These live at the root of `sdd-docs/` and apply to the whole project.
 
 ---
 
-### `sdd-docs/ux.md` — UX Design Document
+### `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` — UX Design Document
 
 **Purpose:** Defines how users experience the product — design decisions, component inventory, wireframes, and prototype spec.
 
@@ -39,13 +39,13 @@ These live at the root of `sdd-docs/` and apply to the whole project.
 - Key Screen Wireframes — ASCII text wireframes for 2–3 key screens
 - Prototype Specification — scope, interactions, breakpoints, design tokens
 
-**Companion file:** `sdd-docs/prototype-<project-name>.html` — a standalone, working HTML/CSS prototype.
+**Companion file:** `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-<project-name>.html` — a standalone, working HTML/CSS prototype.
 
 **When to update:** When new screens are added, design decisions change, or the component inventory grows.
 
 ---
 
-### `sdd-docs/architecture.md` — Architecture Document
+### `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md` — Architecture Document
 
 **Purpose:** Defines HOW the system is built — tech stack, data architecture, API surface, naming conventions, project structure.
 
@@ -65,7 +65,7 @@ These live at the root of `sdd-docs/` and apply to the whole project.
 
 ## Change artifacts
 
-Every change lives in its own folder: `sdd-docs/changes/<change-name>/`
+Every change lives in its own folder: `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<change-name>/`
 
 A *change* is a named, scoped unit of work — a feature, bug fix, or improvement. Changes are created by `/sdd-propose` and archived by `/sdd-archive`.
 
@@ -129,7 +129,7 @@ A *change* is a named, scoped unit of work — a feature, bug fix, or improvemen
 
 **Purpose:** Testable requirements and scenarios for a specific capability introduced or modified by the change.
 
-**Location:** `sdd-docs/changes/<name>/specs/<capability>/spec.md`
+**Location:** `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/{SPECS_SUBFOLDER}/<capability>/spec.md`
 
 **Created by:** `/sdd-propose` (Phase 4d), only when new capabilities are introduced
 
@@ -145,27 +145,28 @@ A *change* is a named, scoped unit of work — a feature, bug fix, or improvemen
 - **THEN** <expected outcome>
 ```
 
-**Lifecycle:** Delta specs start inside a change folder. When the change is archived, `/sdd-archive` syncs them into `sdd-docs/specs/<capability>/spec.md` — the permanent capability registry.
+**Lifecycle:** Delta specs start inside a change folder. When the change is archived, `/sdd-archive` syncs them into `{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<capability>/spec.md` — the permanent capability registry.
 
 ---
 
 ## Relationship map
 
 ```
-sdd-docs/
-├── prd.md              ← Global: WHAT and WHY (whole product)
-├── ux.md               ← Global: UX design decisions
-├── architecture.md     ← Global: HOW the system is built
-├── prototype-*.html    ← Global: living HTML prototype
-├── specs/              ← Global: permanent capability registry
+{ARTIFACT_MAIN_FOLDER}/
+├── {SHARED_SUBFOLDER}/           ← Global project documents
+│   ├── prd.md              ← WHAT and WHY (whole product)
+│   ├── ux.md               ← UX design decisions
+│   ├── architecture.md     ← HOW the system is built
+│   └── prototype-*.html    ← Living HTML prototype
+├── {SPECS_SUBFOLDER}/  ← Global: permanent capability registry
 │   └── <capability>/
 │       └── spec.md
-└── changes/
+└── {CHANGE_SUBFOLDER}/
     ├── <change-name>/  ← Change: one scoped unit of work
     │   ├── proposal.md     ← What & why
     │   ├── design.md       ← How
     │   ├── tasks.md        ← Implementation steps
-    │   └── specs/          ← Delta specs (synced to global on archive)
+    │   └── {SPECS_SUBFOLDER}/  ← Delta specs (synced to shared on archive)
     │       └── <capability>/
     │           └── spec.md
     └── archive/        ← Completed changes (date-prefixed)

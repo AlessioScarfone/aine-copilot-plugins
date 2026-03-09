@@ -12,10 +12,10 @@ Implement tasks from a change.
 
 **Input**: Optionally specify a change name (e.g., `/sdd-implement add-auth`). If omitted, check if it can be inferred from conversation context. If vague or ambiguous you MUST prompt for available changes.
 
-Before writing, read the global project documents for context:
-- sdd-docs/prd.md — product requirements, user journeys, functional requirements
-- sdd-docs/architecture.md — tech stack, architectural decisions, naming conventions
-- sdd-docs/ux.md — UX design decisions, component inventory (if exists)
+Before writing, read the shared project documents for context:
+- {ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md — product requirements, user journeys, functional requirements
+- {ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md — tech stack, architectural decisions, naming conventions
+- {ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md — UX design decisions, component inventory (if exists)
 
 **Steps**
 
@@ -24,12 +24,12 @@ Before writing, read the global project documents for context:
    If a name is provided, use it. Otherwise:
    - Infer from conversation context if the user mentioned a change
    - Auto-select if only one active change exists
-   - If ambiguous, list directories in `sdd-docs/changes/` (excluding `archive`) and use the **AskUserQuestion tool** to let the user select
+   - If ambiguous, list directories in `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/` (excluding `archive`) and use the **AskUserQuestion tool** to let the user select
 
    Always announce: "Using change: <name>" and how to override (e.g., `/sdd-implement <other>`).
 
 2. **Inspect the change directory**
-   List files in `sdd-docs/changes/<name>/` to understand which artifacts are present:
+   List files in `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/` to understand which artifacts are present:
    - `proposal.md` — what & why
    - `design.md` — how
    - `tasks.md` — implementation steps
@@ -37,7 +37,7 @@ Before writing, read the global project documents for context:
 
 3. **Read the tasks and context**
 
-   Read `sdd-docs/changes/<name>/tasks.md` to get the task list and progress.
+   Read `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/tasks.md` to get the task list and progress.
 
    **Handle states:**
    - If `tasks.md` is missing: show message, suggest using `/sdd-propose` first
@@ -46,7 +46,7 @@ Before writing, read the global project documents for context:
 
 4. **Read context files**
 
-   Read all available artifacts from `sdd-docs/changes/<name>/`:
+   Read all available artifacts from `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/`:
    - `proposal.md` — change scope and goals
    - `design.md` — technical approach and decisions
    - `tasks.md` — task list and progress

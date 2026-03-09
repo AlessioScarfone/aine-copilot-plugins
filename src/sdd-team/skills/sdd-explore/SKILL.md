@@ -82,7 +82,7 @@ You have full context of the spec-driven workflow. Use it naturally, don't force
 
 ### Check for context
 
-At the start, quickly check what exists by listing directories in `sdd-docs/`. Read any relevant artifacts (`architecture`, `prd`, `ux`, `proposal`, `design`, `tasks`) that exist to ground the conversation in current state. This is especially important if the user provided a change name as input.
+At the start, quickly check what exists by listing directories in `{ARTIFACT_MAIN_FOLDER}/`. Read any relevant artifacts (`architecture`, `prd`, `ux`, `proposal`, `design`, `tasks`) that exist to ground the conversation in current state. This is especially important if the user provided a change name as input.
 
 This tells you:
 - If there are active changes
@@ -103,9 +103,9 @@ Think freely. When insights crystallize, you might offer:
 If the user mentions a change or you detect one is relevant:
 
 1. **Read existing artifacts for context**
-   - `sdd-docs/changes/<name>/proposal.md`
-   - `sdd-docs/changes/<name>/design.md`
-   - `sdd-docs/changes/<name>/tasks.md`
+   - `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md`
+   - `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/design.md`
+   - `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/tasks.md`
    - etc.
 
 2. **Reference them naturally in conversation**

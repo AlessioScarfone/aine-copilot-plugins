@@ -12,13 +12,13 @@ Answer questions about the Specification-Driven Development (SDD) approach, its 
 - `/sdd-help artifacts` — explain every artifact type
 - `/sdd-help process` — walk through the full SDD lifecycle
 - `/sdd-help prd` — deep dive on a specific artifact
-- `/sdd-help what's next` — suggest the next step based on what exists in `sdd-docs/`
+- `/sdd-help what's next` — suggest the next step based on what exists in `{ARTIFACT_MAIN_FOLDER}/`
 
 ---
 
 ## Entry point
 
-1. **Read what already exists** — list `sdd-docs/` and `sdd-docs/changes/` (if they exist) to understand the project's current SDD state.
+1. **Read what already exists** — list `{ARTIFACT_MAIN_FOLDER}/` and `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/` (if they exist) to understand the project's current SDD state.
 
 2. **Interpret the user's input** and load the relevant detail file only when needed:
    - No input or "overview" → display the **SDD Overview** and the **Navigation Menu** below
@@ -63,7 +63,7 @@ Instead of jumping straight to code, SDD captures decisions in structured docume
 | Decisions live in chat, memory, or nowhere | Decisions live in versioned documents |
 | AI agents guess what you want | Agents read specs before acting |
 | Changes are hard to review | Every change has a traceable paper trail |
-| Context is lost between sessions | `sdd-docs/` persists context across sessions |
+| Context is lost between sessions | `{ARTIFACT_MAIN_FOLDER}/` persists context across sessions |
 
 ### Key principle: specs before code
 
@@ -80,18 +80,18 @@ Agents read these files at the start of every session, so context is never lost.
 
 When the user asks "what's next", "where am I", or similar:
 
-1. **Inspect the current state** of `sdd-docs/`:
+1. **Inspect the current state** of `{ARTIFACT_MAIN_FOLDER}/`:
    - Does `prd.md` exist?
    - Does `ux.md` exist?
    - Does `architecture.md` exist?
-   - Are there active changes in `sdd-docs/changes/`? (excluding `archive/`)
+   - Are there active changes in `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/`? (excluding `archive/`)
    - Do any active changes have incomplete tasks in `tasks.md`?
 
 2. **Recommend the next step** based on what you find:
 
 | State | Recommendation |
 |---|---|
-| No `sdd-docs/` at all | Start with `/sdd-prd` to define your product |
+| No `{ARTIFACT_MAIN_FOLDER}/` at all | Start with `/sdd-prd` to define your product |
 | `prd.md` missing | Run `/sdd-prd` — required before proposing any change |
 | `prd.md` exists, no `ux.md` or `architecture.md` | Run `/sdd-ux` then `/sdd-arch` to complete project setup |
 | Setup complete, no active changes | Run `/sdd-propose <name>` to start your first change |
@@ -107,7 +107,7 @@ When the user asks "what's next", "where am I", or similar:
 ## Guardrails
 
 - **Read-only skill** — never create, modify, or delete any file. If the user wants to create or update a document, direct them to the appropriate skill command.
-- **Reference real paths** — when mentioning files, always use the actual path format (`sdd-docs/prd.md`, `sdd-docs/changes/<name>/proposal.md`).
-- **Assess current state first** — always inspect `sdd-docs/` before answering "what's next" or making recommendations.
+- **Reference real paths** — when mentioning files, always use the actual path format (`{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`, `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md`).
+- **Assess current state first** — always inspect `{ARTIFACT_MAIN_FOLDER}/` before answering "what's next" or making recommendations.
 - **Stay factual** — describe the artifacts and process as they are defined in the skill files, not as general best practices.
 - **Suggest, don't act** — offer the next command to run; let the user decide when to switch skills.

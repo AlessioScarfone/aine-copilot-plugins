@@ -1,6 +1,6 @@
 ---
 name: sdd-ux
-description: 'Create or update the global UX design document using the UX Designer agent'
+description: 'Create or update the shared UX design document using the UX Designer agent'
 ---
 
 > [!IMPORTANT]
@@ -8,17 +8,17 @@ description: 'Create or update the global UX design document using the UX Design
 > Switch to it in the agent selector before invoking this skill for the full interactive experience.
 > If you are already using **sdd-team:sdd-ux-agent.agent**, proceed with the workflow below.
 
-Create or update the global UX design document at `sdd-docs/ux.md`.
+Create or update the shared UX design document at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md`.
 
-This is a **global project document** — not tied to any specific change. It defines the UX foundations and serves as context for all future changes.
+This is a **shared project document** — not tied to any specific change. It defines the UX foundations and serves as context for all future changes.
 
 ---
 
-**Output**: `sdd-docs/ux.md` and `sdd-docs/prototype-[project-name].html`
+**Output**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` and `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-[project-name].html`
 
 **Template**: Use `./templates/ux.md` and `./templates/prototype-template.html` as the document structure.
 
-**Prerequisites**: `sdd-docs/prd.md` should exist. If not, inform: "Create the PRD first with `/prd`."
+**Prerequisites**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` should exist. If not, inform: "Create the PRD first with `/prd`."
 
 ---
 
@@ -26,7 +26,7 @@ This is a **global project document** — not tied to any specific change. It de
 
 1. **Check if UX doc already exists**
 
-   Read `sdd-docs/ux.md`. If it exists:
+   Read `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md`. If it exists:
    - Summarize current content to the user.
    - Ask: "Do you want to **revise** the existing UX design or **start fresh**?"  Skip this question if you detect from existing document or user input.
    - If revise → follow **Revise UX Workflow** below.
@@ -34,8 +34,8 @@ This is a **global project document** — not tied to any specific change. It de
 
 2. **Context gathering** (always)
 
-   - Read `sdd-docs/prd.md` — primary input (product vision, user journeys, requirements).
-   - Read `sdd-docs/architecture.md` if it exists — technical constraints on the UI.
+   - Read `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` — primary input (product vision, user journeys, requirements).
+   - Read `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md` if it exists — technical constraints on the UI.
    - Ask the user for additional context if needed.
 
 ---
@@ -179,7 +179,7 @@ Start from the official template at `./templates/prototype-template.html`. Read 
 
 Deliver the complete HTML as a single fenced code block. After the code block, list key interactions implemented.
 
-Save as `sdd-docs/prototype-[project-name].html`.
+Save as `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-[project-name].html`.
 
 Present C/R/A. On C, move to Section 7.
 
@@ -198,7 +198,7 @@ Display a summary:
 ✅ HTML Prototype        — Working prototype built
 ```
 
-- Confirm: "UX design saved to `sdd-docs/ux.md`"
+- Confirm: "UX design saved to `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md`"
 - Suggest: "You can now create the architecture (`/sdd-arch`) or start a change (`/sdd-propose`)."
 
 ---
@@ -209,7 +209,7 @@ Structured improvement of an existing UX document.
 
 ### Step 1 — Discovery
 
-1. Load `sdd-docs/ux.md` completely.
+1. Load `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` completely.
 2. Ask: *"What would you like to change?"* Examples:
    - Revisit a design decision (navigation, color, density)
    - Add or remove components from the inventory
@@ -232,7 +232,7 @@ Structured improvement of an existing UX document.
 
 ### Step 4 — Completion
 
-1. Apply all edits to `sdd-docs/ux.md` (and `sdd-docs/prototype-[project-name].html` if the prototype changed).
+1. Apply all edits to `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` (and `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-[project-name].html` if the prototype changed).
 2. Present a **completion recap**: sections modified, decisions changed.
 
 ---

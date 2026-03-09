@@ -1,6 +1,6 @@
 ---
 name: sdd-arch
-description: 'Create or update the global architecture document using the Architect agent'
+description: 'Create or update the shared architecture document using the Architect agent'
 ---
 
 > [!IMPORTANT]
@@ -8,17 +8,17 @@ description: 'Create or update the global architecture document using the Archit
 > Switch to it in the agent selector before invoking this skill for the full interactive experience.
 > If you are already using **sdd-team:sdd-architect-agent.agent**, proceed with the workflow below.
 
-Create or update the global architecture document at `sdd-docs/architecture.md`.
+Create or update the shared architecture document at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`.
 
-This is a **global project document** — not tied to any specific change. It defines HOW the system is built and serves as context for all future changes.
+This is a **shared project document** — not tied to any specific change. It defines HOW the system is built and serves as context for all future changes.
 
 ---
 
-**Output**: `sdd-docs/architecture.md`
+**Output**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`
 
 **Template**: Use `./templates/architecture.md` as the document structure.
 
-**Prerequisites**: `sdd-docs/prd.md` should exist. If not, ask user for a prd or suggest to "Create the PRD"
+**Prerequisites**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` should exist. If not, ask user for a prd or suggest to "Create the PRD"
 
 ---
 
@@ -26,15 +26,15 @@ This is a **global project document** — not tied to any specific change. It de
 
 1. **Check if architecture doc already exists**
 
-   Read `sdd-docs/architecture.md` or any file provided by the user. If it exists:
+   Read `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md` or any file provided by the user. If it exists:
    - Summarize current content to the user.
    - Ask: "Do you want to **revise** the existing architecture or **start fresh**? Skip this question if you detect from existing document or user input.
    - If revise → follow **Edit Architecture Workflow** below.
    - If fresh → follow **Architecture Workflow** below.
 
 2. **Context gathering** (always)
-   - Read `sdd-docs/prd.md` if it exists — primary requirements baseline.
-   - Read `sdd-docs/ux.md` if it exists — UX implications.
+   - Read `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` if it exists — primary requirements baseline.
+   - Read `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` if it exists — UX implications.
    - Read any additional files provided by the user (e.g., `project-context.md`, `AGENTS.md`) for technical preferences or constraints.
    - Read project-level docs (README, package.json, `AGENTS.md`, etc.).
    - Ask the user for additional context if needed.
@@ -118,7 +118,7 @@ Present findings. Resolve critical issues with user before completing.
 
 ### Step 8 — Completion
 
-1. Save final `architecture.md` to `sdd-docs/architecture.md` using the template structure.
+1. Save final `architecture.md` to `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md` using the template structure.
 2. Present a **completion recap in chat**: decisions made, patterns defined, structure finalized, gaps found.
 
 ---
@@ -129,7 +129,7 @@ Structured improvement of an existing architecture document.
 
 ### Step 1 — Discovery
 
-1. Load `sdd-docs/architecture.md` completely.
+1. Load `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md` completely.
 2. Ask: _"What would you like to change?"_ Examples:
    - Update technology choices (new framework version, different database, etc.)
    - Add missing architectural decisions or patterns
@@ -160,7 +160,7 @@ Structured improvement of an existing architecture document.
 
 ### Step 4 — Completion
 
-1. Apply all edits directly to `sdd-docs/architecture.md`.
+1. Apply all edits directly to `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`.
 2. Present a **completion recap**: sections modified, decisions changed, new patterns/conventions, consistency check results.
 
 ---
@@ -168,7 +168,7 @@ Structured improvement of an existing architecture document.
 ## Guardrails
 
 - **Adopt Architect's persona** — from: `agents/architect.agent.md`
-- **Never modify PRD or UX docs** — output goes into `sdd-docs/architecture.md` only.
+- **Never modify PRD or UX docs** — output goes into `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md` only.
 - **Always validate with user** before recording architectural decisions.
 - **Verify technology versions** — never trust hardcoded versions.
 - **No time estimates.**

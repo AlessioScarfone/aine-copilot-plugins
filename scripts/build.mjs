@@ -8,6 +8,53 @@ import { validateSkills } from "./validate-skills.mjs";
 import { validatePlugins } from "./validate-plugins.mjs";
 
 const PLUGIN_SUBDIRS = ["agents", "skills", "templates"];
+const TEXT_EXTENSIONS = new Set([".md", ".txt", ".json", ".html", ".yaml", ".yml"]);
+
+/**
+ * Load variables from a plugin's config.json. Returns an empty object if not found.
+ */
+function loadPluginConfig(pluginSrc) {
+  const configPath = path.join(pluginSrc, "config.json");
+  if (!fs.existsSync(configPath)) return {};
+  try {
+    const raw = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    return raw.variables ?? {};
+  } catch {
+    console.warn(`   ⚠️  Could not parse config.json in ${pluginSrc}`);
+    return {};
+  }
+}
+
+/**
+ * Replace all {VARIABLE_NAME} placeholders in a string.
+ */
+function applyVariables(content, variables) {
+  return Object.entries(variables).reduce(
+    (acc, [key, value]) => acc.replaceAll(`{${key}}`, value),
+    content
+  );
+}
+
+/**
+ * Walk a directory recursively and apply variable substitution to all text files.
+ */
+function substituteVariablesInDir(dir, variables) {
+  if (!fs.existsSync(dir) || Object.keys(variables).length === 0) return;
+
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      substituteVariablesInDir(fullPath, variables);
+    } else if (entry.isFile() && TEXT_EXTENSIONS.has(path.extname(entry.name))) {
+      const original = fs.readFileSync(fullPath, "utf-8");
+      const substituted = applyVariables(original, variables);
+      if (substituted !== original) {
+        fs.writeFileSync(fullPath, substituted, "utf-8");
+      }
+    }
+  }
+}
 
 function copyIfExists(src, dest) {
   if (fs.existsSync(src)) {
@@ -217,6 +264,14 @@ function main() {
     if (fs.existsSync(readmeSrc)) {
       fs.copyFileSync(readmeSrc, path.join(pluginDist, "README.md"));
       console.log(`   📄 Copied ${readmeLabel} → dist/${plugin}/README.md`);
+    }
+
+    // Apply variable substitutions from config.json (after all files are in place)
+    const variables = loadPluginConfig(pluginSrc);
+    if (Object.keys(variables).length > 0) {
+      substituteVariablesInDir(pluginDist, variables);
+      const varList = Object.entries(variables).map(([k, v]) => `${k}=${v}`).join(", ");
+      console.log(`   🔧 Applied variables: ${varList}`);
     }
   }
 

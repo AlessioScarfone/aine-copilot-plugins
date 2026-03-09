@@ -1,0 +1,8 @@
+{
+  "variables": {
+    "ARTIFACT_MAIN_FOLDER": "sdd-docs",
+    "SHARED_SUBFOLDER": "shared",
+    "CHANGE_SUBFOLDER": "change",
+    "SPECS_SUBFOLDER": "specs"
+  }
+}

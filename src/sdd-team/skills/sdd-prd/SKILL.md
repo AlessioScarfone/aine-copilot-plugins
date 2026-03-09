@@ -1,6 +1,6 @@
 ---
 name: sdd-prd
-description: 'Create or update the global PRD using the PM agent'
+description: 'Create or update the shared PRD using the PM agent'
 ---
 
 > [!IMPORTANT]
@@ -8,13 +8,13 @@ description: 'Create or update the global PRD using the PM agent'
 > Switch to it in the agent selector before invoking this skill for the full interactive experience.
 > If you are already using **sdd-team:sdd-pm-agent.agent**, proceed with the workflow below.
 
-Create or update the global PRD at `sdd-docs/prd.md`.
+Create or update the shared PRD at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`.
 
-This is a **global project document** — not tied to any specific change. It defines WHAT the product is and WHY, and serves as context for all future changes.
+This is a **shared project document** — not tied to any specific change. It defines WHAT the product is and WHY, and serves as context for all future changes.
 
 ---
 
-**Output**: `sdd-docs/prd.md`
+**Output**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`
 
 **Template**: Use `./templates/prd.md` as the document structure.
 
@@ -24,7 +24,7 @@ This is a **global project document** — not tied to any specific change. It de
 
 1. **Check if PRD already exists**
 
-   Read `sdd-docs/prd.md` or any file provided by the user. If it exists:
+   Read `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` or any file provided by the user. If it exists:
    - Summarize current content to the user.
    - Ask: "Do you want to **revise** the existing PRD or **start fresh**?" Skip this question if you detect from existing document or user input.
    - If revise → follow **Edit PRD Workflow** below.
@@ -32,7 +32,7 @@ This is a **global project document** — not tied to any specific change. It de
 
 2. **Context gathering** (always)
    - Read existing project docs (README, package.json, any brief or research docs).
-   - Read `sdd-docs/architecture.md` and `sdd-docs/ux.md` if they exist — for alignment.
+   - Read `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md` and `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` if they exist — for alignment.
    - Ask the user for additional context if needed.
 
 ---
@@ -185,7 +185,7 @@ Present and refine. Append.
 2. **Polish:** improve flow/transitions, reduce duplication, ensure consistent terminology, verify ## Level 2 headers.
 3. **Quality check:** information density, zero fluff, no anti-patterns ("the system will allow users to..." → "Users can...").
 4. Preserve all essential content — consolidate, don't remove.
-5. Save final `sdd-docs/prd.md`.
+5. Save final `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`.
 6. Present a **completion recap**: sections created, key decisions captured, PRD quality assessment.
 7. Suggest: "`/arch` for architecture or `/ux` for UX design."
 
@@ -197,7 +197,7 @@ Structured improvement of an existing PRD.
 
 ### Step 1 — Discovery
 
-1. Load `sdd-docs/prd.md` completely.
+1. Load `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` completely.
 2. Ask: *"What would you like to change?"* (fix issues, add sections, improve structure, general improvements).
 3. **Detect PRD format** — check for core sections: Executive Summary, Success Criteria, Product Scope, User Journeys, Functional Requirements, Non-Functional Requirements.
 
@@ -219,7 +219,7 @@ Structured improvement of an existing PRD.
 
 ### Step 4 — Completion
 
-1. Apply all edits directly to `sdd-docs/prd.md`.
+1. Apply all edits directly to `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`.
 2. Present a **completion recap**: sections modified, changes applied, quality assessment.
 
 ---

@@ -10,11 +10,11 @@ The SDD lifecycle has two phases: **Project Setup** (done once) and the **Change
 
 | Step | Skill | Output | Purpose |
 |---|---|---|---|
-| 1 | `/sdd-prd` | `sdd-docs/prd.md` | Define WHAT the product is and WHY |
-| 2 | `/sdd-ux` | `sdd-docs/ux.md`, `sdd-docs/prototype-*.html` | Define how users will experience it |
-| 3 | `/sdd-arch` | `sdd-docs/architecture.md` | Define HOW the system is built |
+| 1 | `/sdd-prd` | `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` | Define WHAT the product is and WHY |
+| 2 | `/sdd-ux` | `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md`, `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-*.html` | Define how users will experience it |
+| 3 | `/sdd-arch` | `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md` | Define HOW the system is built |
 
-These three documents are **global** — they apply to the whole project and are updated as the product evolves.
+These three documents are **shared** — they apply to the whole project and are updated as the product evolves.
 
 ## Phase B — Change Lifecycle (repeated per change)
 
@@ -24,7 +24,7 @@ These three documents are **global** — they apply to the whole project and are
 
 | Step | Skill | Output | Purpose |
 |---|---|---|---|
-| 4 | `/sdd-propose <name>` | `sdd-docs/changes/<name>/` artifacts | Scope the change and generate implementation plan |
+| 4 | `/sdd-propose <name>` | `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/` artifacts | Scope the change and generate implementation plan |
 | 5 *(optional)* | `/sdd-explore [topic]` | Thinking, diagrams, decisions | Investigate before or during implementation |
 | 6 | `/sdd-implement [name]` | Code and tests | Build the change test-first |
 | 7 | `/sdd-verify [name]` | Verification report | Confirm implementation matches the spec |
@@ -33,16 +33,16 @@ These three documents are **global** — they apply to the whole project and are
 ## Flowchart
 
 ```
-sdd-docs/ exists?
+{ARTIFACT_MAIN_FOLDER}/ exists?
 └── No  → Start with /sdd-prd
 └── Yes →
-        prd.md exists?
+        {SHARED_SUBFOLDER}/prd.md exists?
         └── No  → /sdd-prd first
         └── Yes →
-                ux.md exists?
+                {SHARED_SUBFOLDER}/ux.md exists?
                 └── No  → /sdd-ux (optional but recommended), then check architecture
                 └── Yes →
-                        architecture.md exists?
+                        {SHARED_SUBFOLDER}/architecture.md exists?
                         └── No  → /sdd-arch (optional but recommended)
                         └── Yes →
                                 Ready to work? → /sdd-propose <change-name>

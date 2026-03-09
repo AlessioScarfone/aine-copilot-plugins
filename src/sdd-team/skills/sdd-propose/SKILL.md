@@ -8,12 +8,12 @@ description: 'Propose a change — creates all artifacts and updates PRD, UX, an
 > Switch to it in the agent selector before invoking this skill for the full interactive experience.
 > If you are already using **sdd-team:sdd-pm-agent.agent**, proceed with the workflow below.
 
-Propose a change that updates all global project documents and creates all change artifacts — in one automated pipeline.
+Propose a change that updates all shared project documents and creates all change artifacts — in one automated pipeline.
 
 This covers:
-- Updating `sdd-docs/prd.md` with any new requirements - if update is needed
-- Updating `sdd-docs/ux.md` and HTML prototype with UX changes - if exists
-- Updating `sdd-docs/architecture.md` with technical changes - if exists
+- Updating `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` with any new requirements - if update is needed
+- Updating `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` and HTML prototype with UX changes - if exists
+- Updating `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md` with technical changes - if exists
 - Creating change artifacts (`proposal.md`, `design.md`, `tasks.md`, `specs/*`)
 
 The output is a fully updated project documentation set + a ready-to-implement change.
@@ -22,11 +22,11 @@ The output is a fully updated project documentation set + a ready-to-implement c
 
 **Input**: The argument after `/sdd-propose` is the change name (kebab-case) OR a description of what the user wants to build.
 
-**Agent**: Coordinates the full pipeline, dispatching subagents for global document updates.
+**Agent**: Coordinates the full pipeline, dispatching subagents for shared document updates.
 
 **Steps**
 
-0. **PRD Gate** — check if `sdd-docs/prd.md` exists.
+0. **PRD Gate** — check if `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` exists.
 
    If it does NOT exist, stop immediately and tell the user:
    > "A PRD is required before proposing a change. Please create one first using `/sdd-prd`, then come back to `/sdd-propose`."
@@ -38,7 +38,7 @@ The output is a fully updated project documentation set + a ready-to-implement c
    If no input was provided, use the **AskUserQuestion tool** (open-ended, no preset options) to ask:
    > "What change do you want to work on? Describe what you want to build or fix."
 
-   Read all global project documents (`sdd-docs/prd.md`, `sdd-docs/ux.md`, `sdd-docs/architecture.md`, `sdd-docs/prototype-*.html`, `README.md`), existing specs (`sdd-docs/specs/*/spec.md`) and user input to fully understand the change and its implications.
+   Read all shared project documents (`{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`, `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md`, `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`, `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-*.html`, `README.md`), existing specs (`{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/*/spec.md`) and user input to fully understand the change and its implications.
 
    Present a **change impact summary**:
    - What's changing
@@ -48,7 +48,7 @@ The output is a fully updated project documentation set + a ready-to-implement c
 
    Get user confirmation before proceeding.
 
-2. **Phase 1 — Update PRD** (`sdd-docs/prd.md`)
+2. **Phase 1 — Update PRD** (`{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`)
 
    Launch a **subagent** (via `runSubagent`) with a detailed prompt that:
    - Instructs it to read `pm.agent.md` and adopt the PM agent persona
@@ -57,7 +57,7 @@ The output is a fully updated project documentation set + a ready-to-implement c
    - Updates `Last updated` date
    - Returns a summary of changes made
 
-3. **Phase 2 — Update UX** (`sdd-docs/ux.md` + `sdd-docs/prototype-*.html`)
+3. **Phase 2 — Update UX** (`{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` + `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-*.html`)
 
    Launch a **subagent** (via `runSubagent`) with a detailed prompt that:
    - Instructs it to read `ux-designer.agent.md` and adopt the UX Designer agent persona
@@ -66,7 +66,7 @@ The output is a fully updated project documentation set + a ready-to-implement c
    - Updates `Last updated` date
    - Returns a summary of changes made
 
-4. **Phase 3 — Update Architecture** (`sdd-docs/architecture.md`)
+4. **Phase 3 — Update Architecture** (`{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`)
 
    Launch a **subagent** (via `runSubagent`) with a detailed prompt that:
    - Instructs it to read `architect.agent.md` and adopt the Architect agent persona
@@ -79,7 +79,7 @@ The output is a fully updated project documentation set + a ready-to-implement c
 
    Create the change directory:
    ```bash
-   mkdir -p sdd-docs/changes/"<name>"
+   mkdir -p {ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/"<name>"
    ```
 
    If a change with that name already exists, ask the user whether to continue it or start fresh.
@@ -89,33 +89,33 @@ The output is a fully updated project documentation set + a ready-to-implement c
    a. **`proposal.md`** — what & why (must be created first)
       - Read `./templates/proposal.md` for structure
       - Use the confirmed change description, PRD context, and summaries from Phases 1–3 as input
-      - Save to `sdd-docs/changes/<name>/proposal.md`
+      - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md`
       - Verify the file exists before continuing
 
    b. **`design.md`** — how (requires proposal)
       - Read `./templates/design.md` for structure
-      - Read `sdd-docs/changes/<name>/proposal.md` for context
+      - Read `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md` for context
       - Incorporate Architecture decisions from Phase 3
-      - Save to `sdd-docs/changes/<name>/design.md`
+      - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/design.md`
       - Verify the file exists before continuing
 
    c. **`tasks.md`** — implementation steps (requires design)
       - Read `./templates/tasks.md` for structure
-      - Read `sdd-docs/changes/<name>/design.md` for context
+      - Read `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/design.md` for context
       - If API surface changed, include a task for README update
-      - Save to `sdd-docs/changes/<name>/tasks.md`
+      - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/tasks.md`
       - Verify the file exists before continuing
 
    d. **`specs/<capability>/spec.md`** — only if new capabilities are introduced
       - Read `./templates/spec.md` for structure
       - Can be created alongside design
-      - Save to `sdd-docs/changes/<name>/specs/<capability>/spec.md`
+      - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/{SPECS_SUBFOLDER}/<capability>/spec.md`
 
 6. **Completion**
 
    Show pipeline summary:
-   - Which global docs were updated and what changed in each
-   - List of artifacts created under `sdd-docs/changes/<name>/`
+   - Which shared docs were updated and what changed in each
+   - List of artifacts created under `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/`
    - Status: "All artifacts created! Ready for implementation with `/sdd-implement`."
 
 **Guardrails**

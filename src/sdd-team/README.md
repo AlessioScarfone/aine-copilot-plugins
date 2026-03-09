@@ -2,6 +2,9 @@
 
 `sdd-team` brings a full virtual software-development team into your editor. It provides four specialized agents and eight skills that collaborate through a **Specification-Driven Development (SDD)** workflow: ideas are captured in structured documents first, then implemented from those documents.
 
+> [!NOTE] 
+> This framework is inspired by **BMAD** and **OpenSpec**.
+
 ## Agents
 Switch to an agent by typing `@agent-name` in the Copilot Chat panel.
 
@@ -16,6 +19,18 @@ Each agent is a collaborative peer — it asks questions, presents options, and 
 
 ---
 
+## SDD Help & Reference
+
+Use `/sdd-help` to explore the Specification-Driven Development (SDD) workflow and artifacts. The `sdd-help` skill provides a read-only reference with:
+
+- an SDD overview and core principles
+- the full process (project setup and change lifecycle)
+- detailed artifact definitions (`prd.md`, `ux.md`, `architecture.md`, `proposal.md`, `design.md`, `tasks.md`, and `specs`)
+- team roles and recommended agent usage
+- the skills/commands reference and a "what's next" assessment
+
+---
+
 ## Skills (Slash Commands)
 
 Skills are invoked as slash commands inside any agent conversation. Suggested to use the appropriate agent for each skill, but you can also call any skill from any agent.
@@ -26,21 +41,21 @@ These commands create or update the shared documents that all agents use as cont
 
 | Command | Description | Output | Suggested Agent |
 |---|---|---|---|
-| `/sdd-prd` | Create or update the Product Requirements Document | `sdd-docs/prd.md` | `sdd-pm-agent` |
-| `/sdd-ux` | Create or update the UX design document and HTML prototype | `sdd-docs/ux.md`, `sdd-docs/prototype-*.html` | `sdd-ux-designer-agent` |
-| `/sdd-arch` | Create or update the architecture document | `sdd-docs/architecture.md` | `sdd-architect-agent` |
+| `/sdd-prd` | Create or update the Product Requirements Document | `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` | `sdd-pm-agent` |
+| `/sdd-ux` | Create or update the UX design document and HTML prototype | `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md`, `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-*.html` | `sdd-ux-designer-agent` |
+| `/sdd-arch` | Create or update the architecture document | `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md` | `sdd-architect-agent` |
 
 ### Change lifecycle
 
-A *change* is a named, scoped unit of work (a feature, bug fix, or improvement). Changes live in `sdd-docs/changes/<name>/`.
+A *change* is a named, scoped unit of work (a feature, bug fix, or improvement). Changes live in `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/`.
 
 | Command | Description | Output | Suggested Agent |
 |---|---|---|---|
-| `/sdd-propose <name>` | Propose a change — creates `proposal.md`, `design.md`, and `tasks.md` | `sdd-docs/changes/<name>/proposal.md`, `sdd-docs/changes/<name>/design.md`, `sdd-docs/changes/<name>/tasks.md` | `sdd-pm-agent` |
+| `/sdd-propose <name>` | Propose a change — creates `proposal.md`, `design.md`, and `tasks.md` | `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md`, `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/design.md`, `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/tasks.md` | `sdd-pm-agent` |
 | `/sdd-explore [topic]` | Enter explore mode for open-ended thinking; no code is written | `-` | `-` |
 | `/sdd-implement [name]` | Implement the tasks for a change using TDD | `implementation code & tests` | `sdd-dev-agent` |
 | `/sdd-verify [name]` | Verify that the implementation matches the change artifacts | `-` | `-` |
-| `/sdd-archive [name]` | Archive a completed and verified change | `sdd-docs/changes/<name>/archive/` | `-` |
+| `/sdd-archive [name]` | Archive a completed and verified change | `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/archive/` | `-` |
 
 ---
 
@@ -52,12 +67,11 @@ flowchart TD
     UX["/sdd-ux — Design UX & create prototype"] --> ARCH
     ARCH["/sdd-arch — Define system architecture"] --> PROPOSE
 
-    PROPOSE["/sdd-propose — Scope change & generate artifacts"] --> EXPLORE
+    PROPOSE["/sdd-propose — Scope change & generate artifacts"] --> UPDATE
 
-    EXPLORE{{"Exploration needed?"}}
-    EXPLORE -- Yes --> EX["/sdd-explore — Think & research"]
-    EX --> IMPLEMENT
-    EXPLORE -- No --> IMPLEMENT
+    UPDATE{{"Is a Global Artifacts update needed?"}}
+    UPDATE -- Yes --> UDPATE_SHARED["Update shared docs (PRD, UX, Architecture)"] --> IMPLEMENT 
+    UPDATE -- No --> IMPLEMENT
 
     IMPLEMENT["/sdd-implement — Build change test-first"] --> VERIFY
     VERIFY["/sdd-verify — Confirm implementation matches spec"] --> ARCHIVE
@@ -70,7 +84,7 @@ flowchart TD
     style IMPLEMENT fill:#E8A838,color:#fff
     style VERIFY fill:#E8A838,color:#fff
     style ARCHIVE fill:#888,color:#fff
-    style EX fill:#D95B5B,color:#fff
+    style UDPATE_SHARED fill:#D95B5B,color:#fff
 ```
 
 ```
@@ -90,24 +104,55 @@ For exploratory work, start with `/sdd-explore`.
 
 ## Document structure
 
-All SDD documents are stored in a `sdd-docs/` directory at the root of your project:
+All SDD documents are stored in a `{ARTIFACT_MAIN_FOLDER}/` directory at the root of your project:
 
 ```
-sdd-docs/
-├── prd.md                    # Product Requirements Document
-├── ux.md                     # UX design document
-├── architecture.md           # Architecture document
-├── prototype-<project>.html  # Interactive HTML prototype
-└── changes/
+{ARTIFACT_MAIN_FOLDER}/
+├── {SHARED_SUBFOLDER}/                        # Global project documents
+│   ├── prd.md                       # Product Requirements Document
+│   ├── ux.md                        # UX design document
+│   ├── architecture.md              # Architecture document
+│   └── prototype-<project>.html     # Interactive HTML prototype
+├── {SPECS_SUBFOLDER}/               # Global capability registry
+│   └── <capability>/
+│       └── spec.md
+└── {CHANGE_SUBFOLDER}/              # Changes
     ├── <change-name>/
-    │   ├── specs
-    │   │   └── <capacity>
-    │   │       └── spec.md   # Scenarios
-    │   ├── proposal.md       # How
-    │   ├── design.md         # How
-    │   └── tasks.md          # Implementation steps
-    └── archive/              # Completed changes
+    │   ├── {SPECS_SUBFOLDER}/       # Delta specs
+    │   │   └── <capability>/
+    │   │       └── spec.md
+    │   ├── proposal.md
+    │   ├── design.md
+    │   └── tasks.md
+    └── archive/                     # Completed changes
+        └── YYYY-MM-DD-<change-name>/
 ```
+
+---
+
+## Configuration
+
+The folder names are configurable. Edit `config.json` at the root of the plugin source before building:
+
+```json
+{
+  "variables": {
+    "ARTIFACT_MAIN_FOLDER": "sdd-docs",
+    "SHARED_SUBFOLDER": "SHARED_SUBFOLDER",
+    "CHANGE_SUBFOLDER": "change",
+    "SPECS_SUBFOLDER": "specs"
+  }
+}
+```
+
+| Variable | Default | Description |
+|---|---|---|
+| `ARTIFACT_MAIN_FOLDER` | `sdd-docs` | Root folder for all SDD documents |
+| `SHARED_SUBFOLDER` | `SHARED_SUBFOLDER` | Subfolder for shared documents (PRD, UX, Architecture, prototype) |
+| `CHANGE_SUBFOLDER` | `change` | Subfolder for change artifacts |
+| `SPECS_SUBFOLDER` | `specs` | Name of the specs subfolder (shared registry and delta specs) |
+
+After editing, run `npm run build` to regenerate the plugin with your custom paths.
 
 ---
 

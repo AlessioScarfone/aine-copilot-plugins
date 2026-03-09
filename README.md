@@ -1,6 +1,6 @@
 # AINE Plugin Collection — GitHub Copilot Agent Plugins
 
-Collection of GitHub Copilot Agent Plugins, each designed to embed a specialized workflow directly into your editor. This repository hosts multiple plugins that share a common build pipeline and can be installed independently.
+Collection of GitHub Copilot Agent Plugins, each designed to embed a specialized workflow directly into your editor. This repository hosts multiple plugins that share a SHARED_SUBFOLDER build pipeline and can be installed independently.
 
 **Current plugins:**
 
@@ -93,8 +93,37 @@ The build script automatically discovers all plugin directories inside `src/` an
 - Copies agents, skills, and templates into `plugins/<plugin-name>/`
 - Converts `.prompt.md` files into skill `SKILL.md` files
 - Places the final `plugin.json` at `plugins/<plugin-name>/.github/plugin/plugin.json`
+- Applies variable substitutions defined in `config.json` (see [Plugin variables](#plugin-variables) below)
 
 To add a new plugin, create a new directory under `src/` with a `plugin.json` and any agents, prompts, and templates — the build will pick it up automatically.
+
+### Plugin variables
+
+Each plugin can define a `config.json` file at the root of its source directory to declare build-time variables:
+
+```json
+{
+  "variables": {
+    "ARTIFACT_MAIN_FOLDER": "sdd-docs"
+  }
+}
+```
+
+In any agent, skill, or template file use the placeholder `{VARIABLE_NAME}`. The build will replace every occurrence with the configured value across all text files (`.md`, `.json`, `.html`, `.yaml`) in the plugin output.
+
+**Example** — in a skill file:
+
+```
+Read the PRD at `{ARTIFACT_MAIN_FOLDER}/prd.md`.
+```
+
+After build, this becomes:
+
+```
+Read the PRD at `sdd-docs/prd.md`.
+```
+
+This lets end users (or CI) customise paths and names without editing every skill file — just change the value in `config.json` and re-run `npm run build`.
 
 ### Create new plugin
 
