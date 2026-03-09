@@ -223,7 +223,7 @@ Structured improvement of an existing PRD.
 
 ## Tracker Update
 
-After saving `prd.md`, follow the **`sdd-tracker` skill** — update `shared.prd`.
+After saving `prd.md`, follow the **`sdd-tracker` skill** — update `shared.prd` and changelog (only if PRD was revised, not for new documents).
 
 ---
 

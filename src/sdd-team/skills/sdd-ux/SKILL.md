@@ -236,7 +236,7 @@ Structured improvement of an existing UX document.
 
 ## Tracker Update
 
-After saving UX artifacts, follow the **`sdd-tracker` skill** — update `shared.ux.ux` and/or `shared.ux.prototype` (only those actually written this session).
+After saving UX artifacts, follow the **`sdd-tracker` skill** — update `shared.ux.ux` and/or `shared.ux.prototype` (only those actually written this session) and add a changelog entry "UX design updated on YYYY-MM-DD" with a summary of what was changed.
 
 ---
 

@@ -120,7 +120,7 @@ The output is a fully updated project documentation set + a ready-to-implement c
 
 7. **Tracker Update**
 
-   Follow the **`sdd-tracker` skill** — add a new change entry for `<name>` with `status: ready-for-dev` and only the artifacts actually created in this pipeline.
+   Follow the **`sdd-tracker` skill** — add a new change entry for `<name>` with `status: ready-for-dev` and only the artifacts actually created in this pipeline listed under the change's `artifacts` field. Add a changelog entry "Change proposed on YYYY-MM-DD" with a summary of what was done.
 
 **Guardrails**
 - Single input, full pipeline — user describes the change once, all phases use that context

@@ -67,7 +67,7 @@ Archive a completed change in the SDD workflow. Automatically syncs all delta sp
 
 6. **Tracker Update**
 
-   After the move succeeds, follow the **`sdd-tracker` skill** — set change `status` to `archived`.
+   After the move succeeds, follow the **`sdd-tracker` skill** — set change `status` to `archived` and changelog entry "Archived on YYYY-MM-DD" for the change.
 
 7. **Display summary**
 

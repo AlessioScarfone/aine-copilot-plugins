@@ -165,7 +165,7 @@ Structured improvement of an existing architecture document.
 
 ## Tracker Update
 
-After saving `architecture.md`, follow the **`sdd-tracker` skill** — update `shared.architecture`.
+After saving `architecture.md`, follow the **`sdd-tracker` skill** — update `shared.architecture` and changelog (only if architecture was revised, not for new documents).
 
 ---
 

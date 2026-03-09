@@ -156,6 +156,32 @@ After editing, run `npm run build` to regenerate the plugin with your custom pat
 
 ---
 
+## Tracker (SDD workflow tracker)
+
+The SDD workflow tracker is an automatically-managed YAML file that provides a single source
+of truth for the lifecycle and history of SDD artifacts. It is stored at:
+
+{ARTIFACT_MAIN_FOLDER}/sdd-tracker.yml
+
+Purpose:
+- Track shared project documents (e.g. `shared/prd.md`, `shared/architecture.md`, `shared/ux.md` and the prototype)
+- Track change lifecycle entries under `changes[]` (one item per `{CHANGE_SUBFOLDER}/<name>`)
+- Maintain `created`, `lastUpdate`, and a short `changelog` for every artifact
+- Record change `status` along the workflow: `ready-for-dev` → `in-progress` → `done` → `archived`
+
+How it works:
+- The tracker is auto-created from a template when first needed and is updated by the SDD skills
+  (for example: `sdd-prd`, `sdd-ux`, `sdd-arch`, `sdd-propose`, `sdd-implement`, `sdd-archive`).
+- Skills invoke the internal `sdd-tracker` logic to perform updates — users normally do not
+  edit the file directly.
+
+Quick reference (what you'll find inside):
+- `project`: meta (name, created, lastUpdate)
+- `shared`: per-shared-artifact entries with `created`, `lastUpdate`, `changelog`
+- `changes`: array of change records (`id`, `title`, `status`, `created`, `lastUpdate`, `artifacts`, `changelog`)
+
+If you need to repair the tracker you can use the `sdd-tracker` skill.
+
 ## VS Code Documentation
 
 For more information on Agent Plugins, see the official VS Code documentation:  
