@@ -8,7 +8,7 @@ This is a **shared project document** — not tied to any specific change. It de
 
 **Output**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` and `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-[project-name].html`
 
-**Template**: Use `templates/ux.md` and `templates/prototype-template.html` as the document structure.
+**Template**: Use `./templates/ux.md` and `./templates/prototype-template.html` as the document structure.
 
 **Prerequisites**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` should exist. If not, inform: "Create the PRD first with `/prd`."
 
@@ -153,7 +153,7 @@ Ask: "Anything to add or remove from this scope?" Present C/R/A. On C, move to S
 
 **Purpose:** Generate the working, standalone HTML prototype.
 
-Start from the official template at `templates/prototype-template.html`. Read that file first — it contains base design tokens, reset, layout utilities, and component styles. Extend and customise it; never start from a blank file.
+Start from the official template at `./templates/prototype-template.html`. Read that file first — it contains base design tokens, reset, layout utilities, and component styles. Extend and customise it; never start from a blank file.
 
 **HTML rules:**
 - `<!DOCTYPE html>` with proper `<head>` (charset, viewport, title)
