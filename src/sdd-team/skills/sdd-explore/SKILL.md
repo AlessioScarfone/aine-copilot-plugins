@@ -96,6 +96,7 @@ If the user mentioned a specific change name, read its artifacts for context.
 Think freely. When insights crystallize, you might offer:
 
 - "This feels solid enough to start a change. Want me to create a proposal?"
+- "This is an exploration insight. Capture it in explore.md to use later?"
 - Or keep exploring - no pressure to formalize
 
 ### When a change exists
@@ -127,7 +128,8 @@ If the user mentions a change or you detect one is relevant:
    - "That's a design decision. Capture it in design.md?"
    - "This is a new requirement. Add it to specs?"
    - "This changes scope. Update the proposal?"
-
+   - "This is an exploration insight. Capture it in explore.md to use later?"
+   
 In case of proposal scope changes or creation, be sure to update all the relevant artifacts and create any new ones needed (e.g. if a new capability is discovered, create a new spec.md for it) to implement the change in a spec-driven way.
 
 4. **The user decides** - Offer and move on. Don't pressure. Don't auto-capture.

@@ -66,16 +66,17 @@ A *change* is a named, scoped unit of work (a feature, bug fix, or improvement).
 flowchart TD
     START(((START))) --> PROJECT_TYPE{{Greenfield or Brownfield}} -. Greenfield .-> PRD
     PROJECT_TYPE   -. Brownfield .-> INIT
-    INIT["/sdd-init — Brownfield bootstrap"] --> PROPOSE
+    INIT["/sdd-init — Brownfield bootstrap"] --> CLEAR_REQ
 
     PRD["/sdd-prd — Define product requirements"] --> UX
     UX["/sdd-ux — Design UX & create prototype"] --> ARCH
-    ARCH["/sdd-arch — Define system architecture"] --> PROPOSE
+    ARCH["/sdd-arch — Define system architecture"] --> CLEAR_REQ{{Are requirements clear enough to propose a change?}} -- Yes--> PROPOSE
+    CLEAR_REQ -- No --> EXPLORE["/sdd-explore — Open-ended exploration"] --> CLEAR_REQ
 
     PROPOSE["/sdd-propose — Scope change & generate artifacts"] --> UPDATE
 
     UPDATE{{"Is a Shared Artifacts update needed?"}}
-    UPDATE -. Yes .-> UDPATE_SHARED["Update shared docs (PRD, UX, Architecture)"] .-> IMPLEMENT 
+    UPDATE -. Yes .-> UPDATE_SHARED("Update shared docs (PRD, UX, Architecture)") .-> IMPLEMENT 
     UPDATE -- No --> IMPLEMENT
 
     IMPLEMENT["/sdd-implement — Build change"] --> VERIFY
@@ -87,10 +88,11 @@ flowchart TD
     style UX fill:#7B68EE,color:#fff
     style ARCH fill:#5BA854,color:#fff
     style PROPOSE fill:#E8A838,color:#fff
+    style EXPLORE fill:#E8A838,color:#fff
     style IMPLEMENT fill:#E8A838,color:#fff
     style VERIFY fill:#E8A838,color:#fff
     style ARCHIVE fill:#888,color:#fff
-    style UDPATE_SHARED fill:#D95B5B,color:#fff
+    style UPDATE_SHARED fill:#D95B5B,color:#fff
 ```
 
 ```
@@ -98,14 +100,16 @@ Greenfield project:
 1. /sdd-prd          → Define what the product does and why
 2. /sdd-ux           → Define the user experience and create a prototype
 3. /sdd-arch         → Define how the system is built
-4. /sdd-propose      → Scope a change and generate implementation artifacts
-5. /sdd-implement    → Build the change test-first
-6. /sdd-verify       → Confirm the implementation matches the spec
-7. /sdd-archive      → Close out the change
+4. /sdd-explore      → Explore requirements (Optional)
+5. /sdd-propose      → Scope a change and generate implementation artifacts
+6. /sdd-implement    → Build the change test-first
+7. /sdd-verify       → Confirm the implementation matches the spec
+8. /sdd-archive      → Close out the change
 
 Brownfield project (existing code, no SDD docs yet):
 1. /sdd-init         → Inspect codebase and bootstrap all shared docs in one pipeline
-2. /sdd-propose      → Scope your first change from the generated docs
+2. /sdd-explore      → Explore requirements (Optional)
+3. /sdd-propose      → Scope your first change from the generated docs
    ...
 ```
 
