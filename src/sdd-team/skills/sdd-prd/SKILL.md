@@ -8,7 +8,7 @@ This is a **shared project document** — not tied to any specific change. It de
 
 **Output**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`
 
-**Template**: Use `./templates/prd.md` as the document structure.
+**Template**: Use `assets/templates/prd.md` as the document structure.
 
 > [!IMPORTANT]
 > This skill is designed to be used with the **sdd-team:sdd-pm-agent.agent** agent.

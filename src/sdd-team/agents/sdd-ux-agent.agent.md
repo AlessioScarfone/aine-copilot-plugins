@@ -134,8 +134,8 @@ Option A: [Name]
 1. Ask: "What are we prototyping? Give me: what it is, who uses it, and what the 1-3 key screens or interactions should be."
 2. Ask: "Any style preferences? (color palette, modern/minimal/bold, specific inspirations)"
 3. Confirm with a brief prototype spec (scope, screens, interactions) — present C/R/A
-4. Read `./templates/prototype-template.html` and use it to generate HTML prototype. Follow the same HTML/CSS/JS rules as the full workflow — the prototype should be a working HTML file that can be opened in a browser and shows the described screens/interactions with the requested style.
-5. Read `./templates/ux.md` to generate  a UX spec file that captures the key design decisions you made in the prototype, and save it to `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` (either as a new document or appended to existing one).
+4. Read `assets/templates/prototype-template.html` and use it to generate HTML prototype. Follow the same HTML/CSS/JS rules as the full workflow — the prototype should be a working HTML file that can be opened in a browser and shows the described screens/interactions with the requested style.
+5. Read `assets/templates/ux.md` to generate  a UX spec file that captures the key design decisions you made in the prototype, and save it to `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` (either as a new document or appended to existing one).
 5. After delivery, offer: "Want to go back and add a full UX spec to document the decisions behind this? I can run the full workflow."
 
 ---

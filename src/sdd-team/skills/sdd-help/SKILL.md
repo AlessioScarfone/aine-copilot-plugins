@@ -22,10 +22,10 @@ Answer questions about the Specification-Driven Development (SDD) approach, its 
 
 2. **Interpret the user's input** and load the relevant detail file only when needed:
    - No input or "overview" → display the **SDD Overview** and the **Navigation Menu** below
-   - "process", phase name, or stage question → load <a>process.md</a>
-   - "artifacts", artifact name, or "prd / ux / arch / proposal / design / tasks / spec" → load <a>artifacts.md</a>
-   - "skills", "commands", or a skill name → load <a>skills.md</a>
-   - "roles", "agents", or an agent name → load <a>roles.md</a>
+   - "process", phase name, or stage question → load <a>references/process.md</a>
+   - "artifacts", artifact name, or "prd / ux / arch / proposal / design / tasks / spec" → load <a>references/artifacts.md</a>
+   - "skills", "commands", or a skill name → load <a>references/skills-inventary.md</a>
+   - "roles", "agents", or an agent name → load <a>references/roles.md</a>
    - "what's next" or "where am I" → assess current state using the **[6] What's Next** section below
    - Free-form question → answer from the overview or load the most relevant detail file
 
@@ -35,10 +35,10 @@ Answer questions about the Specification-Driven Development (SDD) approach, its 
 📖 sdd-help — What would you like to explore?
 
 [1] SDD Overview        — What SDD is and why it works         (this file)
-[2] Full Process        — All 7 stages from idea to archive    → process.md
-[3] Artifacts           — Every document type explained        → artifacts.md
-[4] Skills & Commands   — When and how to use each command     → skills.md
-[5] Team Roles          — Which agent to use for each task     → roles.md
+[2] Full Process        — All 7 stages from idea to archive    → references/process.md
+[3] Artifacts           — Every document type explained        → references/artifacts.md
+[4] Skills & Commands   — When and how to use each command     → references/skills-inventary.md
+[5] Team Roles          — Which agent to use for each task     → references/roles.md
 [6] What's Next         — Assess project state and next step   (this file)
 ```
 

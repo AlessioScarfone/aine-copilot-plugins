@@ -7,7 +7,7 @@ import { parseFrontmatter } from "./yaml-parser.mjs";
 import { validateSkills } from "./validate-skills.mjs";
 import { validatePlugins } from "./validate-plugins.mjs";
 
-const PLUGIN_SUBDIRS = ["agents", "skills", "templates"];
+const PLUGIN_SUBDIRS = ["agents", "skills", "templates", "assets", "references"];
 const TEXT_EXTENSIONS = new Set([".md", ".txt", ".json", ".html", ".yaml", ".yml"]);
 
 /**
