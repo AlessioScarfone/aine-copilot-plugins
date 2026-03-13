@@ -122,7 +122,7 @@ Launch a **subagent** (via `runSubagent`) with a prompt that:
 
 - Instructs it to read `sdd-team/agents/sdd-pm-agent.agent.md` (**sdd-team:sdd-pm-agent.agent**) and adopt the PM agent persona
 - Provides the full Reconnaissance Report (Step 1) and gap-filling answers (Step 2) as input
-- Instructs it to use `assets/templates/prd.md` as the document structure
+- Instructs it to use `./assets/templates/prd.md` as the document structure
 - States the key constraint: **this is a brownfield PRD** — it documents the current state of the product, not a greenfield vision. Sections such as Success Criteria and Scope should reflect what the product _already does_, with placeholders where the information is unknown.
 - Sets `Context: brownfield` in the Executive Summary classification block
 - Instructs it to write to `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`
@@ -139,7 +139,7 @@ Launch a **subagent** (via `runSubagent`) with a prompt that:
 
 - Instructs it to read `sdd-team/agents/sdd-architect-agent.agent.md` (**sdd-team:sdd-architect-agent.agent**) and adopt the Architect agent persona
 - Provides the full Reconnaissance Report and the Phase 1 summary as input
-- Instructs it to use `assets/templates/architecture.md` as the document structure
+- Instructs it to use `./assets/templates/architecture.md` as the document structure
 - States the key constraint: **this is a brownfield architecture doc** — it documents decisions that were _already made_ in the codebase, not future decisions. Every decision row should be filled with what is actually in use; use "unknown / not documented" only if genuinely unclear after reading the source.
 - Instructs it to focus especially on: actual tech stack (from package manifests), database/ORM in use, auth approach found in code, API style and route structure, any documented conventions or linting rules
 - Instructs it to write to `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`
@@ -158,7 +158,7 @@ Launch a **subagent** (via `runSubagent`) with a prompt that:
 
 - Instructs it to read `sdd-team/agents/sdd-ux-agent.agent.md` (**sdd-team:sdd-ux-agent.agent**) and adopt the UX Designer agent persona
 - Provides the Reconnaissance Report, the PRD summary (Phase 1), and the architecture summary (Phase 2) as input
-- Instructs it to use `assets/templates/ux.md` and `assets/templates/prototype-template.html` as document structure
+- Instructs it to use `./assets/templates/ux.md` and `./assets/templates/prototype-template.html` as document structure
 - States the key constraint: **this is a brownfield UX doc** — it documents the design patterns, components, and flows that _already exist_ in the product. The prototype should reflect the current UI, not a redesign.
 - Instructs it to write `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` and `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-[project-name].html`
 - Instructs it to set the `Last updated` date to today
