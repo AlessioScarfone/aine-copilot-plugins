@@ -1,4 +1,3 @@
-```markdown
 ---
 project: ""
 author: ""
@@ -105,8 +104,9 @@ status: in-progress
 ## Prototype Specification
 
 ```
-PROTOTYPE SPECIFICATION
-━━━━━━━━━━━━━━━━━━━━━━
+**PROTOTYPE SPECIFICATION**
+
+<!-- Technical scope for the HTML prototype -->
 
 Screens included:     <!-- list the screens to build -->
 Interactions:         <!-- list clickable elements and what happens -->
@@ -118,15 +118,23 @@ Design tokens:
   Spacing scale:      <!-- e.g., 4px / 8px / 16px / 24px / 32px / 48px -->
 Browser target:       Modern browsers (Chrome, Firefox, Safari, Edge)
 Accessibility:        ARIA labels, semantic HTML, keyboard navigation for nav
+
+**PROTOTYPE INTERACTIONS**
+
+<!-- What is clickable / interactive in the prototype -->
+
+| Element | Interaction | Result |
+|---|---|---|
+| |  |  |
+
 ```
 
----
 
 ## HTML Prototype
 
-<!-- The working prototype is delivered as a standalone .html file.
-     Save the code block from the design session as prototype-[project-name].html
-     Open directly in any browser — no dependencies required. -->
+> The HTML prototype is delivered as a complete standalone file in the Create UX Skill session.
+> Copy the code block from the conversation and save as `prototype-[project-name].html`.
+> Open directly in any browser — no server or dependencies required.
 
 **File:** `prototype-[project-name].html`
 
@@ -134,4 +142,3 @@ Accessibility:        ARIA labels, semantic HTML, keyboard navigation for nav
 - <!-- e.g., Side nav toggle on mobile -->
 - <!-- e.g., Tab switching in dashboard -->
 - <!-- e.g., Form validation on submit -->
-```
