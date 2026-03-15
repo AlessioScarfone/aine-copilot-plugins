@@ -75,7 +75,7 @@ flowchart TD
 
     PROPOSE["/sdd-propose — Scope change & generate artifacts"] --> UPDATE
 
-    UPDATE{{"Is a Shared Artifacts update needed?"}}
+    UPDATE{{"Do shared artifacts need an update?"}}
     UPDATE -. Yes .-> UPDATE_SHARED("Update shared docs (PRD, UX, Architecture)") .-> IMPLEMENT 
     UPDATE -- No --> IMPLEMENT
 
@@ -154,7 +154,7 @@ The folder names are configurable. Edit `config.json` at the root of the plugin 
 {
   "variables": {
     "ARTIFACT_MAIN_FOLDER": "sdd-docs",
-    "SHARED_SUBFOLDER": "SHARED_SUBFOLDER",
+    "SHARED_SUBFOLDER": "shared",
     "CHANGE_SUBFOLDER": "change",
     "SPECS_SUBFOLDER": "specs"
   }
@@ -164,7 +164,7 @@ The folder names are configurable. Edit `config.json` at the root of the plugin 
 | Variable | Default | Description |
 |---|---|---|
 | `ARTIFACT_MAIN_FOLDER` | `sdd-docs` | Root folder for all SDD documents |
-| `SHARED_SUBFOLDER` | `SHARED_SUBFOLDER` | Subfolder for shared documents (PRD, UX, Architecture, prototype) |
+| `SHARED_SUBFOLDER` | `shared` | Subfolder for shared documents (PRD, UX, Architecture, prototype) |
 | `CHANGE_SUBFOLDER` | `change` | Subfolder for change artifacts |
 | `SPECS_SUBFOLDER` | `specs` | Name of the specs subfolder (shared registry and delta specs) |
 
@@ -190,11 +190,6 @@ How it works:
   (for example: `sdd-prd`, `sdd-ux`, `sdd-arch`, `sdd-propose`, `sdd-implement`, `sdd-archive`).
 - Skills invoke the internal `sdd-tracker` logic to perform updates — users normally do not
   edit the file directly.
-
-Quick reference (what you'll find inside):
-- `project`: meta (name, created, lastUpdate)
-- `shared`: per-shared-artifact entries with `created`, `lastUpdate`, `changelog`
-- `changes`: array of change records (`id`, `title`, `status`, `created`, `lastUpdate`, `artifacts`, `changelog`)
 
 If you need to repair the tracker you can use the `sdd-tracker` skill.
 
