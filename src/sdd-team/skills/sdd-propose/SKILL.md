@@ -4,9 +4,9 @@ description: 'Propose a change — creates all artifacts and updates PRD, UX, an
 ---
 
 > [!IMPORTANT]
-> This skill is designed to be used with the **sdd-team:sdd-pm-agent.agent** agent.
+> This skill is designed to be used with the **sdd-team:sdd-pm.agent** agent.
 > Switch to it in the agent selector before invoking this skill for the full interactive experience.
-> If you are already using **sdd-team:sdd-pm-agent.agent**, proceed with the workflow below.
+> If you are already using **sdd-team:sdd-pm.agent**, proceed with the workflow below.
 
 Propose a change that updates all shared project documents and creates all change artifacts — in one automated pipeline.
 

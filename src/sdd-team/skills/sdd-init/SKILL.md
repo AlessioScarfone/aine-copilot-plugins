@@ -119,8 +119,8 @@ Use the **TodoWrite tool** to track pipeline progress through the phases below.
 #### Phase 1 — Generate PRD
 
 Launch a **subagent** (via `runSubagent`) with a prompt that:
-
-- Instructs it to read `sdd-team/agents/sdd-pm-agent.agent.md` (**sdd-team:sdd-pm-agent.agent**) and adopt the PM agent persona
+ 
+ - Instructs it to read `sdd-team/agents/sdd-pm.agent.md` (**sdd-team:sdd-pm.agent**) and adopt the PM agent persona
 - Provides the full Reconnaissance Report (Step 1) and gap-filling answers (Step 2) as input
 - Instructs it to use `./templates/prd.md` as the document structure
 - States the key constraint: **this is a brownfield PRD** — it documents the current state of the product, not a greenfield vision. Sections such as Success Criteria and Scope should reflect what the product _already does_, with placeholders where the information is unknown.
@@ -136,8 +136,8 @@ Use the returned summary as context for Phase 2.
 #### Phase 2 — Generate Architecture doc
 
 Launch a **subagent** (via `runSubagent`) with a prompt that:
-
-- Instructs it to read `sdd-team/agents/sdd-architect-agent.agent.md` (**sdd-team:sdd-architect-agent.agent**) and adopt the Architect agent persona
+ 
+ - Instructs it to read `sdd-team/agents/sdd-architect.agent.md` (**sdd-team:sdd-architect.agent**) and adopt the Architect agent persona
 - Provides the full Reconnaissance Report and the Phase 1 summary as input
 - Instructs it to use `./templates/architecture.md` as the document structure
 - States the key constraint: **this is a brownfield architecture doc** — it documents decisions that were _already made_ in the codebase, not future decisions. Every decision row should be filled with what is actually in use; use "unknown / not documented" only if genuinely unclear after reading the source.
@@ -155,8 +155,8 @@ Launch a **subagent** (via `runSubagent`) with a prompt that:
 - The user confirmed in Step 2 that a UX doc is needed
 
 Launch a **subagent** (via `runSubagent`) with a prompt that:
-
-- Instructs it to read `sdd-team/agents/sdd-ux-agent.agent.md` (**sdd-team:sdd-ux-agent.agent**) and adopt the UX Designer agent persona
+ 
+ - Instructs it to read `sdd-team/agents/sdd-ux.agent.md` (**sdd-team:sdd-ux.agent**) and adopt the UX Designer agent persona
 - Provides the Reconnaissance Report, the PRD summary (Phase 1), and the architecture summary (Phase 2) as input
 - Instructs it to use `./templates/ux.md` and `./templates/prototype-template.html` as document structure
 - States the key constraint: **this is a brownfield UX doc** — it documents the design patterns, components, and flows that _already exist_ in the product. The prototype should reflect the current UI, not a redesign.

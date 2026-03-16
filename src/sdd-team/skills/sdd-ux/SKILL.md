@@ -13,9 +13,9 @@ This is a **shared project document** — not tied to any specific change. It de
 **Prerequisites**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` should exist. If not, inform: "Create the PRD first with `/prd`."
 
 > [!IMPORTANT]
-> This skill is designed to be used with the **sdd-team:sdd-ux-agent.agent** agent.
+> This skill is designed to be used with the **sdd-team:sdd-ux.agent** agent.
 > Switch to it in the agent selector before invoking this skill for the full interactive experience.
-> If you are already using **sdd-team:sdd-ux-agent.agent**, proceed with the workflow below.
+> If you are already using **sdd-team:sdd-ux.agent**, proceed with the workflow below.
 
 ---
 
