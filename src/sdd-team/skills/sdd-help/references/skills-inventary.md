@@ -9,7 +9,7 @@
 | `/sdd-propose <name>` | Change | Create all change artifacts in one pipeline; may also update PRD/UX/Architecture docs | `sdd-pm` |
 | `/sdd-explore [topic]` | Change | Free-form thinking; read files, no code written | Any |
 | `/sdd-implement [name]` | Change | Implement tasks sequentially | `sdd-dev` |
-| `/sdd-dev-team [name]` | Change | Build a conservative task-dependency DAG (`task-dag.md`) from `tasks.md` + codebase inspection, grouping tasks into conflict-free execution waves | `sdd-dev-team` |
+| `/sdd-dev-orchestrator [name]` | Change | Build a conservative task-dependency DAG (`task-dag.md`) from `tasks.md` + codebase inspection, grouping tasks into conflict-free execution waves | `sdd-dev-orchestrator` |
 | `/sdd-verify [name]` | Change | Verify implementation matches specs | Any |
 | `/sdd-archive [name]` | Change | Sync delta specs and archive completed change | Any |
 | `/sdd-help [topic]` | Any | Learn about SDD process and artifacts | Any |
@@ -26,7 +26,7 @@ Starting a new (greenfield) project?
 Adding a feature or fixing a bug?
   → /sdd-propose <change-name>
   → /sdd-implement when artifacts are ready (sequential, full control, @sdd-dev)
-  → /sdd-dev-team + @sdd-dev-team for parallel execution
+  → /sdd-dev-orchestrator + @sdd-dev-orchestrator for parallel execution
 
 Not sure what to implement?
   → /sdd-explore to think it through first

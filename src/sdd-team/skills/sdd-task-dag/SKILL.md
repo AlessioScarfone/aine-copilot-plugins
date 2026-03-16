@@ -1,17 +1,17 @@
 ---
 name: sdd-task-dag
-description: Generates a conservative task-dependency DAG (task-dag.md) from tasks.md using codebase inspection. Groups tasks into conflict-free execution waves where tasks in the same wave touch no shared files. Use when preparing for parallel implementation, before running the sdd-dev-team, or when the user asks to "build the task DAG", "plan parallel execution", or "generate task-dag".
+description: Generates a conservative task-dependency DAG (task-dag.md) from tasks.md using codebase inspection. Groups tasks into conflict-free execution waves where tasks in the same wave touch no shared files. Use when preparing for parallel implementation, before running the sdd-dev-orchestrator, or when the user asks to "build the task DAG", "plan parallel execution", or "generate task-dag".
 ---
 
 > [!IMPORTANT]
 > This skill generates the execution plan (`task-dag.md`) for parallel implementation.
- To run the parallel implementation itself, switch to the **sdd-team:sdd-dev-team** agent.
+ To run the parallel implementation itself, switch to the **sdd-team:sdd-dev-orchestrator** agent.
 
 Builds `task-dag.md` for a change — a conservative dependency graph that groups tasks into sequential waves where tasks within the same wave are safe to run in parallel (no shared files, no logical dependencies).
 
 ---
 
-**Input**: Optionally specify a change name (e.g., `/sdd-dev-team add-auth`). If omitted, infer from conversation context or prompt the user.
+**Input**: Optionally specify a change name (e.g., `/sdd-dev-orchestrator add-auth`). If omitted, infer from conversation context or prompt the user.
 
 ---
 
@@ -82,7 +82,7 @@ Show the user:
 - The execution wave plan: wave number, number of bundles (= parallel agents), each bundle's task sequence
 - Any file conflicts detected and how they were resolved
 - Max parallelism: number of bundles in the widest wave
- - Next step: "Switch to `sdd-dev-team` to start parallel execution."
+ - Next step: "Switch to `sdd-dev-orchestrator` to start parallel execution."
 
 ---
 

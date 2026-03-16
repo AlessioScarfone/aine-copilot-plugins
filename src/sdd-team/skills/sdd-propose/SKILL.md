@@ -110,6 +110,8 @@ The output is a fully updated project documentation set + a ready-to-implement c
       - Read `./templates/spec.md` for structure
       - Can be created alongside design
       - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/{SPECS_SUBFOLDER}/<capability>/spec.md`
+   
+   `<capability>` is the name of any new capability introduced by the change (e.g., "user authentication"). It does not contains a date in the name. Only the archived change in `archive/YYYY-MM-DD-<change-name>` contains the date in its name.
 
 6. **Completion**
 

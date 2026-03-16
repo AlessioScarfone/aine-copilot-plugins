@@ -13,7 +13,7 @@
 | System Architect | `sdd-architect` | Architecture documentation, system design, trade-off analysis |
 | Senior Software Engineer | `sdd-dev` | TDD implementation, code review, story execution |
 | Design Studio | `sdd-ux-designer` | UX brainstorming, design decisions, HTML/CSS prototyping |
-| Dev Team Coordinator | `sdd-dev-team` | Parallel implementation: runs dev subagents concurrently wave by wave from a task DAG |
+| Dev Team Coordinator | `sdd-dev-orchestrator` | Parallel implementation: runs dev subagents concurrently wave by wave from a task DAG |
 
 Each agent is a collaborative peer — it asks questions, presents options, and waits for your confirmation before proceeding.
 
@@ -55,7 +55,7 @@ A *change* is a named, scoped unit of work (a feature, bug fix, or improvement).
 | `/sdd-propose <name>` | Propose a change — creates `proposal.md`, `design.md`, and `tasks.md` | `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md`, `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/design.md`, `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/tasks.md` | `sdd-pm` |
 | `/sdd-explore [topic]` | Enter explore mode for open-ended thinking; no code is written | `-` | `-` |
 | `/sdd-implement [name]` | Implement the tasks for a change using TDD (sequential) | `implementation code & tests` | `sdd-dev` |
-| `/sdd-task-dag [name]` | Build a conservative task-dependency DAG from `tasks.md` + codebase inspection — groups tasks into agent bundles and conflict-free execution waves for parallel implementation | `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/task-dag.md` | `sdd-dev-team` |
+| `/sdd-task-dag [name]` | Build a conservative task-dependency DAG from `tasks.md` + codebase inspection — groups tasks into agent bundles and conflict-free execution waves for parallel implementation | `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/task-dag.md` | `sdd-dev-orchestrator` |
 | `/sdd-verify [name]` | Verify that the implementation matches the change artifacts | `-` | `-` |
 | `/sdd-archive [name]` | Archive a completed and verified change | `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/archive/` | `-` |
 
@@ -82,7 +82,7 @@ flowchart TD
     UPDATE -- No --> IMPLEMENT
 
     IMPLEMENT["/sdd-implement<br/>@sdd-dev"] --> VERIFY
-    IMPLEMENT -. parallel alternative .- NOTE_DEVTEAM@{shape: braces, label: "💡 or use <br/>@sdd-dev-team custom agent"}
+    IMPLEMENT -. parallel alternative .- NOTE_DEVTEAM@{shape: braces, label: "💡 or use <br/>@sdd-dev-orchestrator custom agent"}
     
     VERIFY["/sdd-verify<br/>any agent"] --> ARCHIVE
     ARCHIVE["/sdd-archive<br/>any agent"]
@@ -108,7 +108,7 @@ Greenfield project:
 4. /sdd-explore      → Explore requirements (Optional)
 5. /sdd-propose      → Scope a change and generate implementation artifacts
 6a. /sdd-implement   → Build the change sequentially, test-first (simple or tightly coupled tasks)
-6b. /sdd-task-dag    → Build a task DAG, then @sdd-dev-team executes bundles in parallel (many independent tasks)
+6b. /sdd-task-dag    → Build a task DAG, then @sdd-dev-orchestrator executes bundles in parallel (many independent tasks)
 7. /sdd-verify       → Confirm the implementation matches the spec
 8. /sdd-archive      → Close out the change
 
@@ -121,7 +121,7 @@ Brownfield project (existing code, no SDD docs yet):
 
 For small changes, `/sdd-propose` followed by `/sdd-implement` is often sufficient.  
 For exploratory work, start with `/sdd-explore`.  
-For large changes with many independent tasks, use `/sdd-task-dag` + `@sdd-dev-team` to run implementation in parallel.
+For large changes with many independent tasks, use `/sdd-task-dag` + `@sdd-dev-orchestrator` to run implementation in parallel.
 
 ---
 
