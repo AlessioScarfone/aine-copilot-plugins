@@ -6,7 +6,6 @@
 > This framework is inspired by **BMAD** and **OpenSpec**.
 
 ## Agents
-Switch to an agent by typing `@agent-name` in the Copilot Chat panel.
 
 | Agent | Handle | Role |
 |---|---|---|

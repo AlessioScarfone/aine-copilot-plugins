@@ -90,7 +90,7 @@ ${description}
 
 ## Agents
 
-<!-- Document your agents here. Switch to an agent by typing @agent-name in the Copilot Chat panel. -->
+<!-- Document your agents here. -->
 
 ---
 
