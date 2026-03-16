@@ -4,7 +4,8 @@
   "description": "Collection of GitHub Copilot Plugins",
   "scripts": {
     "build": "node ./scripts/build.mjs",
-    "plugin:create": "node ./scripts/create-plugin.mjs"
+    "plugin:create": "node ./scripts/create-plugin.mjs",
+    "test": "node --test scripts/tests/*.test.mjs"
   },
   "author": "",
   "license": "MIT",

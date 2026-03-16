@@ -2,6 +2,7 @@
 
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { PLUGINS_DIST_DIR, PLUGINS_SRC_DIR, ROOT_FOLDER } from "./constants.mjs";
 import { parseFrontmatter } from "./yaml-parser.mjs";
 import { validateSkills } from "./validate-skills.mjs";
@@ -376,4 +377,17 @@ function main() {
   console.log("\n🎉 Build complete!");
 }
 
-main();
+export {
+  applyVariables,
+  loadPluginConfig,
+  substituteVariablesInDir,
+  copyIfExists,
+  copyRootFiles,
+  copySharedAssetsToSkills,
+  generatePluginManifest,
+};
+
+// Only run when invoked directly (not when imported by tests)
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main();
+}
