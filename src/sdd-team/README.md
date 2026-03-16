@@ -148,25 +148,15 @@ All SDD documents are stored in a `{ARTIFACT_MAIN_FOLDER}/` directory at the roo
 
 ## Configuration
 
-The folder names are configurable. Edit `config.json` at the root of the plugin source before building:
+The folder names are configurable. Edit [`config.json`](config.json) at the root of the plugin source before building:
 
-```json
-{
-  "variables": {
-    "ARTIFACT_MAIN_FOLDER": "sdd-docs",
-    "SHARED_SUBFOLDER": "shared",
-    "CHANGE_SUBFOLDER": "change",
-    "SPECS_SUBFOLDER": "specs"
-  }
-}
-```
 
-| Variable | Default | Description |
-|---|---|---|
-| `ARTIFACT_MAIN_FOLDER` | `sdd-docs` | Root folder for all SDD documents |
-| `SHARED_SUBFOLDER` | `shared` | Subfolder for shared documents (PRD, UX, Architecture, prototype) |
-| `CHANGE_SUBFOLDER` | `change` | Subfolder for change artifacts |
-| `SPECS_SUBFOLDER` | `specs` | Name of the specs subfolder (shared registry and delta specs) |
+| Variable |  Description |
+|---|---|
+| `ARTIFACT_MAIN_FOLDER`  | Root folder for all SDD documents |
+| `SHARED_SUBFOLDER`  | Subfolder for shared documents (PRD, UX, Architecture, prototype) |
+| `CHANGE_SUBFOLDER`  | Subfolder for change artifacts |
+| `SPECS_SUBFOLDER`  | Name of the specs subfolder (shared registry and delta specs) |
 
 After editing, run `npm run build` to regenerate the plugin with your custom paths.
 
