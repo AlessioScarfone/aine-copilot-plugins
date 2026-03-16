@@ -4,5 +4,22 @@
     "SHARED_SUBFOLDER": "shared",
     "CHANGE_SUBFOLDER": "change",
     "SPECS_SUBFOLDER": "specs"
-  }
+  },
+  "sharedAssets": [
+    {
+      "asset": "templates/architecture.md",
+      "skills": ["sdd-arch", "sdd-init"]
+    },
+    { "asset": "templates/prd.md", "skills": ["sdd-prd", "sdd-init"] },
+    { "asset": "templates/design.md", "skills": ["sdd-propose"] },
+    { "asset": "templates/proposal.md", "skills": ["sdd-propose"] },
+    { "asset": "templates/spec.md", "skills": ["sdd-propose"] },
+    { "asset": "templates/tasks.md", "skills": ["sdd-propose"] },
+    { "asset": "templates/sdd-tracker.yml", "skills": ["sdd-tracker"] },
+    {
+      "asset": "templates/prototype-template.html",
+      "skills": ["sdd-ux", "sdd-init"]
+    },
+    { "asset": "templates/ux.md", "skills": ["sdd-ux", "sdd-init"] }
+  ]
 }

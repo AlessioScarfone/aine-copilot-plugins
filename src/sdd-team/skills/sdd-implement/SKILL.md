@@ -80,7 +80,7 @@ Before writing, read the shared project documents for context:
    Display:
    - Tasks completed this session
    - Overall progress: "N/M tasks complete"
-   - If all done: follow the **`sdd-tracker` skill** — set change `status` to `done` and changelog entry "Implementation completed on YYYY-MM-DD". Then suggest archive.
+   - If all done: follow the **`sdd-tracker` skill** — set change `status` to `done` and changelog entry "Implementation completed on YYYY-MM-DD".
    - If paused: explain why and wait for guidance
 
 **Output During Implementation**
@@ -111,7 +111,7 @@ Working on task 4/7: <task description>
 - [x] Task 2
 ...
 
-All tasks complete! You can archive this change with `/sdd-archive`.
+All tasks complete!. Proceed with verify
 ```
 
 **Output On Pause (Issue Encountered)**
@@ -133,6 +133,10 @@ All tasks complete! You can archive this change with `/sdd-archive`.
 
 What would you like to do?
 ```
+
+8. **Proceed with verify**
+
+After update tasks and sdd-tracker, run **`/sdd-verify <change-name>`** skill to confirm implementation matches the spec.
 
 **Guardrails**
 - Keep going through tasks until done or blocked

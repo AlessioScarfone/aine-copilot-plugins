@@ -55,29 +55,34 @@ aine-team-copilot-plugin/
 ├── src/                          # Plugin source files (one subfolder per plugin)
 │   ├── sdd-team/                 # sdd-team plugin source
 │   │   ├── plugin.json           # Plugin manifest (source)
+│   │   ├── config.json           # Build variables and shared asset mappings
+│   │   ├── assets/               # Shared assets (distributed to skills at build time)
+│   │   │   └── templates/        # Templates shared across multiple skills
 │   │   ├── agents/               # Agent definitions (.agent.md)
 │   │   └── skills/               # Skill definitions (one subfolder per skill)
-│   │       ├── sdd-help/         # Example skill subfolder
+│   │       ├── sdd-help/         # Example skill with local-only assets
 │   │       │    ├── SKILL.md      # Skill definition and prompt
-│   │       │    └── templates/    # Optional document templates used by the skill
+│   │       │    └── references/   # Reference files local to this skill
 │   │       └── ...
 │   └── <your-new-plugin>/        # Add new plugins here
 │       ├── plugin.json
 │       └── ...
-├── dist/plugins/                   # Built output — one subfolder per plugin
+├── dist/plugins/                 # Built output — one subfolder per plugin
 │   └── sdd-team/
 │       ├── .github/plugin/
 │       │   └── plugin.json       # Final plugin manifest
 │       ├── agents/
-│       └── skills/
+│       └── skills/               # Each skill contains its distributed templates
+│           ├── sdd-prd/
+│           │   ├── SKILL.md
+│           │   └── templates/    # Copied from plugin-level assets/ at build time
+│           └── ...
 └── scripts/                      # Build and validation scripts
 ```
 
 Source files live in `src/`. Each subdirectory of `src/` is treated as an independent plugin and materialized into the corresponding `dist/plugins/<name>/` directory by `npm run build`.
 
-Each skill that **generates** documents includes its own templates in a `templates/` subdirectory.
-Skills that only **read** documents (sdd-implement, sdd-explore, sdd-verify, sdd-archive) do not include templates.
-The build process automatically includes these templates in the plugin distribution.
+Templates shared across multiple skills live in the plugin-level `assets/` folder and are distributed to the appropriate skill directories at build time via `sharedAssets` in `config.json`. Skills that use local-only assets (not shared) can keep their own files directly in their skill subfolder. If a shared asset has the same path as a local skill asset, the local version wins and the shared one is skipped for that skill.
 
 ---
 
@@ -129,6 +134,32 @@ Read the PRD at `sdd-docs/prd.md`.
 ```
 
 This lets end users (or CI) customise paths and names without editing every skill file — just change the value in `config.json` and re-run `npm run build`.
+
+### Shared assets
+
+Templates or other files needed by multiple skills can be placed once in the plugin-level `assets/` folder and distributed to the right skills at build time, avoiding duplication.
+
+Declare the mapping in `config.json` under `sharedAssets`:
+
+```json
+{
+  "variables": { ... },
+  "sharedAssets": [
+    { "asset": "templates/prd.md", "skills": ["sdd-prd", "sdd-init"] },
+    { "asset": "templates/common.md", "skills": ["*"] }
+  ]
+}
+```
+
+Each entry specifies:
+- **`asset`** — path relative to the plugin's `assets/` folder (file or directory)
+- **`skills`** — list of skill folder names to copy it into, or `["*"]` to copy into every skill
+
+During the build, each asset is copied into `skills/<skill-name>/<asset>` (e.g. `skills/sdd-prd/templates/prd.md`). The plugin-level `assets/` folder is **not** included in the dist output — only the per-skill copies are.
+
+**Local wins:** if a skill already contains a file at the same destination path, the shared asset is skipped and the local file is preserved. This makes it safe to override a shared asset for a specific skill without touching the others.
+
+Variable substitution (see above) is applied to shared assets after they are copied, so `{VARIABLE_NAME}` placeholders work in shared templates too.
 
 ### Create new plugin
 

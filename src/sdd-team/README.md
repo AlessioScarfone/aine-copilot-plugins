@@ -124,12 +124,12 @@ All SDD documents are stored in a `{ARTIFACT_MAIN_FOLDER}/` directory at the roo
 
 ```
 {ARTIFACT_MAIN_FOLDER}/
-├── {SHARED_SUBFOLDER}/                        # Shared project documents
-│   ├── prd.md                       # Product Requirements Document
-│   ├── ux.md                        # UX design document
-│   ├── architecture.md              # Architecture document
-│   └── prototype-<project>.html     # Interactive HTML prototype
-├── {SPECS_SUBFOLDER}/               # Shared capability registry
+├── {SHARED_SUBFOLDER}/              # Shared project documents
+│   ├── prd.md                        # Product Requirements Document
+│   ├── ux.md                         # UX design document
+│   ├── architecture.md               # Architecture document
+│   └── prototype-<project>.html      # Interactive HTML prototype
+├── {SPECS_SUBFOLDER}/                # Shared capability registry
 │   └── <capability>/
 │       └── spec.md
 └── {CHANGE_SUBFOLDER}/              # Changes

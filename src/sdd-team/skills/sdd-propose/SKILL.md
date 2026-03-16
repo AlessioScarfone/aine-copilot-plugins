@@ -87,27 +87,27 @@ The output is a fully updated project documentation set + a ready-to-implement c
    Use the **TodoWrite tool** to track progress through the following artifacts (in creation order):
 
    a. **`proposal.md`** — what & why (must be created first)
-      - Read `./assets/templates/proposal.md` for structure
+      - Read `./templates/proposal.md` for structure
       - Use the confirmed change description, PRD context, and summaries from Phases 1–3 as input
       - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md`
       - Verify the file exists before continuing
 
    b. **`design.md`** — how (requires proposal)
-      - Read `./assets/templates/design.md` for structure
+      - Read `./templates/design.md` for structure
       - Read `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md` for context
       - Incorporate Architecture decisions from Phase 3
       - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/design.md`
       - Verify the file exists before continuing
 
    c. **`tasks.md`** — implementation steps (requires design)
-      - Read `./assets/templates/tasks.md` for structure
+      - Read `./templates/tasks.md` for structure
       - Read `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/design.md` for context
       - If API surface changed, include a task for README update
       - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/tasks.md`
       - Verify the file exists before continuing
 
    d. **`specs/<capability>/spec.md`** — only if new capabilities are introduced
-      - Read `./assets/templates/spec.md` for structure
+      - Read `./templates/spec.md` for structure
       - Can be created alongside design
       - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/{SPECS_SUBFOLDER}/<capability>/spec.md`
 
