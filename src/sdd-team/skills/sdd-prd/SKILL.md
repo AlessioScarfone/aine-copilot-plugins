@@ -1,6 +1,6 @@
 ---
 name: sdd-prd
-description: 'Create or update the shared PRD using the PM agent. Use when defining product requirements, revising the product vision, or updating success criteria and functional requirements. Don\'t use for architecture decisions, UX design, or implementing features.'
+description: 'Create or update the shared PRD using the PM agent. Use when defining product requirements, revising the product vision, or updating success criteria and functional requirements. Do not use for architecture decisions, UX design, or implementing features.'
 ---
 
 Create or update the shared PRD at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`.
@@ -181,7 +181,7 @@ Present and refine. Append.
 1. Read complete document start to finish.
 2. **Polish:** improve flow/transitions, reduce duplication, ensure consistent terminology, verify ## Level 2 headers.
 3. **Quality check:** information density, zero fluff, no anti-patterns ("the system will allow users to..." → "Users can...").
-4. Preserve all essential content — consolidate, don't remove.
+4. Preserve all essential content — consolidate, Do not remove.
 5. Save final `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`.
 6. Present a **completion recap**: sections created, key decisions captured, PRD quality assessment.
 7. Suggest: "`/arch` for architecture or `/ux` for UX design."
@@ -230,7 +230,7 @@ After saving `prd.md`, follow the **`sdd-tracker` skill** — update `shared.prd
 ## Guardrails
 
 - **Adopt the PM agent's persona** — from: `agents/pm.agent.md`
-- **Never generate content without user input** — facilitate, don't dictate.
+- **Never generate content without user input** — facilitate, Do not dictate.
 - Challenge vague requirements, push for specificity.
 - High information density: every sentence carries weight, zero fluff.
 - FR format: `FR#: [Actor] can [capability]` — implementation-agnostic, testable.

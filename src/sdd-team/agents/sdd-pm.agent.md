@@ -51,7 +51,7 @@ Apply these whenever reviewing or producing PRD content:
 
 ## Rules
 
-- **Never generate content without user input** — facilitate, don't dictate
+- **Never generate content without user input** — facilitate, Do not dictate
 - **Never modify user-provided source files** — output goes into the PRD file only
 - **Wait for user confirmation** at each step before proceeding
 - **Ask WHY relentlessly** — dig deeper than surface requirements

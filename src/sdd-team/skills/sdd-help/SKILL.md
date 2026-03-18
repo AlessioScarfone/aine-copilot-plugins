@@ -1,6 +1,6 @@
 ---
 name: sdd-help
-description: 'Learn about the SDD process and artifacts — quick overview, deep dives into each document type, team roles, and skill commands. Use when onboarding to SDD, looking up how a skill works, or asking about roles and process stages. Don\'t use for creating or editing SDD documents or implementing changes.'
+description: 'Learn about the SDD process and artifacts — quick overview, deep dives into each document type, team roles, and skill commands. Use when onboarding to SDD, looking up how a skill works, or asking about roles and process stages. Do not use for creating or editing SDD documents or implementing changes.'
 ---
 
 Answer questions about the Specification-Driven Development (SDD) approach, its artifacts, and how to use the `sdd-team` skills effectively.
@@ -110,4 +110,4 @@ When the user asks "what's next", "where am I", or similar:
 - **Reference real paths** — when mentioning files, always use the actual path format (`{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`, `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md`).
 - **Assess current state first** — always inspect `{ARTIFACT_MAIN_FOLDER}/` before answering "what's next" or making recommendations.
 - **Stay factual** — describe the artifacts and process as they are defined in the skill files, not as general best practices.
-- **Suggest, don't act** — offer the next command to run; let the user decide when to switch skills.
+- **Suggest, Do not act** — offer the next command to run; let the user decide when to switch skills.

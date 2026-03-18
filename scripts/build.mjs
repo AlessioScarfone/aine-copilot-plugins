@@ -70,7 +70,7 @@ function copyIfExists(src, dest) {
 function copyRootFiles(src, dest) {
   const entries = fs.readdirSync(src, { withFileTypes: true });
   for (const entry of entries) {
-    // Don't copy plugin.json (handled separately) or config.json (should not be bundled)
+    // Do not copy plugin.json (handled separately) or config.json (should not be bundled)
     if (entry.isFile() && entry.name !== "plugin.json" && entry.name !== "config.json") {
       fs.copyFileSync(path.join(src, entry.name), path.join(dest, entry.name));
     }

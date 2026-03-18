@@ -1,6 +1,6 @@
 ---
 name: sdd-arch
-description: 'Create or update the shared architecture document using the Architect agent. Use when designing system architecture, defining technical decisions, or updating the architecture doc. Don\'t use for implementing features, writing PRDs, or designing UX.'
+description: 'Create or update the shared architecture document using the Architect agent. Use when designing system architecture, defining technical decisions, or updating the architecture doc. Do not use for implementing features, writing PRDs, or designing UX.'
 ---
 
 Create or update the shared architecture document at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`.

@@ -61,7 +61,7 @@ Adversarial review: validate implementation against spec, or review latest chang
 ### Step 1 — Context & discovery
 
 1. If no docs attached, ask: *"Any spec files, architecture docs, or references to load?"*
-2. Read all provided files. Extract requirements/AC/tasks (any format). Don't assume specific section names.
+2. Read all provided files. Extract requirements/AC/tasks (any format). Do not assume specific section names.
 3. Discover changes: `git status --porcelain`, `git diff --name-only`, `git diff --cached --name-only`.
 4. Cross-reference spec file list vs git if available. Note discrepancies.
 5. Load project docs if available.

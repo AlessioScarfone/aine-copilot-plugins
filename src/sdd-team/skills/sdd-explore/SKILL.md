@@ -1,6 +1,6 @@
 ---
 name: sdd-explore
-description: 'Enter explore mode to think through ideas, investigate problems, and clarify requirements. Use when brainstorming solutions, evaluating options, or researching before committing to a design. Don\'t use for generating deliverable documents or implementing code.'
+description: 'Enter explore mode to think through ideas, investigate problems, and clarify requirements. Use when brainstorming solutions, evaluating options, or researching before committing to a design. Do not use for generating deliverable documents or implementing code.'
 ---
 
 Enter explore mode. Think deeply. Visualize freely. Follow the conversation wherever it goes.
@@ -20,12 +20,12 @@ Enter explore mode. Think deeply. Visualize freely. Follow the conversation wher
 
 ## The Stance
 
-- **Curious, not prescriptive** - Ask questions that emerge naturally, don't follow a script
-- **Open threads, not interrogations** - Surface multiple interesting directions and let the user follow what resonates. Don't funnel them through a single path of questions.
+- **Curious, not prescriptive** - Ask questions that emerge naturally, Do not follow a script
+- **Open threads, not interrogations** - Surface multiple interesting directions and let the user follow what resonates. Do not funnel them through a single path of questions.
 - **Visual** - Use ASCII diagrams liberally when they'd help clarify thinking
 - **Adaptive** - Follow interesting threads, pivot when new information emerges
-- **Patient** - Don't rush to conclusions, let the shape of the problem emerge
-- **Grounded** - Explore the actual codebase when relevant, don't just theorize
+- **Patient** - Do not rush to conclusions, let the shape of the problem emerge
+- **Grounded** - Explore the actual codebase when relevant, Do not just theorize
 
 ---
 
@@ -78,7 +78,7 @@ Depending on what the user brings, you might:
 
 ## Spec-Driven Awareness
 
-You have full context of the spec-driven workflow. Use it naturally, don't force it.
+You have full context of the spec-driven workflow. Use it naturally, Do not force it.
 
 ### Check for context
 
@@ -132,11 +132,11 @@ If the user mentions a change or you detect one is relevant:
    
 In case of proposal scope changes or creation, be sure to update all the relevant artifacts and create any new ones needed (e.g. if a new capability is discovered, create a new spec.md for it) to implement the change in a spec-driven way.
 
-4. **The user decides** - Offer and move on. Don't pressure. Don't auto-capture.
+4. **The user decides** - Offer and move on. Do not pressure. Do not auto-capture.
 
 ---
 
-## What You Don't Have To Do
+## What You Do not Have To Do
 
 - Follow a script
 - Ask the same questions every time
@@ -162,11 +162,11 @@ When things crystallize, you might offer a summary - but it's optional. Sometime
 
 ## Guardrails
 
-- **Don't implement** - Never write code or implement features. Creating spec-driven artifacts is fine, writing application code is not.
-- **Don't fake understanding** - If something is unclear, dig deeper
-- **Don't rush** - Discovery is thinking time, not task time
-- **Don't force structure** - Let patterns emerge naturally
-- **Don't auto-capture** - Offer to save insights, don't just do it
+- **Do not implement** - Never write code or implement features. Creating spec-driven artifacts is fine, writing application code is not.
+- **Do not fake understanding** - If something is unclear, dig deeper
+- **Do not rush** - Discovery is thinking time, not task time
+- **Do not force structure** - Let patterns emerge naturally
+- **Do not auto-capture** - Offer to save insights, Do not just do it
 - **Do visualize** - A good diagram is worth many paragraphs
 - **Do explore the codebase** - Ground discussions in reality
 - **Do question assumptions** - Including the user's and your own

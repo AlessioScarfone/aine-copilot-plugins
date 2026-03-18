@@ -1,6 +1,6 @@
 ---
 name: sdd-propose
-description: 'Propose a change — creates all artifacts and updates PRD, UX, and Architecture in one pipeline. Use when scoping new product changes, creating a proposal with spec, design, and tasks in one workflow. Don\'t use for implementing already-proposed changes or updating a single shared document in isolation.'
+description: 'Propose a change — creates all artifacts and updates PRD, UX, and Architecture in one pipeline. Use when scoping new product changes, creating a proposal with spec, design, and tasks in one workflow. Do not use for implementing already-proposed changes or updating a single shared document in isolation.'
 ---
 
 > [!IMPORTANT]

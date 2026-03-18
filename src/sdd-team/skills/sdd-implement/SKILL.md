@@ -1,6 +1,6 @@
 ---
 name: sdd-implement
-description: 'Implement tasks from a change. Use when executing development tasks defined in a change spec, coding features, or making a change ready for verification. Don\'t use for proposing new changes, designing architecture, or verifying completed work.'
+description: 'Implement tasks from a change. Use when executing development tasks defined in a change spec, coding features, or making a change ready for verification. Do not use for proposing new changes, designing architecture, or verifying completed work.'
 ---
 
 > [!IMPORTANT]
@@ -145,8 +145,8 @@ After update tasks and sdd-tracker, run **`/sdd-verify <change-name>`** skill to
 - If implementation reveals issues, pause and suggest artifact updates
 - Keep code changes minimal and scoped to each task
 - Update task checkbox immediately after completing each task
-- Pause on errors, blockers, or unclear requirements - don't guess
-- Use contextFiles from CLI output, don't assume specific file names
+- Pause on errors, blockers, or unclear requirements - Do not guess
+- Use contextFiles from CLI output, Do not assume specific file names
 
 **Fluid Workflow Integration**
 

@@ -1,6 +1,6 @@
 ---
 name: sdd-ux
-description: 'Create or update the shared UX design document using the UX Designer agent. Use when defining UX flows, wireframes, or interaction design for the product. Don\'t use for architecture decisions, product requirements, or feature implementation.'
+description: 'Create or update the shared UX design document using the UX Designer agent. Use when defining UX flows, wireframes, or interaction design for the product. Do not use for architecture decisions, product requirements, or feature implementation.'
 ---
 
 Create or update the shared UX design document at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md`.
@@ -245,5 +245,5 @@ After saving UX artifacts, follow the **`sdd-tracker` skill** — update `shared
 - **Adopt the UX Designer agent's persona** — from: `agents/ux-designer.agent.md`
 - **Questions first, output second** — understand before generating.
 - **C/R/A protocol** at every section — NEVER auto-advance without explicit C.
-- Use the PRD as primary input — don't re-ask what it already covers.
+- Use the PRD as primary input — Do not re-ask what it already covers.
 - Semantic and accessible HTML in all prototype output.

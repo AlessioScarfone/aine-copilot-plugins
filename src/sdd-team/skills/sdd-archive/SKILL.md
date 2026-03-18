@@ -1,6 +1,6 @@
 ---
 name: sdd-archive
-description: 'Archive a completed change in the SDD workflow. Use when a change has been verified and is ready to be closed out and moved to the archive. Don\'t use for changes that are still in progress, unverified, or not yet implemented.'
+description: 'Archive a completed change in the SDD workflow. Use when a change has been verified and is ready to be closed out and moved to the archive. Do not use for changes that are still in progress, unverified, or not yet implemented.'
 ---
 
 Archive a completed change in the SDD workflow. Automatically syncs all delta specs and moves the change to the archive — no confirmation prompts.
