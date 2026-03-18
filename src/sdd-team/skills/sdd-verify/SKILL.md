@@ -1,6 +1,6 @@
 ---
 name: sdd-verify
-description: 'Verify implementation matches change artifacts before archiving'
+description: 'Verify implementation matches change artifacts before archiving. Use when a change has been implemented and needs a structured review against its spec, design, and tasks before marking it done. Do not use for implementing changes, creating artifacts, or archiving without prior verification.'
 ---
 
 Verify that an implementation matches the change artifacts (specs, tasks, design).
@@ -139,15 +139,15 @@ Before writing, read the shared project documents for context:
 
 9. **Update tracker on full pass**
 
-   If the Final Assessment has **no CRITICAL issues** (all clear or warnings only), follow the **`sdd-tracker` skill** to set the change status to `verified` with changelog note `"Verification passed"`.
+   If the Final Assessment has **no CRITICAL issues** (all clear or warnings only), follow the **`sdd-tracker` skill** to set the change status to `verified` with changelog note `"Verification passed"` and suggest proceeding with archiving.
 
    If CRITICAL issues were found, do **not** update the tracker — the status remains unchanged.
 
 **Verification Heuristics**
 
 - **Completeness**: Focus on objective checklist items (checkboxes, requirements list)
-- **Correctness**: Use keyword search, file path analysis, reasonable inference - don't require perfect certainty
-- **Coherence**: Look for glaring inconsistencies, don't nitpick style
+- **Correctness**: Use keyword search, file path analysis, reasonable inference - Do not require perfect certainty
+- **Coherence**: Look for glaring inconsistencies, Do not nitpick style
 - **False Positives**: When uncertain, prefer SUGGESTION over WARNING, WARNING over CRITICAL
 - **Actionability**: Every issue must have a specific recommendation with file/line references where applicable
 

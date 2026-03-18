@@ -30,7 +30,7 @@
 ```
 
 **Tech decisions inherited from starter:**
-<!-- List what the starter decided so agents don't re-decide them -->
+<!-- List what the starter decided so agents Do not re-decide them -->
 
 | Concern | Decision | Version |
 |---------|----------|---------|

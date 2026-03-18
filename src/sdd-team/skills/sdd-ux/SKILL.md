@@ -1,6 +1,6 @@
 ---
 name: sdd-ux
-description: 'Create or update the shared UX design document using the UX Designer agent'
+description: 'Create or update the shared UX design document using the UX Designer agent. Use when defining UX flows, wireframes, or interaction design for the product. Do not use for architecture decisions, product requirements, or feature implementation.'
 ---
 
 Create or update the shared UX design document at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md`.
@@ -8,14 +8,14 @@ This is a **shared project document** — not tied to any specific change. It de
 
 **Output**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` and `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-[project-name].html`
 
-**Template**: Use `./assets/templates/ux.md` and `./assets/templates/prototype-template.html` as the document structure.
+**Template**: Use `./assets/ux.md` and `./assets/prototype-template.html` as the document structure.
 
 **Prerequisites**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` should exist. If not, inform: "Create the PRD first with `/prd`."
 
 > [!IMPORTANT]
-> This skill is designed to be used with the **sdd-team:sdd-ux-agent.agent** agent.
+> This skill is designed to be used with the **sdd-team:sdd-ux.agent** agent.
 > Switch to it in the agent selector before invoking this skill for the full interactive experience.
-> If you are already using **sdd-team:sdd-ux-agent.agent**, proceed with the workflow below.
+> If you are already using **sdd-team:sdd-ux.agent**, proceed with the workflow below.
 
 ---
 
@@ -153,7 +153,7 @@ Ask: "Anything to add or remove from this scope?" Present C/R/A. On C, move to S
 
 **Purpose:** Generate the working, standalone HTML prototype.
 
-Start from the official template at `./assets/templates/prototype-template.html`. Read that file first — it contains base design tokens, reset, layout utilities, and component styles. Extend and customise it; never start from a blank file.
+Start from the official template at `./assets/prototype-template.html`. Read that file first — it contains base design tokens, reset, layout utilities, and component styles. Extend and customise it; never start from a blank file.
 
 **HTML rules:**
 - `<!DOCTYPE html>` with proper `<head>` (charset, viewport, title)
@@ -245,5 +245,5 @@ After saving UX artifacts, follow the **`sdd-tracker` skill** — update `shared
 - **Adopt the UX Designer agent's persona** — from: `agents/ux-designer.agent.md`
 - **Questions first, output second** — understand before generating.
 - **C/R/A protocol** at every section — NEVER auto-advance without explicit C.
-- Use the PRD as primary input — don't re-ask what it already covers.
+- Use the PRD as primary input — Do not re-ask what it already covers.
 - Semantic and accessible HTML in all prototype output.

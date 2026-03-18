@@ -1,12 +1,12 @@
 ---
 name: sdd-implement
-description: 'Implement tasks from a change'
+description: 'Implement tasks from a change. Use when executing development tasks defined in a change spec, coding features, or making a change ready for verification. Do not use for proposing new changes, designing architecture, or verifying completed work.'
 ---
 
 > [!IMPORTANT]
-> This skill is designed to be used with the **sdd-team:sdd-dev-agent.agent** agent.
+> This skill is designed to be used with the **sdd-team:sdd-dev.agent** agent.
 > Switch to it in the agent selector before invoking this skill for the full interactive experience.
-> If you are already using **sdd-team:sdd-dev-agent.agent**, proceed with the workflow below.
+> If you are already using **sdd-team:sdd-dev.agent**, proceed with the workflow below.
 
 Implement tasks from a change.
 
@@ -80,7 +80,7 @@ Before writing, read the shared project documents for context:
    Display:
    - Tasks completed this session
    - Overall progress: "N/M tasks complete"
-   - If all done: follow the **`sdd-tracker` skill** — set change `status` to `done` and changelog entry "Implementation completed on YYYY-MM-DD". Then suggest archive.
+   - If all done: follow the **`sdd-tracker` skill** — set change `status` to `done` and changelog entry "Implementation completed on YYYY-MM-DD".
    - If paused: explain why and wait for guidance
 
 **Output During Implementation**
@@ -111,7 +111,7 @@ Working on task 4/7: <task description>
 - [x] Task 2
 ...
 
-All tasks complete! You can archive this change with `/sdd-archive`.
+All tasks complete!. Proceed with verify
 ```
 
 **Output On Pause (Issue Encountered)**
@@ -134,6 +134,10 @@ All tasks complete! You can archive this change with `/sdd-archive`.
 What would you like to do?
 ```
 
+8. **Proceed with verify**
+
+After update tasks and sdd-tracker, run **`/sdd-verify <change-name>`** skill to confirm implementation matches the spec.
+
 **Guardrails**
 - Keep going through tasks until done or blocked
 - Always read context files before starting (from the apply instructions output)
@@ -141,8 +145,8 @@ What would you like to do?
 - If implementation reveals issues, pause and suggest artifact updates
 - Keep code changes minimal and scoped to each task
 - Update task checkbox immediately after completing each task
-- Pause on errors, blockers, or unclear requirements - don't guess
-- Use contextFiles from CLI output, don't assume specific file names
+- Pause on errors, blockers, or unclear requirements - Do not guess
+- Use contextFiles from CLI output, Do not assume specific file names
 
 **Fluid Workflow Integration**
 

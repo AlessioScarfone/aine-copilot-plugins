@@ -2,26 +2,31 @@
 
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { PLUGINS_DIST_DIR, PLUGINS_SRC_DIR, ROOT_FOLDER } from "./constants.mjs";
 import { parseFrontmatter } from "./yaml-parser.mjs";
 import { validateSkills } from "./validate-skills.mjs";
 import { validatePlugins } from "./validate-plugins.mjs";
 
-const PLUGIN_SUBDIRS = ["agents", "skills", "templates", "assets", "references"];
+const PLUGIN_SUBDIRS = ["agents", "skills", "references"];
 const TEXT_EXTENSIONS = new Set([".md", ".txt", ".json", ".html", ".yaml", ".yml"]);
 
 /**
- * Load variables from a plugin's config.json. Returns an empty object if not found.
+ * Load config from a plugin's config.json. Returns { variables, sharedAssets }.
+ * Returns { variables: {}, sharedAssets: [] } if not found.
  */
 function loadPluginConfig(pluginSrc) {
   const configPath = path.join(pluginSrc, "config.json");
-  if (!fs.existsSync(configPath)) return {};
+  if (!fs.existsSync(configPath)) return { variables: {}, sharedAssets: [] };
   try {
     const raw = JSON.parse(fs.readFileSync(configPath, "utf-8"));
-    return raw.variables ?? {};
+    return {
+      variables: raw.variables ?? {},
+      sharedAssets: raw.sharedAssets ?? []
+    };
   } catch {
     console.warn(`   ⚠️  Could not parse config.json in ${pluginSrc}`);
-    return {};
+    return { variables: {}, sharedAssets: [] };
   }
 }
 
@@ -65,7 +70,7 @@ function copyIfExists(src, dest) {
 function copyRootFiles(src, dest) {
   const entries = fs.readdirSync(src, { withFileTypes: true });
   for (const entry of entries) {
-    // Don't copy plugin.json (handled separately) or config.json (should not be bundled)
+    // Do not copy plugin.json (handled separately) or config.json (should not be bundled)
     if (entry.isFile() && entry.name !== "plugin.json" && entry.name !== "config.json") {
       fs.copyFileSync(path.join(src, entry.name), path.join(dest, entry.name));
     }
@@ -118,6 +123,70 @@ function buildPlugin(pluginName) {
 
   // Copy root-level files (e.g. README.md)
   copyRootFiles(src, dest);
+}
+
+/**
+ * Copy shared assets from the plugin's shared-assets/ folder to individual skills based on sharedAssets config.
+ * Source: <pluginSrc>/shared-assets/<asset>
+ * Dest: <pluginDist>/skills/<skill>/assets/<asset>
+ * Supports wildcard "*" to copy to all skills.
+ * Local wins: does not overwrite if the destination already exists.
+ */
+function copySharedAssetsToSkills(pluginSrc, pluginDist, sharedAssets) {
+  if (!Array.isArray(sharedAssets) || sharedAssets.length === 0) return;
+
+  const assetsDir = path.join(pluginSrc, "shared-assets");
+  if (!fs.existsSync(assetsDir)) return;
+
+  const skillsDir = path.join(pluginDist, "skills");
+  if (!fs.existsSync(skillsDir)) return;
+
+  // Get all available skill folders
+  const allSkills = fs
+    .readdirSync(skillsDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name);
+
+  for (const { asset, skills } of sharedAssets) {
+    const assetSrc = path.join(assetsDir, asset);
+    if (!fs.existsSync(assetSrc)) {
+      console.log(`      ⚠️  Shared asset not found: assets/${asset}`);
+      continue;
+    }
+
+    // Resolve target skills: "*" means all skills
+    const targetSkills = skills.includes("*") ? allSkills : skills;
+
+    for (const skill of targetSkills) {
+      const skillPath = path.join(skillsDir, skill);
+      if (!fs.existsSync(skillPath)) {
+        console.log(`      ⚠️  Skill "${skill}" not found, skipping asset "${asset}"`);
+        continue;
+      }
+
+      // Drop the "assets" intermediate folder: copy directly into skill root
+      const assetDest = path.join(skillPath, asset);
+
+      // Local wins: skip if destination already exists
+      if (fs.existsSync(assetDest)) {
+        console.log(`      ⏭️  Skipped ${skill}/${asset} (local file exists, local wins)`);
+        continue;
+      }
+
+      // Create parent directories
+      fs.mkdirSync(path.dirname(assetDest), { recursive: true });
+
+      // Copy asset (file or directory)
+      const stat = fs.statSync(assetSrc);
+      if (stat.isDirectory()) {
+        fs.cpSync(assetSrc, assetDest, { recursive: true });
+      } else {
+        fs.copyFileSync(assetSrc, assetDest);
+      }
+
+      console.log(`      📦 Copied ${skill}/${asset}`);
+    }
+  }
 }
 
 /**
@@ -267,8 +336,16 @@ function main() {
       console.log(`   📄 Copied ${readmeLabel} → dist/${plugin}/README.md`);
     }
 
-    // Apply variable substitutions from config.json (after all files are in place)
-    const variables = loadPluginConfig(pluginSrc);
+    // Load config and copy shared assets before applying variable substitutions
+    const config = loadPluginConfig(pluginSrc);
+    const { variables, sharedAssets } = config;
+
+    if (sharedAssets.length > 0) {
+      console.log(`   📦 Distributing shared assets...`);
+      copySharedAssetsToSkills(pluginSrc, pluginDist, sharedAssets);
+    }
+
+    // Apply variable substitutions from config.json (after all files are in place, including shared assets)
     if (Object.keys(variables).length > 0) {
       substituteVariablesInDir(pluginDist, variables);
       const varList = Object.entries(variables).map(([k, v]) => `${k}=${v}`).join(", ");
@@ -300,4 +377,17 @@ function main() {
   console.log("\n🎉 Build complete!");
 }
 
-main();
+export {
+  applyVariables,
+  loadPluginConfig,
+  substituteVariablesInDir,
+  copyIfExists,
+  copyRootFiles,
+  copySharedAssetsToSkills,
+  generatePluginManifest,
+};
+
+// Only run when invoked directly (not when imported by tests)
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main();
+}

@@ -103,7 +103,7 @@ function extractMcpServerConfigs(filePath) {
   const metadata = extractAgentMetadata(filePath);
   if (!metadata || !metadata.mcpServers) return [];
   return Object.entries(metadata.mcpServers).map(([name, cfg]) => {
-    // Ensure we don't mutate original cfg
+    // Ensure we Do not mutate original cfg
     const copy = { ...cfg };
     return {
       name,

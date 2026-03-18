@@ -1,6 +1,6 @@
 ---
 name: sdd-arch
-description: 'Create or update the shared architecture document using the Architect agent'
+description: 'Create or update the shared architecture document using the Architect agent. Use when designing system architecture, defining technical decisions, or updating the architecture doc. Do not use for implementing features, writing PRDs, or designing UX.'
 ---
 
 Create or update the shared architecture document at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`.
@@ -8,15 +8,15 @@ This is a **shared project document** — not tied to any specific change. It de
 
 **Output**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`
 
-**Template**: Use `./assets/templates/architecture.md` as the document structure.
+**Template**: Use `./assets/architecture.md` as the document structure.
 
 **Prerequisites**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` should exist. If not, ask user for a prd or suggest to "Create the PRD"
 
 
 > [!IMPORTANT]
-> This skill is designed to be used with the **sdd-team:sdd-architect-agent.agent** agent.
+> This skill is designed to be used with the **sdd-team:sdd-architect.agent** agent.
 > Switch to it in the agent selector before invoking this skill for the full interactive experience.
-> If you are already using **sdd-team:sdd-architect-agent.agent**, proceed with the workflow below.
+> If you are already using **sdd-team:sdd-architect.agent**, proceed with the workflow below.
 
 ---
 
@@ -67,7 +67,7 @@ Present analysis back to user for validation — core functionality summary, cri
 
 1. Check project context for existing tech preferences (languages, frameworks, databases, platforms).
 2. Ask about remaining preferences: team experience, deployment targets, integrations.
-3. Research current starter ./assets/templates/scaffolding options for the project type.
+3. Research current starter ./assets/scaffolding options for the project type.
 4. For each viable option, analyze: tech decisions it makes, patterns it establishes, dev experience features.
 5. Present options with trade-offs (adapt depth to user skill level). Get user's choice.
 6. Document: chosen starter, inherited tech decisions, CLI commands to scaffold.

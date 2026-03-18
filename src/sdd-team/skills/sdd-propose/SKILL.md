@@ -1,12 +1,12 @@
 ---
 name: sdd-propose
-description: 'Propose a change — creates all artifacts and updates PRD, UX, and Architecture in one pipeline'
+description: 'Propose a change — creates all artifacts and updates PRD, UX, and Architecture in one pipeline. Use when scoping new product changes, creating a proposal with spec, design, and tasks in one workflow. Do not use for implementing already-proposed changes or updating a single shared document in isolation.'
 ---
 
 > [!IMPORTANT]
-> This skill is designed to be used with the **sdd-team:sdd-pm-agent.agent** agent.
+> This skill is designed to be used with the **sdd-team:sdd-pm.agent** agent.
 > Switch to it in the agent selector before invoking this skill for the full interactive experience.
-> If you are already using **sdd-team:sdd-pm-agent.agent**, proceed with the workflow below.
+> If you are already using **sdd-team:sdd-pm.agent**, proceed with the workflow below.
 
 Propose a change that updates all shared project documents and creates all change artifacts — in one automated pipeline.
 
@@ -87,29 +87,31 @@ The output is a fully updated project documentation set + a ready-to-implement c
    Use the **TodoWrite tool** to track progress through the following artifacts (in creation order):
 
    a. **`proposal.md`** — what & why (must be created first)
-      - Read `./assets/templates/proposal.md` for structure
+      - Read `./assets/proposal.md` for structure
       - Use the confirmed change description, PRD context, and summaries from Phases 1–3 as input
       - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md`
       - Verify the file exists before continuing
 
    b. **`design.md`** — how (requires proposal)
-      - Read `./assets/templates/design.md` for structure
+      - Read `./assets/design.md` for structure
       - Read `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md` for context
       - Incorporate Architecture decisions from Phase 3
       - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/design.md`
       - Verify the file exists before continuing
 
    c. **`tasks.md`** — implementation steps (requires design)
-      - Read `./assets/templates/tasks.md` for structure
+      - Read `./assets/tasks.md` for structure
       - Read `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/design.md` for context
       - If API surface changed, include a task for README update
       - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/tasks.md`
       - Verify the file exists before continuing
 
    d. **`specs/<capability>/spec.md`** — only if new capabilities are introduced
-      - Read `./assets/templates/spec.md` for structure
+      - Read `./assets/spec.md` for structure
       - Can be created alongside design
       - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/{SPECS_SUBFOLDER}/<capability>/spec.md`
+   
+   `<capability>` is the name of any new capability introduced by the change (e.g., "user authentication"). It does not contains a date in the name. Only the archived change in `archive/YYYY-MM-DD-<change-name>` contains the date in its name.
 
 6. **Completion**
 

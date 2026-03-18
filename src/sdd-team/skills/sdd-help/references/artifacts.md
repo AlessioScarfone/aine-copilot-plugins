@@ -10,7 +10,7 @@ These live at the root of `{ARTIFACT_MAIN_FOLDER}/` and apply to the whole proje
 
 **Purpose:** Defines WHAT the product is and WHY it exists. The highest-level shared truth.
 
-**Created by:** `/sdd-prd` with the `sdd-pm-agent`
+**Created by:** `/sdd-prd` with the `sdd-pm`
 
 **Key sections:**
 - Executive Summary — vision, target users, problem being solved
@@ -30,7 +30,7 @@ These live at the root of `{ARTIFACT_MAIN_FOLDER}/` and apply to the whole proje
 
 **Purpose:** Defines how users experience the product — design decisions, component inventory, wireframes, and prototype spec.
 
-**Created by:** `/sdd-ux` with the `sdd-ux-agent`
+**Created by:** `/sdd-ux` with the `sdd-ux`
 
 **Key sections:**
 - Project Vision — platform, brand constraints, success definition
@@ -49,7 +49,7 @@ These live at the root of `{ARTIFACT_MAIN_FOLDER}/` and apply to the whole proje
 
 **Purpose:** Defines HOW the system is built — tech stack, data architecture, API surface, naming conventions, project structure.
 
-**Created by:** `/sdd-arch` with the `sdd-architect-agent`
+**Created by:** `/sdd-arch` with the `sdd-architect`
 
 **Key sections:**
 - Project Classification — type, domain, complexity, greenfield vs brownfield
