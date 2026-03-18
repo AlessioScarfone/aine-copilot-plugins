@@ -1,6 +1,6 @@
 ---
 name: sdd-task-dag
-description: Generates a conservative task-dependency DAG (task-dag.md) from tasks.md using codebase inspection. Groups tasks into conflict-free execution waves where tasks in the same wave touch no shared files. Use when preparing for parallel implementation, before running the sdd-dev-orchestrator, or when the user asks to "build the task DAG", "plan parallel execution", or "generate task-dag".
+description: 'Generates a conservative task-dependency DAG (task-dag.md) from tasks.md using codebase inspection. Groups tasks into conflict-free execution waves where tasks in the same wave touch no shared files. Use when preparing for parallel implementation, before running the sdd-dev-orchestrator, or when asked to "build the task DAG", "plan parallel execution", or "generate task-dag". Don\'t use for general task listing, project planning outside SDD, or implementation.'
 ---
 
 > [!IMPORTANT]

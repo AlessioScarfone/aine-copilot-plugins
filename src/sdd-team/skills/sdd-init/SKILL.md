@@ -1,6 +1,6 @@
 ---
 name: sdd-init
-description: 'Initialize SDD on an existing (brownfield) project — generates shared docs by inspecting the codebase and interviewing the user'
+description: 'Initialize SDD on an existing (brownfield) project — generates shared docs by inspecting the codebase and interviewing the user. Use when adopting SDD on a project that already has code but no SDD artifacts. Don\'t use for greenfield projects starting from scratch or for updating already-initialized SDD documents.'
 ---
 
 Bootstrap the SDD workflow on a **brownfield** project — one where code already exists and no SDD documents have been created yet.

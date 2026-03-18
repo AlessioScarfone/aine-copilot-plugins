@@ -1,6 +1,6 @@
 ---
 name: sdd-prd
-description: 'Create or update the shared PRD using the PM agent'
+description: 'Create or update the shared PRD using the PM agent. Use when defining product requirements, revising the product vision, or updating success criteria and functional requirements. Don\'t use for architecture decisions, UX design, or implementing features.'
 ---
 
 Create or update the shared PRD at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`.

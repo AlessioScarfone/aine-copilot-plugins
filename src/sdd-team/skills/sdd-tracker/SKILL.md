@@ -1,6 +1,7 @@
 ---
 name: sdd-tracker
-description: 'Internal skill — auto-invoked by sdd-prd, sdd-arch, sdd-ux, sdd-propose, sdd-implement, sdd-verify, and sdd-archive to create and maintain the SDD workflow tracker file (sdd-tracker.yml). Read this skill whenever you need to update the tracker. Covers: file initialization from template, shared artifact tracking (shared.prd, shared.architecture, shared.ux.ux, shared.ux.prototype), change lifecycle management (ready-for-dev → in-progress → done → verified → archived), changelog entries, and project.lastUpdate housekeeping.'
+description: 'Internal skill — auto-invoked by sdd-prd, sdd-arch, sdd-ux, sdd-propose, sdd-implement, sdd-verify, and sdd-archive to create and maintain the SDD workflow tracker file (sdd-tracker.yml). Covers file initialization, shared artifact tracking, change lifecycle management, changelog entries, and project.lastUpdate housekeeping. Use when any SDD skill needs to update the tracker after producing or modifying an artifact. Don\'t use directly by end users — invoke through the relevant SDD workflow skills instead.'
+user-invocable: false
 ---
 
 > [!NOTE]

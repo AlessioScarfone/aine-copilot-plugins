@@ -1,6 +1,6 @@
 ---
 name: sdd-explore
-description: 'Enter explore mode - think through ideas, investigate problems, clarify requirements'
+description: 'Enter explore mode to think through ideas, investigate problems, and clarify requirements. Use when brainstorming solutions, evaluating options, or researching before committing to a design. Don\'t use for generating deliverable documents or implementing code.'
 ---
 
 Enter explore mode. Think deeply. Visualize freely. Follow the conversation wherever it goes.

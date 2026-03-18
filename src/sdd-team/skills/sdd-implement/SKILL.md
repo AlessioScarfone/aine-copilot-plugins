@@ -1,6 +1,6 @@
 ---
 name: sdd-implement
-description: 'Implement tasks from a change'
+description: 'Implement tasks from a change. Use when executing development tasks defined in a change spec, coding features, or making a change ready for verification. Don\'t use for proposing new changes, designing architecture, or verifying completed work.'
 ---
 
 > [!IMPORTANT]

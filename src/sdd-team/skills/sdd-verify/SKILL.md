@@ -1,6 +1,6 @@
 ---
 name: sdd-verify
-description: 'Verify implementation matches change artifacts before archiving'
+description: 'Verify implementation matches change artifacts before archiving. Use when a change has been implemented and needs a structured review against its spec, design, and tasks before marking it done. Don\'t use for implementing changes, creating artifacts, or archiving without prior verification.'
 ---
 
 Verify that an implementation matches the change artifacts (specs, tasks, design).

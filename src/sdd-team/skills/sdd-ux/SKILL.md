@@ -1,6 +1,6 @@
 ---
 name: sdd-ux
-description: 'Create or update the shared UX design document using the UX Designer agent'
+description: 'Create or update the shared UX design document using the UX Designer agent. Use when defining UX flows, wireframes, or interaction design for the product. Don\'t use for architecture decisions, product requirements, or feature implementation.'
 ---
 
 Create or update the shared UX design document at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md`.
