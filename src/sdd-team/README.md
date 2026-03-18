@@ -173,9 +173,7 @@ After editing, run `npm run build` to regenerate the plugin with your custom pat
 ## Tracker (SDD workflow tracker)
 
 The SDD workflow tracker is an automatically-managed YAML file that provides a single source
-of truth for the lifecycle and history of SDD artifacts. It is stored at:
-
-{ARTIFACT_MAIN_FOLDER}/sdd-tracker.yml
+of truth for the lifecycle and history of SDD artifacts. It is stored at: `{ARTIFACT_MAIN_FOLDER}/sdd-tracker.yml`
 
 Purpose:
 - Track shared project documents (e.g. `shared/prd.md`, `shared/architecture.md`, `shared/ux.md` and the prototype)
