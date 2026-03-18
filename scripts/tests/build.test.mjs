@@ -58,7 +58,7 @@ describe("loadPluginConfig", () => {
   });
 
   test("parses sharedAssets correctly", () => {
-    const assets = [{ asset: "templates/a.md", skills: ["skill-a"] }];
+    const assets = [{ asset: "assets/a.md", skills: ["skill-a"] }];
     fs.writeFileSync(path.join(tmpDir, "config.json"), JSON.stringify({ variables: {}, sharedAssets: assets }));
     const { sharedAssets } = loadPluginConfig(tmpDir);
     assert.deepEqual(sharedAssets, assets);
@@ -191,7 +191,7 @@ describe("copySharedAssetsToSkills", () => {
   test("copies asset to specified skills only", () => {
     fs.writeFileSync(path.join(pluginSrc, "assets", "templates", "prd.md"), "# PRD");
     copySharedAssetsToSkills(pluginSrc, pluginDist, [
-      { asset: "templates/prd.md", skills: ["skill-a"] },
+      { asset: "assets/prd.md", skills: ["skill-a"] },
     ]);
     assert.ok(fs.existsSync(path.join(skillsDir, "skill-a", "templates", "prd.md")));
     assert.ok(!fs.existsSync(path.join(skillsDir, "skill-b", "templates", "prd.md")));
@@ -200,7 +200,7 @@ describe("copySharedAssetsToSkills", () => {
   test('copies asset to all skills with wildcard "*"', () => {
     fs.writeFileSync(path.join(pluginSrc, "assets", "templates", "common.md"), "# Common");
     copySharedAssetsToSkills(pluginSrc, pluginDist, [
-      { asset: "templates/common.md", skills: ["*"] },
+      { asset: "assets/common.md", skills: ["*"] },
     ]);
     assert.ok(fs.existsSync(path.join(skillsDir, "skill-a", "templates", "common.md")));
     assert.ok(fs.existsSync(path.join(skillsDir, "skill-b", "templates", "common.md")));
@@ -211,7 +211,7 @@ describe("copySharedAssetsToSkills", () => {
     fs.writeFileSync(path.join(skillsDir, "skill-a", "templates", "prd.md"), "local");
     fs.writeFileSync(path.join(pluginSrc, "assets", "templates", "prd.md"), "shared");
     copySharedAssetsToSkills(pluginSrc, pluginDist, [
-      { asset: "templates/prd.md", skills: ["skill-a"] },
+      { asset: "assets/prd.md", skills: ["skill-a"] },
     ]);
     assert.equal(
       fs.readFileSync(path.join(skillsDir, "skill-a", "templates", "prd.md"), "utf-8"),

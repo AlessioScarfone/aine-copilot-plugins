@@ -57,7 +57,7 @@ aine-team-copilot-plugin/
 │   │   ├── plugin.json           # Plugin manifest (source)
 │   │   ├── config.json           # Build variables and shared asset mappings
 │   │   ├── assets/               # Shared assets (distributed to skills at build time)
-│   │   │   └── templates/        # Templates shared across multiple skills
+│   │   │   └── assets/        # Templates shared across multiple skills
 │   │   ├── agents/               # Agent definitions (.agent.md)
 │   │   └── skills/               # Skill definitions (one subfolder per skill)
 │   │       ├── sdd-help/         # Example skill with local-only assets
@@ -75,14 +75,14 @@ aine-team-copilot-plugin/
 │       └── skills/               # Each skill contains its distributed templates
 │           ├── sdd-prd/
 │           │   ├── SKILL.md
-│           │   └── templates/    # Copied from plugin-level assets/ at build time
+│           │   └── assets/    # Copied from plugin-level assets/ at build time
 │           └── ...
 └── scripts/                      # Build and validation scripts
 ```
 
 Source files live in `src/`. Each subdirectory of `src/` is treated as an independent plugin and materialized into the corresponding `dist/plugins/<name>/` directory by `npm run build`.
 
-Templates shared across multiple skills live in the plugin-level `assets/` folder and are distributed to the appropriate skill directories at build time via `sharedAssets` in `config.json`. Skills that use local-only assets (not shared) can keep their own files directly in their skill subfolder. If a shared asset has the same path as a local skill asset, the local version wins and the shared one is skipped for that skill.
+Assets shared across multiple skills live in the plugin-level `shared-assets` folder and are distributed to the appropriate skill directories at build time via `sharedAssets` in `config.json`. Skills that use local-only assets (not shared) can keep their own files directly in their skill subfolder. If a shared asset has the same path as a local skill asset, the local version wins and the shared one is skipped for that skill.
 
 ---
 
@@ -145,17 +145,17 @@ Declare the mapping in `config.json` under `sharedAssets`:
 {
   "variables": { ... },
   "sharedAssets": [
-    { "asset": "templates/prd.md", "skills": ["sdd-prd", "sdd-init"] },
-    { "asset": "templates/common.md", "skills": ["*"] }
+    { "asset": "assets/prd.md", "skills": ["sdd-prd", "sdd-init"] },
+    { "asset": "scripts/common.sh", "skills": ["*"] }
   ]
 }
 ```
 
 Each entry specifies:
-- **`asset`** — path relative to the plugin's `assets/` folder (file or directory)
+- **`asset`** — path relative to the plugin's `shared-assets/` folder (file or directory)
 - **`skills`** — list of skill folder names to copy it into, or `["*"]` to copy into every skill
 
-During the build, each asset is copied into `skills/<skill-name>/<asset>` (e.g. `skills/sdd-prd/templates/prd.md`). The plugin-level `assets/` folder is **not** included in the dist output — only the per-skill copies are.
+During the build, each asset is copied into `skills/<skill-name>/<asset>` (e.g. `skills/sdd-prd/assets/prd.md`). The plugin-level `shared-assets/` folder is **not** included in the dist output — only the per-skill copies are.
 
 **Local wins:** if a skill already contains a file at the same destination path, the shared asset is skipped and the local file is preserved. This makes it safe to override a shared asset for a specific skill without touching the others.
 

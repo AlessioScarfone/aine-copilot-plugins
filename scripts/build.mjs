@@ -8,7 +8,7 @@ import { parseFrontmatter } from "./yaml-parser.mjs";
 import { validateSkills } from "./validate-skills.mjs";
 import { validatePlugins } from "./validate-plugins.mjs";
 
-const PLUGIN_SUBDIRS = ["agents", "skills", "templates", "references"];
+const PLUGIN_SUBDIRS = ["agents", "skills", "references"];
 const TEXT_EXTENSIONS = new Set([".md", ".txt", ".json", ".html", ".yaml", ".yml"]);
 
 /**
@@ -126,8 +126,8 @@ function buildPlugin(pluginName) {
 }
 
 /**
- * Copy shared assets from the plugin's assets/ folder to individual skills based on sharedAssets config.
- * Source: <pluginSrc>/assets/<asset>
+ * Copy shared assets from the plugin's shared-assets/ folder to individual skills based on sharedAssets config.
+ * Source: <pluginSrc>/shared-assets/<asset>
  * Dest: <pluginDist>/skills/<skill>/assets/<asset>
  * Supports wildcard "*" to copy to all skills.
  * Local wins: does not overwrite if the destination already exists.
@@ -135,7 +135,7 @@ function buildPlugin(pluginName) {
 function copySharedAssetsToSkills(pluginSrc, pluginDist, sharedAssets) {
   if (!Array.isArray(sharedAssets) || sharedAssets.length === 0) return;
 
-  const assetsDir = path.join(pluginSrc, "assets");
+  const assetsDir = path.join(pluginSrc, "shared-assets");
   if (!fs.existsSync(assetsDir)) return;
 
   const skillsDir = path.join(pluginDist, "skills");

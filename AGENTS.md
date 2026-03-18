@@ -54,7 +54,7 @@ aine-team-copilot-plugin/
 # Rules
 - All paths in `plugin.json` must point to existing files in the repository
 - Each agent, command, and skill must be defined in its own .md file (e.g., agents/my-agent.md, commands/my-command.md, skills/my-skill/SKILL.md)
-- Each skill can have optional templates/, scripts/ directories for any document templates or scripts it uses (e.g., skills/my-skill/templates/, skills/my-skill/scripts/)
+- Each skill can have optional assets/, scripts/ directories for any document templates or scripts it uses (e.g., skills/my-skill/assets/, skills/my-skill/scripts/)
 - The `README.md` inside each plugin should provide clear documentation on how to use the plugin, including descriptions of agents, commands, and skills, as well as any prerequisites or setup steps
 - Every time a change is made to the source files in `src/`, update the plugin documentation in `README.md` to reflect those changes
 

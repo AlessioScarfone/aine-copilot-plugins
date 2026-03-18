@@ -29,11 +29,11 @@ async function main() {
   // Get plugin name
   let pluginName = "";
   while (!pluginName || !validatePluginName(pluginName)) {
-    pluginName = await question(
-      "Plugin name (kebab-case, e.g., my-plugin): "
-    );
+    pluginName = await question("Plugin name (kebab-case, e.g., my-plugin): ");
     if (!validatePluginName(pluginName)) {
-      console.log("❌ Invalid plugin name. Use kebab-case (lowercase, hyphens only).");
+      console.log(
+        "❌ Invalid plugin name. Use kebab-case (lowercase, hyphens only).",
+      );
       pluginName = "";
     }
   }
@@ -63,9 +63,7 @@ async function main() {
     console.log(`\n📁 Creating plugin directories for "${pluginName}"...`);
     fs.mkdirSync(pluginPath, { recursive: true });
     fs.mkdirSync(path.join(pluginPath, "agents"), { recursive: true });
-    fs.mkdirSync(path.join(pluginPath, "prompts"), { recursive: true });
-    fs.mkdirSync(path.join(pluginPath, "templates"), { recursive: true });
-
+    fs.mkdirSync(path.join(pluginPath, "skills"), { recursive: true });
     // Create plugin.json
     const pluginJson = {
       name: pluginName,
@@ -77,9 +75,26 @@ async function main() {
     fs.writeFileSync(
       path.join(pluginPath, "plugin.json"),
       JSON.stringify(pluginJson, null, 2) + "\n",
-      "utf8"
+      "utf8",
     );
     console.log(`   ✅ Created plugin.json`);
+
+    const configJson = {
+      variables: {
+        // Define any plugin-level variables here
+      },
+      sharedAssets: [
+        // Example shared asset configuration:
+        // { "asset": "assets/common.md", "skills": ["*"] }
+      ],
+    };
+
+    fs.writeFileSync(
+      path.join(pluginPath, "config.json"),
+      JSON.stringify(configJson, null, 2) + "\n",
+      "utf8",
+    );
+    console.log(`   ✅ Created config.json`);
 
     // Create README.md
     const readmeContent = `# ${pluginName}
@@ -106,11 +121,7 @@ For more information on Agent Plugins, see the official VS Code documentation:
 https://code.visualstudio.com/docs/copilot/customization/agent-plugins
 `;
 
-    fs.writeFileSync(
-      path.join(pluginPath, "README.md"),
-      readmeContent,
-      "utf8"
-    );
+    fs.writeFileSync(path.join(pluginPath, "README.md"), readmeContent, "utf8");
     console.log(`   ✅ Created README.md`);
 
     console.log(`\n✅ Plugin structure created successfully!\n`);
@@ -118,7 +129,7 @@ https://code.visualstudio.com/docs/copilot/customization/agent-plugins
     console.log(`\nNext steps:`);
     console.log(`  1. Add agents to src/${pluginName}/agents/`);
     console.log(`  2. Add skills to src/${pluginName}/skills/`);
-    console.log(`  3. Add templates to src/${pluginName}/templates/`);
+    console.log(`  3. Update config.json for any plugin-level variables or shared assets`);
     console.log(`  4. Update src/${pluginName}/README.md with plugin details`);
     console.log(`  5. Run \`npm run build\` to build the plugin\n`);
   } catch (error) {

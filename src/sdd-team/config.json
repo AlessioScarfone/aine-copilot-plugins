@@ -7,19 +7,19 @@
   },
   "sharedAssets": [
     {
-      "asset": "templates/architecture.md",
+      "asset": "assets/architecture.md",
       "skills": ["sdd-arch", "sdd-init"]
     },
-    { "asset": "templates/prd.md", "skills": ["sdd-prd", "sdd-init"] },
-    { "asset": "templates/design.md", "skills": ["sdd-propose"] },
-    { "asset": "templates/proposal.md", "skills": ["sdd-propose"] },
-    { "asset": "templates/spec.md", "skills": ["sdd-propose"] },
-    { "asset": "templates/tasks.md", "skills": ["sdd-propose"] },
-    { "asset": "templates/sdd-tracker.yml", "skills": ["sdd-tracker"] },
+    { "asset": "assets/prd.md", "skills": ["sdd-prd", "sdd-init"] },
+    { "asset": "assets/design.md", "skills": ["sdd-propose"] },
+    { "asset": "assets/proposal.md", "skills": ["sdd-propose"] },
+    { "asset": "assets/spec.md", "skills": ["sdd-propose"] },
+    { "asset": "assets/tasks.md", "skills": ["sdd-propose"] },
+    { "asset": "assets/sdd-tracker.yml", "skills": ["sdd-tracker"] },
     {
-      "asset": "templates/prototype-template.html",
+      "asset": "assets/prototype-template.html",
       "skills": ["sdd-ux", "sdd-init"]
     },
-    { "asset": "templates/ux.md", "skills": ["sdd-ux", "sdd-init"] }
+    { "asset": "assets/ux.md", "skills": ["sdd-ux", "sdd-init"] }
   ]
 }

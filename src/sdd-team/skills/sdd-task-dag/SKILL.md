@@ -69,7 +69,7 @@ Bundling algorithm (per wave):
 
 ## Step 5 — Generate task-dag.md
 
-Read `./templates/task-dag.md` for the structure. Fill it in with:
+Read `./assets/task-dag.md` for the structure. Fill it in with:
 - One row per task in the Task Dependency Table (Task ID, Group, Description, Depends On, Files Likely Touched, Status = `pending`)
 - One Wave section per wave with a bundle table showing Bundle ID, ordered task list, combined file set, and status
 - DAG Notes summary (total tasks, total waves, total agent slots, bundles per wave, conflicts resolved)
