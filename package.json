@@ -1,13 +1,13 @@
 {
   "name": "aine-copilot-plugins",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Collection of GitHub Copilot Plugins",
   "scripts": {
     "build": "node ./scripts/build.mjs",
     "plugin:create": "node ./scripts/create-plugin.mjs",
     "test": "node --test scripts/tests/*.test.mjs"
   },
-  "author": "",
+  "author": "Alessio Scarfone",
   "license": "MIT",
    "dependencies": {
     "js-yaml": "^4.1.1",

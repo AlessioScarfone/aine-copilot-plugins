@@ -7,6 +7,7 @@ Collection of GitHub Copilot Plugins, each designed to embed a specialized workf
 | Plugin | Description 
 |---|---|
 | [`sdd-team`](src/sdd-team/README.md) | A full software-development team powered by Specification-Driven Development (SDD) |
+| [`mini-sdd`](src/mini-sdd/README.md) | A minimal spec-driven development framework — context, spec, implement |
 
 ---
 
@@ -45,6 +46,14 @@ After installation, the agents and skills are immediately available in the Copil
 `sdd-team` brings a full virtual software-development team into your editor, powered by a Specification-Driven Development (SDD) workflow.
 
 → See [src/sdd-team/README.md](src/sdd-team/README.md) for full documentation.
+
+---
+
+### mini-sdd
+
+`mini-sdd` is a lightweight spec-driven framework with three skills: define project context, write feature specs, and implement them with task tracking.
+
+→ See [src/mini-sdd/README.md](src/mini-sdd/README.md) for full documentation.
 
 ---
 

@@ -1,0 +1,7 @@
+{
+  "variables": {
+    "SHARED_SUBFOLDER": "specs",
+    "SPECS_SUBFOLDER": "specs"
+  },
+  "sharedAssets": []
+}

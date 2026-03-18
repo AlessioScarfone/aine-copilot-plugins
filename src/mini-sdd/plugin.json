@@ -1,0 +1,19 @@
+{
+  "name": "mini-sdd",
+  "description": "Minimal spec-driven development framework — context, spec, implement.",
+  "version": "0.1.0",
+  "keywords": [
+    "sdd",
+    "github-copilot",
+    "agents",
+    "spec-driven"
+  ],
+  "agents": [
+    "./agents/mini-sdd.agent.md"
+  ],
+  "skills": [
+    "./skills/mini-sdd-context/",
+    "./skills/mini-sdd-spec/",
+    "./skills/mini-sdd-implement/"
+  ]
+}
