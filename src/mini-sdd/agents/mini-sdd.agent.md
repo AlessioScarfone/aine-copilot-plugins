@@ -23,11 +23,11 @@ Route by user message:
 
 Before any action, check the current state of the project's specs folder:
 
-1. **Does `{SHARED_SUBFOLDER}/context.md` exist?**
+1. **Does `{ARTIFACT_MAIN_FOLDER}/context.md` exist?**
    - No → Suggest running `/mini-sdd-context` first.
    - Yes → Read it for background context.
 
-2. **Are there spec files in `{SPECS_SUBFOLDER}/`?**
+2. **Are there spec files in `{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/`?**
    - Read the YAML frontmatter of each `.md` file (excluding `context.md`) to get their `status`.
    - Prioritize specs that have `status: todo` or `status: todo-changed` for implementation.
 

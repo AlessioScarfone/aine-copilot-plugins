@@ -3,7 +3,7 @@ name: mini-sdd-implement
 description: 'Implement a feature from an existing spec file. Use when executing development work defined in a spec, coding a feature, or completing a specified requirement. Do not use for creating specs, updating project context, or proposing new features.'
 ---
 
-Implement a feature based on an existing spec in `{SPECS_SUBFOLDER}/`.
+Implement a feature based on an existing spec in `{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/`.
 
 Breaks the spec into concrete tasks, appends them to the spec file, implements them one by one, and tracks progress via checkboxes. Supports resuming across sessions.
 
@@ -11,13 +11,13 @@ Breaks the spec into concrete tasks, appends them to the spec file, implements t
 
 ## Entry point
 
-1. Read `{SHARED_SUBFOLDER}/context.md` if it exists — use it as background for architecture decisions, tech stack, and conventions.
+1. Read `{ARTIFACT_MAIN_FOLDER}/context.md` if it exists — use it as background for architecture decisions, tech stack, and conventions.
 2. Determine which spec to implement:
    - If a spec name is provided in the input (e.g., `/mini-sdd-implement user-authentication`), use it.
-   - If no name is provided, list all `.md` files in `{SPECS_SUBFOLDER}/` (excluding `context.md`) and check their status. Present specs with status `todo`, `todo-changed`, or `in-progress` and ask the user to pick one.
+   - If no name is provided, list all `.md` files in `{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/` (excluding `context.md`) and check their status. Present specs with status `todo`, `todo-changed`, or `in-progress` and ask the user to pick one.
    - If no specs exist, inform the user:
-     > "No specs found in `{SPECS_SUBFOLDER}/`. Use `/mini-sdd-spec` to create one first."
-3. Read the selected spec file from `{SPECS_SUBFOLDER}/<spec-name>.md`.
+     > "No specs found in `{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/`. Use `/mini-sdd-spec` to create one first."
+3. Read the selected spec file from `{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>.md`.
    - Read the YAML frontmatter to get `status`, `created`, and `updated`.
 4. Verify the spec status and decide the flow:
    - `todo` → proceed to **Task generation**
@@ -32,7 +32,7 @@ Breaks the spec into concrete tasks, appends them to the spec file, implements t
 ## Task generation
 
 1. Read the spec thoroughly: summary, scenarios, acceptance criteria, dependencies, technical notes.
-2. Read `{SHARED_SUBFOLDER}/context.md` for tech stack and architecture guidance.
+2. Read `{ARTIFACT_MAIN_FOLDER}/context.md` for tech stack and architecture guidance.
 3. Break the spec into **concrete, ordered implementation tasks**. Each task should be:
    - Small enough to complete in one focused step
    - Actionable (starts with a verb: "Create...", "Add...", "Update...")

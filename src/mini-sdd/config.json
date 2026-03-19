@@ -1,6 +1,6 @@
 {
   "variables": {
-    "SHARED_SUBFOLDER": "specs",
+    "ARTIFACT_MAIN_FOLDER": "mini-sdd",
     "SPECS_SUBFOLDER": "specs"
   },
   "sharedAssets": []

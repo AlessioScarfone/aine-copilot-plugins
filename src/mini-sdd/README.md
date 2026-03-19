@@ -130,17 +130,17 @@ flowchart TD
 
 Paths are configurable via `config.json`:
 
-```json
-{
-  "variables": {
-    "SHARED_SUBFOLDER": "specs",
-    "SPECS_SUBFOLDER": "specs"
-  }
-}
+- `ARTIFACT_MAIN_FOLDER` — where `context.md` is written
+- `SPECS_SUBFOLDER` — where feature spec files are written (default: `specs`). It is a subfolder under `ARTIFACT_MAIN_FOLDER`.
+
+
+```
+{ARTIFACT_MAIN_FOLDER}/
+├── context.md                      # Project context (created by mini-sdd-context)
+└── {SPECS_SUBFOLDER}/                # Feature specs (created by mini-sdd-spec)
+    └── <capability>/spec.md          # Individual spec file for a feature
 ```
 
-- `SHARED_SUBFOLDER` — where `context.md` is written (default: `specs`)
-- `SPECS_SUBFOLDER` — where feature spec files are written (default: `specs`)
 
 ## File Structure (after use)
 
