@@ -3,7 +3,7 @@ name: mini-sdd-context
 description: 'Create or update the project context document that captures product vision, architecture, and tech stack in a single file. Use when bootstrapping a new project with mini-SDD, onboarding AI agents to an existing codebase, or updating project context after completing a feature. Do not use for writing feature specs or implementing code.'
 ---
 
-Create or update the project context document at `{ARTIFACT_MAIN_FOLDER}/context.md`.
+Create or update the project context document at `./{ARTIFACT_MAIN_FOLDER}/context.md`.
 
 This file is the single source of truth read by every other mini-SDD skill. It merges product vision, architecture overview, and tech stack into one concise document.
 
@@ -11,7 +11,7 @@ This file is the single source of truth read by every other mini-SDD skill. It m
 
 ## Entry point
 
-1. Check whether `{ARTIFACT_MAIN_FOLDER}/context.md` already exists.
+1. Check whether `./{ARTIFACT_MAIN_FOLDER}/context.md` already exists.
    - **If it exists** → read it, show a summary to the user, and ask:
      > "The project context already exists. Do you want to **update** it or **start fresh** (overwrite)?"
      - **Update** → proceed to **Step 2 — Update flow**
@@ -68,12 +68,12 @@ Skip any question already answered by the reconnaissance.
 
 ### 1c. Generate context.md
 
-Read the template from `assets/context-template.md` and fill it in using the gathered information.
+Read the template from `./assets/context-template.md` and fill it in using the gathered information.
 
-- Write the file to `{ARTIFACT_MAIN_FOLDER}/context.md`
+- Write the file to `./{ARTIFACT_MAIN_FOLDER}/context.md`
 - Set `Last updated` to today's date (`YYYY-MM-DD`)
 - Confirm to the user:
-  > "✅ Created `{ARTIFACT_MAIN_FOLDER}/context.md`. You can review and edit it manually anytime."
+  > "✅ Created `./{ARTIFACT_MAIN_FOLDER}/context.md`. You can review and edit it manually anytime."
 
 ---
 
@@ -81,14 +81,14 @@ Read the template from `assets/context-template.md` and fill it in using the gat
 
 Use this flow when the context file already exists and the user chose to update it.
 
-1. Read the current `{ARTIFACT_MAIN_FOLDER}/context.md`.
+1. Read the current `./{ARTIFACT_MAIN_FOLDER}/context.md`.
 2. Ask the user:
    > "What changed? For example: new feature completed, tech stack change, architecture update, status change."
 3. Based on the answer, update only the relevant sections of `context.md`.
 4. Update the `Last updated` date to today (`YYYY-MM-DD`).
 5. Show a diff summary of what changed.
 6. Confirm:
-   > "✅ Updated `{ARTIFACT_MAIN_FOLDER}/context.md`."
+   > "✅ Updated `./{ARTIFACT_MAIN_FOLDER}/context.md`."
 
 ---
 
