@@ -139,6 +139,7 @@ What would you like to do?
 After update tasks and sdd-tracker, run **`/sdd-verify <change-name>`** skill to confirm implementation matches the spec.
 
 **Guardrails**
+{SKILL_ASSETS_NOTICE}
 - Keep going through tasks until done or blocked
 - Always read context files before starting (from the apply instructions output)
 - If task is ambiguous, pause and ask before implementing

@@ -11,6 +11,8 @@ import {
     copyRootFiles,
     copySharedAssetsToSkills,
     generatePluginManifest,
+    processEmbeds,
+    processEmbedsInDir,
 } from "../build.mjs";
 
 function makeTmpDir() {
@@ -283,5 +285,80 @@ describe("generatePluginManifest", () => {
   test("removes skills entry when skills dir is absent", () => {
     generatePluginManifest(pluginDist);
     assert.ok(!("skills" in readManifest(pluginDist)));
+  });
+});
+
+// ─── processEmbeds ────────────────────────────────────────────────────────────
+
+describe("processEmbeds", () => {
+  let tmpDir;
+  beforeEach(() => { tmpDir = makeTmpDir(); });
+  afterEach(() => { cleanup(tmpDir); });
+
+  test("replaces embed directive with file contents", () => {
+    fs.writeFileSync(path.join(tmpDir, "fragment.md"), "# Fragment");
+    const result = processEmbeds("before\n<!-- @embed ./fragment.md -->\nafter", tmpDir);
+    assert.equal(result, "before\n# Fragment\nafter");
+  });
+
+  test("leaves directive unchanged when target file does not exist", () => {
+    const input = "<!-- @embed ./missing.md -->";
+    const result = processEmbeds(input, tmpDir);
+    assert.equal(result, input);
+  });
+
+  test("replaces multiple embed directives in the same file", () => {
+    fs.writeFileSync(path.join(tmpDir, "a.md"), "AAA");
+    fs.writeFileSync(path.join(tmpDir, "b.md"), "BBB");
+    const result = processEmbeds("<!-- @embed ./a.md -->\n<!-- @embed ./b.md -->", tmpDir);
+    assert.equal(result, "AAA\nBBB");
+  });
+
+  test("resolves path relative to fileDir, not cwd", () => {
+    const sub = path.join(tmpDir, "sub");
+    fs.mkdirSync(sub);
+    fs.writeFileSync(path.join(sub, "tpl.md"), "TEMPLATE");
+    const result = processEmbeds("<!-- @embed ./tpl.md -->", sub);
+    assert.equal(result, "TEMPLATE");
+  });
+
+  test("returns unchanged content when no directives present", () => {
+    const input = "No directives here.";
+    assert.equal(processEmbeds(input, tmpDir), input);
+  });
+});
+
+// ─── processEmbedsInDir ───────────────────────────────────────────────────────
+
+describe("processEmbedsInDir", () => {
+  let tmpDir;
+  beforeEach(() => { tmpDir = makeTmpDir(); });
+  afterEach(() => { cleanup(tmpDir); });
+
+  test("expands embed in a .md file", () => {
+    fs.writeFileSync(path.join(tmpDir, "fragment.md"), "CONTENT");
+    fs.writeFileSync(path.join(tmpDir, "skill.md"), "<!-- @embed ./fragment.md -->");
+    processEmbedsInDir(tmpDir);
+    assert.equal(fs.readFileSync(path.join(tmpDir, "skill.md"), "utf-8"), "CONTENT");
+  });
+
+  test("recurses into subdirectories", () => {
+    const sub = path.join(tmpDir, "sub");
+    fs.mkdirSync(sub);
+    fs.writeFileSync(path.join(sub, "fragment.md"), "DEEP");
+    fs.writeFileSync(path.join(sub, "skill.md"), "<!-- @embed ./fragment.md -->");
+    processEmbedsInDir(tmpDir);
+    assert.equal(fs.readFileSync(path.join(sub, "skill.md"), "utf-8"), "DEEP");
+  });
+
+  test("does not touch files with unsupported extensions", () => {
+    fs.writeFileSync(path.join(tmpDir, "fragment.md"), "X");
+    fs.writeFileSync(path.join(tmpDir, "file.bin"), "<!-- @embed ./fragment.md -->");
+    processEmbedsInDir(tmpDir);
+    assert.equal(fs.readFileSync(path.join(tmpDir, "file.bin"), "utf-8"), "<!-- @embed ./fragment.md -->");
+  });
+
+  test("does nothing when directory does not exist", () => {
+    assert.doesNotThrow(() => processEmbedsInDir(path.join(tmpDir, "nonexistent")));
   });
 });

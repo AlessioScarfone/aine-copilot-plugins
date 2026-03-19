@@ -69,7 +69,7 @@ Bundling algorithm (per wave):
 
 ## Step 5 — Generate task-dag.md
 
-Read `./assets/task-dag.md` for the structure. Fill it in with:
+Read `assets/task-dag.md` for the structure. Fill it in with:
 - One row per task in the Task Dependency Table (Task ID, Group, Description, Depends On, Files Likely Touched, Status = `pending`)
 - One Wave section per wave with a bundle table showing Bundle ID, ordered task list, combined file set, and status
 - DAG Notes summary (total tasks, total waves, total agent slots, bundles per wave, conflicts resolved)
@@ -88,6 +88,7 @@ Show the user:
 
 ## Guardrails
 
+{SKILL_ASSETS_NOTICE}
 - **Conservative first**: when uncertain about file overlap, serialize — never guess at safety
 - **No execution**: this skill only generates the plan; it does not launch subagents or modify source code
 - **Verify file existence**: before saving, confirm the change directory exists

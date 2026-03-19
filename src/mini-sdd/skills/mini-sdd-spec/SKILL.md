@@ -40,7 +40,7 @@ Ask the user the following in a **single numbered message** (skip questions alre
 
 ### 2. Generate the spec file
 
-Read the template from `./assets/spec-template.md` and fill it in using the gathered information.
+Read the template from `assets/spec-template.md` and fill it in using the gathered information.
 
 - Write the file to `./{ARTIFACT_MAIN_FOLDER}/./{SPECS_SUBFOLDER}/<spec-name>.md`
 - In the YAML frontmatter set: `status: todo`, `created: YYYY-MM-DD`, `updated: YYYY-MM-DD`
@@ -79,6 +79,7 @@ Use this when a spec already exists and the user chose to update it.
 
 ## Output rules
 
+{SKILL_ASSETS_NOTICE}
 - One spec per file, one feature per spec.
 - Keep specs concise — aim for something an AI agent can read and implement without ambiguity.
 - Use concrete scenario format (GIVEN/WHEN/THEN or WHEN/THEN) for testable criteria.

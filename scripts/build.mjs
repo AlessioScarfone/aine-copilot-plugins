@@ -41,6 +41,47 @@ function applyVariables(content, variables) {
 }
 
 /**
+ * Process @embed directives in a markdown string.
+ * Replaces <!-- @embed relative/path --> with the file contents, relative to fileDir.
+ * If the target file does not exist, the directive is left unchanged and a warning is emitted.
+ *
+ * @param {string} content - Source text potentially containing @embed directives
+ * @param {string} fileDir - Absolute directory of the file being processed (used to resolve paths)
+ * @returns {string} Content with all resolvable @embed directives expanded inline
+ */
+function processEmbeds(content, fileDir) {
+  return content.replace(/<!--\s*@embed\s+(\S+)\s*-->/g, (match, relativePath) => {
+    const targetPath = path.resolve(fileDir, relativePath);
+    if (!fs.existsSync(targetPath)) {
+      console.warn(`   ⚠️  @embed target not found: ${relativePath} (in ${fileDir})`);
+      return match;
+    }
+    return fs.readFileSync(targetPath, "utf-8");
+  });
+}
+
+/**
+ * Walk a directory recursively and process @embed directives in all text files.
+ */
+function processEmbedsInDir(dir) {
+  if (!fs.existsSync(dir)) return;
+
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      processEmbedsInDir(fullPath);
+    } else if (entry.isFile() && TEXT_EXTENSIONS.has(path.extname(entry.name))) {
+      const original = fs.readFileSync(fullPath, "utf-8");
+      const processed = processEmbeds(original, path.dirname(fullPath));
+      if (processed !== original) {
+        fs.writeFileSync(fullPath, processed, "utf-8");
+      }
+    }
+  }
+}
+
+/**
  * Walk a directory recursively and apply variable substitution to all text files.
  */
 function substituteVariablesInDir(dir, variables) {
@@ -345,6 +386,9 @@ function main() {
       copySharedAssetsToSkills(pluginSrc, pluginDist, sharedAssets);
     }
 
+    // Process @embed directives (after all files are in place)
+    processEmbedsInDir(pluginDist);
+
     // Apply variable substitutions from config.json (after all files are in place, including shared assets)
     if (Object.keys(variables).length > 0) {
       substituteVariablesInDir(pluginDist, variables);
@@ -385,6 +429,8 @@ export {
   copyRootFiles,
   copySharedAssetsToSkills,
   generatePluginManifest,
+  processEmbeds,
+  processEmbedsInDir,
 };
 
 // Only run when invoked directly (not when imported by tests)

@@ -106,6 +106,7 @@ When the user asks "what's next", "where am I", or similar:
 
 ## Guardrails
 
+{SKILL_ASSETS_NOTICE}
 - **Read-only skill** — never create, modify, or delete any file. If the user wants to create or update a document, direct them to the appropriate skill command.
 - **Reference real paths** — when mentioning files, always use the actual path format (`{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`, `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md`).
 - **Assess current state first** — always inspect `{ARTIFACT_MAIN_FOLDER}/` before answering "what's next" or making recommendations.

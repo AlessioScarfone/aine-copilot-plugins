@@ -170,6 +170,28 @@ During the build, each asset is copied into `skills/<skill-name>/<asset>` (e.g. 
 
 Variable substitution (see above) is applied to shared assets after they are copied, so `{VARIABLE_NAME}` placeholders work in shared templates too.
 
+### @embed directive
+
+The `@embed` directive lets you inline the contents of any file directly into a skill or agent markdown file at build time, without shipping the referenced file as a separate asset.
+
+Place the directive anywhere in a `.md`, `.txt`, `.yaml`, `.yml`, `.json`, or `.html` file inside a plugin:
+
+```md
+<!-- @embed ./assets/my-template.md -->
+```
+
+During the build, the directive is replaced with the full contents of the referenced file. Paths are resolved **relative to the file that contains the directive**.
+
+If the target file does not exist, the directive is left unchanged and a warning is printed to the console.
+
+**When to use `@embed` vs shared assets**
+
+| | `@embed` | Shared assets |
+|---|---|---|
+| Content appears inline in the skill | ✅ | ❌ (separate file) |
+| Preserves progressive disclosure | ❌ (always loaded) | ✅ |
+| Good for | Small, always-needed snippets | Templates read on demand |
+
 ### Create new plugin
 
 ```bash

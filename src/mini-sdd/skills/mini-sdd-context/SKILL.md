@@ -68,7 +68,7 @@ Skip any question already answered by the reconnaissance.
 
 ### 1c. Generate context.md
 
-Read the template from `./assets/context-template.md` and fill it in using the gathered information.
+Read the template from `assets/context-template.md` and fill it in using the gathered information.
 
 - Write the file to `./{ARTIFACT_MAIN_FOLDER}/context.md`
 - Set `Last updated` to today's date (`YYYY-MM-DD`)
@@ -94,6 +94,7 @@ Use this flow when the context file already exists and the user chose to update 
 
 ## Output rules
 
+{SKILL_ASSETS_NOTICE}
 - Keep the document **concise** — aim for a single page that an AI agent can quickly consume.
 - Use the structure from the template; do not invent new sections.
 - Write in plain English, no marketing language.

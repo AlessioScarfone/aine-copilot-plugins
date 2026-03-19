@@ -150,6 +150,7 @@ Target archive directory already exists.
 ```
 
 **Guardrails**
+{SKILL_ASSETS_NOTICE}
 - Always prompt for change selection if not provided
 - Check artifact completion by listing files in the change directory
 - Never block or prompt — proceed automatically, surface warnings in the summary

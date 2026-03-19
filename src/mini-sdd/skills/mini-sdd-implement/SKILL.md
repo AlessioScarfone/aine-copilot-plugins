@@ -52,7 +52,7 @@ Breaks the spec into concrete tasks, appends them to the spec file, implements t
    - [ ] Task 3 description
    ```
    Replace any existing content under `## Tasks` (including the template comments).
-   Spec template file is available at `./assets/spec-template.md` for reference.
+   Spec template file is available at `assets/spec-template.md` for reference.
 7. In the spec frontmatter set: `status: in-progress`, `updated: YYYY-MM-DD`.
 8. Proceed to **Execute tasks**.
 
@@ -140,6 +140,7 @@ When the spec frontmatter shows `status: todo-changed`, the existing tasks are s
 
 ## Output rules
 
+{SKILL_ASSETS_NOTICE}
 - Follow the tech stack and conventions from `context.md`.
 - Write clean, idiomatic code — no unnecessary abstractions.
 - All progress tracking lives in the spec file itself — no external tracker files.
