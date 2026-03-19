@@ -8,7 +8,7 @@ This is a **shared project document** — not tied to any specific change. It de
 
 **Output**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`
 
-**Template**: Use `./assets/prd.md` as the document structure.
+**Template**: Use `assets/prd.md` as the document structure.
 
 > [!IMPORTANT]
 > This skill is designed to be used with the **sdd-team:sdd-pm.agent** agent.
@@ -229,6 +229,7 @@ After saving `prd.md`, follow the **`sdd-tracker` skill** — update `shared.prd
 
 ## Guardrails
 
+{SKILL_ASSETS_NOTICE}
 - **Adopt the PM agent's persona** — from: `agents/pm.agent.md`
 - **Never generate content without user input** — facilitate, Do not dictate.
 - Challenge vague requirements, push for specificity.

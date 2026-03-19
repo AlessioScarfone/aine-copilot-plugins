@@ -87,27 +87,27 @@ The output is a fully updated project documentation set + a ready-to-implement c
    Use the **TodoWrite tool** to track progress through the following artifacts (in creation order):
 
    a. **`proposal.md`** — what & why (must be created first)
-      - Read `./assets/proposal.md` for structure
+      - Read `assets/proposal.md` for structure
       - Use the confirmed change description, PRD context, and summaries from Phases 1–3 as input
       - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md`
       - Verify the file exists before continuing
 
    b. **`design.md`** — how (requires proposal)
-      - Read `./assets/design.md` for structure
+      - Read `assets/design.md` for structure
       - Read `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/proposal.md` for context
       - Incorporate Architecture decisions from Phase 3
       - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/design.md`
       - Verify the file exists before continuing
 
    c. **`tasks.md`** — implementation steps (requires design)
-      - Read `./assets/tasks.md` for structure
+      - Read `assets/tasks.md` for structure
       - Read `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/design.md` for context
       - If API surface changed, include a task for README update
       - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/tasks.md`
       - Verify the file exists before continuing
 
    d. **`specs/<capability>/spec.md`** — only if new capabilities are introduced
-      - Read `./assets/spec.md` for structure
+      - Read `assets/spec.md` for structure
       - Can be created alongside design
       - Save to `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/{SPECS_SUBFOLDER}/<capability>/spec.md`
    
@@ -125,6 +125,7 @@ The output is a fully updated project documentation set + a ready-to-implement c
    Follow the **`sdd-tracker` skill** — add a new change entry for `<name>` with `status: ready-for-dev` and only the artifacts actually created in this pipeline listed under the change's `artifacts` field. Add a changelog entry "Change proposed on YYYY-MM-DD" with a summary of what was done.
 
 **Guardrails**
+{SKILL_ASSETS_NOTICE}
 - Single input, full pipeline — user describes the change once, all phases use that context
 - Ask question if input is unclear — do not proceed without understanding the change
 - Surgical edits — never rewrite entire documents; only update affected sections

@@ -7,6 +7,7 @@ Collection of GitHub Copilot Plugins, each designed to embed a specialized workf
 | Plugin | Description 
 |---|---|
 | [`sdd-team`](src/sdd-team/README.md) | A full software-development team powered by Specification-Driven Development (SDD) |
+| [`mini-sdd`](src/mini-sdd/README.md) | A minimal spec-driven development framework — context, spec, implement |
 
 ---
 
@@ -45,6 +46,14 @@ After installation, the agents and skills are immediately available in the Copil
 `sdd-team` brings a full virtual software-development team into your editor, powered by a Specification-Driven Development (SDD) workflow.
 
 → See [src/sdd-team/README.md](src/sdd-team/README.md) for full documentation.
+
+---
+
+### mini-sdd
+
+`mini-sdd` is a lightweight spec-driven framework with three skills: define project context, write feature specs, and implement them with task tracking.
+
+→ See [src/mini-sdd/README.md](src/mini-sdd/README.md) for full documentation.
 
 ---
 
@@ -160,6 +169,28 @@ During the build, each asset is copied into `skills/<skill-name>/<asset>` (e.g. 
 **Local wins:** if a skill already contains a file at the same destination path, the shared asset is skipped and the local file is preserved. This makes it safe to override a shared asset for a specific skill without touching the others.
 
 Variable substitution (see above) is applied to shared assets after they are copied, so `{VARIABLE_NAME}` placeholders work in shared templates too.
+
+### @embed directive
+
+The `@embed` directive lets you inline the contents of any file directly into a skill or agent markdown file at build time, without shipping the referenced file as a separate asset.
+
+Place the directive anywhere in a `.md`, `.txt`, `.yaml`, `.yml`, `.json`, or `.html` file inside a plugin:
+
+```md
+<!-- @embed ./assets/my-template.md -->
+```
+
+During the build, the directive is replaced with the full contents of the referenced file. Paths are resolved **relative to the file that contains the directive**.
+
+If the target file does not exist, the directive is left unchanged and a warning is printed to the console.
+
+**When to use `@embed` vs shared assets**
+
+| | `@embed` | Shared assets |
+|---|---|---|
+| Content appears inline in the skill | ✅ | ❌ (separate file) |
+| Preserves progressive disclosure | ❌ (always loaded) | ✅ |
+| Good for | Small, always-needed snippets | Templates read on demand |
 
 ### Create new plugin
 

@@ -8,7 +8,7 @@ This is a **shared project document** — not tied to any specific change. It de
 
 **Output**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`
 
-**Template**: Use `./assets/architecture.md` as the document structure.
+**Template**: Use `assets/architecture.md` as the document structure.
 
 **Prerequisites**: `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` should exist. If not, ask user for a prd or suggest to "Create the PRD"
 
@@ -67,7 +67,7 @@ Present analysis back to user for validation — core functionality summary, cri
 
 1. Check project context for existing tech preferences (languages, frameworks, databases, platforms).
 2. Ask about remaining preferences: team experience, deployment targets, integrations.
-3. Research current starter ./assets/scaffolding options for the project type.
+3. Research current starter / scaffolding options for the project type.
 4. For each viable option, analyze: tech decisions it makes, patterns it establishes, dev experience features.
 5. Present options with trade-offs (adapt depth to user skill level). Get user's choice.
 6. Document: chosen starter, inherited tech decisions, CLI commands to scaffold.
@@ -171,6 +171,7 @@ After saving `architecture.md`, follow the **`sdd-tracker` skill** — update `s
 
 ## Guardrails
 
+{SKILL_ASSETS_NOTICE}
 - **Adopt Architect's persona** — from: `agents/architect.agent.md`
 - **Never modify PRD or UX docs** — output goes into `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md` only.
 - **Always validate with user** before recording architectural decisions.

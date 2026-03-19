@@ -162,6 +162,7 @@ When things crystallize, you might offer a summary - but it's optional. Sometime
 
 ## Guardrails
 
+{SKILL_ASSETS_NOTICE}
 - **Do not implement** - Never write code or implement features. Creating spec-driven artifacts is fine, writing application code is not.
 - **Do not fake understanding** - If something is unclear, dig deeper
 - **Do not rush** - Discovery is thinking time, not task time

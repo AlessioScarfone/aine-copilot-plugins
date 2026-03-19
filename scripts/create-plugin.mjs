@@ -64,6 +64,7 @@ async function main() {
     fs.mkdirSync(pluginPath, { recursive: true });
     fs.mkdirSync(path.join(pluginPath, "agents"), { recursive: true });
     fs.mkdirSync(path.join(pluginPath, "skills"), { recursive: true });
+    fs.mkdirSync(path.join(pluginPath, "shared-assets"), { recursive: true });
     // Create plugin.json
     const pluginJson = {
       name: pluginName,

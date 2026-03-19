@@ -17,7 +17,7 @@ This skill specification defines how to create and maintain the SDD tracker file
 
 **Purpose**: Single source of truth for the status and history of all SDD artifacts across the project lifecycle.
 
-**Template**: `./assets/sdd-tracker.yml`
+**Template**: `assets/sdd-tracker.yml`
 
 ---
 
@@ -26,7 +26,7 @@ This skill specification defines how to create and maintain the SDD tracker file
 Before any update, check if `{ARTIFACT_MAIN_FOLDER}/sdd-tracker.yml` exists.
 
 If it **does not exist**:
-1. Read `./assets/sdd-tracker.yml` to get the base structure.
+1. Read `assets/sdd-tracker.yml` to get the base structure.
 2. Set `project.name` from the project context (README, package.json, or project folder name).
 3. Set `project.created` = today's date (`YYYY-MM-DD`).
 4. Set `project.lastUpdate` = today's date.
@@ -99,3 +99,9 @@ ready-for-dev → in-progress → done → verified → archived
 ```
 
 > **Note:** `verified` is set only when `sdd-verify` reports no CRITICAL issues. `sdd-archive` requires status `verified` — it will not proceed if the status is anything else.
+
+---
+
+## Guardrails
+
+{SKILL_ASSETS_NOTICE}
