@@ -27,9 +27,10 @@ Before any action, check the current state of the project's specs folder:
    - No → Suggest running `/mini-sdd-context` first.
    - Yes → Read it for background context.
 
-2. **Are there spec files in `{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/`?**
-   - Read the YAML frontmatter of each `.md` file (excluding `context.md`) to get their `status`.
-   - Prioritize specs that have `status: todo` or `status: todo-changed` for implementation.
+2. **Are there spec folders in `{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/`?**
+   - Each spec lives in its own folder: `{SPECS_SUBFOLDER}/<spec-name>/spec.md` + `plan.md`.
+   - Read the YAML frontmatter of each `spec.md` to get `status`.
+   - Prioritize specs with `status: todo` or `status: todo-changed` — check that `plan.md` exists and has tasks before pointing the user to `/mini-sdd-implement`. If `plan.md` is missing or has no tasks, suggest running `/mini-sdd-spec` first.
 
 Always announce the current state before suggesting actions:
 

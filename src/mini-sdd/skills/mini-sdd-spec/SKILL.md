@@ -3,7 +3,7 @@ name: mini-sdd-spec
 description: 'Create or update a feature spec describing a single requirement with scenarios and acceptance criteria. Use when defining a new feature, capturing a requirement, or refining an existing spec. Do not use for implementing code or updating project context.'
 ---
 
-Create or update a feature specification file in `./{ARTIFACT_MAIN_FOLDER}/./{SPECS_SUBFOLDER}/`.
+Create or update a feature specification file in `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/`.
 
 Each spec captures a single feature or requirement with clear scenarios and acceptance criteria, serving as the contract between the user intent and the implementation.
 
@@ -15,7 +15,7 @@ Each spec captures a single feature or requirement with clear scenarios and acce
 2. Determine the user's intent from the input (e.g., `/mini-sdd-spec user authentication`).
    - If no feature name or description is provided, ask: _"What feature or requirement do you want to spec?"_
 3. Derive a **spec name** in dash-case from the feature description (e.g., `user-authentication`, `csv-export`, `dark-mode-toggle`).
-4. Check for an existing spec by looking for `./{ARTIFACT_MAIN_FOLDER}/./{SPECS_SUBFOLDER}/<spec-name>.md` (exact match) and by scanning other specs for content similarity.
+4. Check for an existing spec by looking for `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/spec.md` (exact match) and by scanning other spec folders for content similarity.
    - **If a match is found** → read its YAML frontmatter to get the current `status`, show a brief summary, and ask:
      > "A spec `<existing-spec-name>` already exists (status: <current-status>). Do you want to **update this spec** or **create a new one** with a different name?"
      - **Update** → proceed to **Update flow**
@@ -40,14 +40,34 @@ Ask the user the following in a **single numbered message** (skip questions alre
 
 ### 2. Generate the spec file
 
-Read the template from `assets/spec-template.md` and fill it in using the gathered information.
+Read the template from `assets/spec.template.md` and fill it in using the gathered information.
 
-- Write the file to `./{ARTIFACT_MAIN_FOLDER}/./{SPECS_SUBFOLDER}/<spec-name>.md`
-- In the YAML frontmatter set: `status: todo`, `created: YYYY-MM-DD`, `updated: YYYY-MM-DD`
-- Confirm to the user:
-  > "✅ Created spec `./{ARTIFACT_MAIN_FOLDER}/./{SPECS_SUBFOLDER}/<spec-name>.md` (status: todo)."
+- Create the folder `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/` if it does not exist.
+- Write the spec to `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/spec.md`.
+- In the `spec.md` YAML frontmatter set: `status: todo`, `created: YYYY-MM-DD`, `updated: YYYY-MM-DD`.
 
-NOTE: Maintanin the `## Tasks` section with the template comments for now — it will be populated during implementation.
+### 3. Generate the plan
+
+Break the spec into concrete, ordered implementation tasks and write them to `plan.md`:
+
+1. Read the spec content: summary, scenarios, acceptance criteria, dependencies, technical notes.
+2. Read `./{ARTIFACT_MAIN_FOLDER}/context.md` (if present) for tech stack and architecture guidance.
+3. Break the spec into tasks. Each task should be:
+   - Small enough to complete in one focused step
+   - Actionable (starts with a verb: "Create...", "Add...", "Update...")
+   - Ordered by dependency
+   - Tagged with the acceptance criteria it covers (e.g., `**(AC 1, 3)**`)
+   - Accompanied by a binary **Done when:** check
+4. Present the task list to the user:
+   > "📋 Tasks for `<spec-name>`:"
+   > 1. \<task 1\>
+   > 2. \<task 2\>
+5. Ask: _"Does this task breakdown look good? Any adjustments?"_
+6. After confirmation, write `plan.md` using `assets/plan.template.md` as the base, filling in Approach, Trade-offs, and Tasks sections. Write to `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/plan.md`.
+7. Confirm to the user:
+   > "✅ Created `<spec-name>/spec.md` (status: todo) and `<spec-name>/plan.md` with N tasks."
+
+NOTE: `spec.md` is the human-readable contract; `plan.md` tracks tasks and is used by `mini-sdd-implement`.
 
 ---
 
@@ -55,12 +75,14 @@ NOTE: Maintanin the `## Tasks` section with the template comments for now — it
 
 Use this when a spec already exists and the user chose to update it.
 
-1. Read the current spec file.
+1. Read the current spec from `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/spec.md`.
 2. Ask: _"What needs to change? New scenarios, updated acceptance criteria, scope change?"_
-3. Apply the changes to the relevant sections.
+3. Apply the changes to the relevant sections of `spec.md`.
 4. In the YAML frontmatter set: `status: todo-changed`, `updated: YYYY-MM-DD`.
-5. Show a summary of what changed.
-6. Confirm:
+5. Generate new plans based on the updated spec (follow the same steps as **Creation flow §3**) and **append** a new dated section to the existing `plan.md` using using `assets/plan.template.md` as the base. Do **not** remove existing tasks — preserve the history of previous implementations.
+6. Show a summary of what changed and what new tasks were added.
+7. Confirm:
+   > "✅ Updated `<spec-name>/spec.md` (status: todo-changed) and appended N new tasks to `<spec-name>/plan.md`."
 
 ---
 
@@ -89,5 +111,5 @@ Use this when a spec already exists and the user chose to update it.
 
 - **Spec name conflict**: If the derived dash-case name collides with an existing unrelated spec, show both and ask the user to confirm or pick a different name.
 - **No input provided**: Ask _"What feature or requirement do you want to spec?"_ before doing anything else.
-- **Spec file not writable / path missing**: Create the `./{ARTIFACT_MAIN_FOLDER}/./{SPECS_SUBFOLDER}/` directory if it does not exist before writing.
+- **Spec folder not writable / path missing**: Create the `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/` directory if it does not exist before writing.
 - **User abandons the interview mid-way**: Save whatever was collected, mark unanswered fields as `<!-- to be defined -->`, and confirm the partial spec was written.

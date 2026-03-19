@@ -9,8 +9,8 @@ A minimal spec-driven development framework for GitHub Copilot. Three skills, on
 
 ```
 /mini-sdd-context          # 1. Set up project context
-/mini-sdd-spec <feature>   # 2. Write a feature spec
-/mini-sdd-implement <spec> # 3. Implement the spec
+/mini-sdd-spec <feature>   # 2. Write a feature spec + generate the plan
+/mini-sdd-implement <spec> # 3. Execute the plan
 ```
 
 ## Agent
@@ -50,14 +50,18 @@ The skill inspects the codebase automatically, then asks targeted questions to f
 
 ### `/mini-sdd-spec` — Feature Spec
 
-Creates or updates a feature specification file in `specs/<spec-name>.md`.
+Creates or updates a feature spec inside `specs/<spec-name>/`. Each spec lives in its own folder with two files: `spec.md` (the requirement contract) and `plan.md` (the implementation checklist).
 
 **What it captures:**
 - Summary of the feature
 - Target user
 - Scenarios (GIVEN/WHEN/THEN format)
-- Acceptance criteria (checkboxes)
+- Acceptance criteria
 - Dependencies
+
+**What it produces:**
+- `spec.md` — filled from `spec.template.md`; the human-readable contract, never modified during implementation
+- `plan.md` — filled from `plan.template.md`; approach, trade-offs, ordered task checklist with AC tags and **Done when:** checks
 
 **When to use:**
 - Defining a new feature or requirement
@@ -67,31 +71,32 @@ Creates or updates a feature specification file in `specs/<spec-name>.md`.
 
 | Status | Set by | Meaning |
 |--------|--------|---------|
-| `todo` | `mini-sdd-spec` | Spec just created |
-| `todo-changed` | `mini-sdd-spec` | Spec updated after creation |
+| `todo` | `mini-sdd-spec` | Spec and plan just created |
+| `todo-changed` | `mini-sdd-spec` | Spec updated; new tasks appended to existing `plan.md` |
 | `in-progress` | `mini-sdd-implement` | Implementation started |
 | `done` | `mini-sdd-implement` | Implementation completed |
 
-If a spec already exists, the skill asks whether to update the existing one (status → `todo-changed`) or create a new spec with a different name.
+If a spec already exists, the skill asks whether to update it (status → `todo-changed`, new tasks **appended** to `plan.md` without losing history) or create a new spec with a different name.
 
 ---
 
 ### `/mini-sdd-implement` — Implement
 
-Implements a feature from an existing spec file.
+Executes the task list in `plan.md` for a given spec. Does **not** generate tasks — that is done by `/mini-sdd-spec`.
 
 **What it does:**
-1. Breaks the spec into concrete, ordered tasks and appends them to the spec file
-2. Implements tasks one by one, checking them off as completed
-3. Supports resuming across sessions — picks up from the first unchecked task
-4. Checks off acceptance criteria on completion
-5. Updates spec status (`in-progress` → `done`)
+1. Reads tasks from `plan.md` and executes them one by one
+2. Marks each task complete in `plan.md` as it goes (`- [ ]` → `- [x]`)
+3. Supports resuming across sessions — picks up from the first unchecked task in any `## Tasks` section
+4. Checks off acceptance criteria in `spec.md` on completion
+5. Appends a **Development Notes** section to `spec.md` summarising files changed and follow-ups
+6. Sets spec status: `in-progress` when work starts, `done` on completion
+7. Auto-updates `context.md` to reflect any architecture or stack changes
 
 **Task lifecycle:**
-- On first run (`todo`): generates tasks, writes them to the spec, starts implementing
-- On resume (`in-progress`): reads existing tasks, continues from where it left off
-- On spec update (`todo-changed`): clears stale tasks, regenerates them on next run
-- On re-implement (`done`): clears tasks, starts fresh
+- On first run (`todo` / `todo-changed`): reads tasks from `plan.md`, starts implementing
+- On resume (`in-progress`): finds first unchecked task across all `## Tasks` sections, continues
+- If `plan.md` has no tasks: blocks and asks you to run `/mini-sdd-spec` first
 
 **Input:** Spec name (e.g., `/mini-sdd-implement user-auth`). If omitted, lists available specs with `todo`, `todo-changed`, or `in-progress` status.
 
@@ -101,16 +106,16 @@ Implements a feature from an existing spec file.
 
 ```mermaid
 flowchart TD
-    CTX["🗂️ /mini-sdd-context Create project context"] --> |"Create/Update spec"|SPEC
+    START((START)) --> CTX["🗂️ /mini-sdd-context Create project context"] --> SPEC
 
-    SPEC["📝 /mini-sdd-spec Define/Update feature spec"] --> IMPL
-    IMPL["⚙️ /mini-sdd-implement <spec> Generate tasks & implement"] --> spec-flow
+    SPEC["📝 /mini-sdd-spec Define spec + generate plan"] --> IMPL
+    IMPL["⚙️ /mini-sdd-implement Execute plan tasks"] --> spec-flow
 
     subgraph spec-flow["Spec status lifecycle"]
         TODO["📝 todo / todo-changed"] --> PROGRESS["🔁 in-progress"] --> DONE["✅ done"]
     end
 
-    DONE -->|"🔄 auto-update context"| CTX
+    DONE -->|"🔄 auto-update context"| END(((END))) -.->|repeat| SPEC
 
     style CTX fill:#4A90D9,color:#fff
     style SPEC fill:#7B68EE,color:#fff
@@ -119,9 +124,9 @@ flowchart TD
 ```
 
 1. **Initialize context** — Run `/mini-sdd-context` to capture the project's foundation.
-2. **Spec a feature** — Run `/mini-sdd-spec <feature>` to define what to build.
-3. **Implement** — Run `/mini-sdd-implement <spec-name>` to code it.
-4. **Context auto-updated** — On completion, `context.md` is automatically updated to reflect any architecture or stack changes introduced by the feature.
+2. **Spec a feature** — Run `/mini-sdd-spec <feature>` to define the requirement and generate a `plan.md` with ordered tasks.
+3. **Implement** — Run `/mini-sdd-implement <spec-name>` to execute the tasks in `plan.md`.
+4. **Context auto-updated** — On completion, `context.md` is updated and development notes are appended to `spec.md`.
 5. **Repeat** for the next feature.
 
 ## Configuration
@@ -129,24 +134,29 @@ flowchart TD
 Paths are configurable via `config.json`:
 
 - `ARTIFACT_MAIN_FOLDER` — where `context.md` is written
-- `SPECS_SUBFOLDER` — where feature spec files are written (default: `specs`). It is a subfolder under `ARTIFACT_MAIN_FOLDER`.
-
+- `SPECS_SUBFOLDER` — where spec folders are created (default: `specs`). It is a subfolder under `ARTIFACT_MAIN_FOLDER`.
 
 ```
 {ARTIFACT_MAIN_FOLDER}/
-├── context.md                      # Project context (created by mini-sdd-context)
-└── {SPECS_SUBFOLDER}/                # Feature specs (created by mini-sdd-spec)
-    └── <capability>/spec.md          # Individual spec file for a feature
+├── context.md                          # Project context (created by mini-sdd-context)
+└── {SPECS_SUBFOLDER}/                  # Feature specs (created by mini-sdd-spec)
+    └── <spec-name>/
+        ├── spec.md                     # Requirement contract (never modified during implementation)
+        └── plan.md                     # Approach, trade-offs, task checklist
 ```
-
 
 ## File Structure (after use)
 
 ```
 your-project/
-└── specs/
-    ├── context.md              # Project context (created by mini-sdd-context)
-    ├── user-authentication.md  # Feature spec (created by mini-sdd-spec)
-    ├── csv-export.md           # Another feature spec
-    └── ...
+└── mini-sdd/
+    ├── context.md
+    └── specs/
+        ├── user-authentication/
+        │   ├── spec.md     # Requirement contract
+        │   └── plan.md     # Task checklist + dev notes after completion
+        └── csv-export/
+            ├── spec.md
+            └── plan.md
 ```
+
