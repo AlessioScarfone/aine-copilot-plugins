@@ -52,6 +52,7 @@ Breaks the spec into concrete tasks, appends them to the spec file, implements t
    - [ ] Task 3 description
    ```
    Replace any existing content under `## Tasks` (including the template comments).
+   Spec template file is available at `./assets/spec-template.md` for reference.
 7. In the spec frontmatter set: `status: in-progress`, `updated: YYYY-MM-DD`.
 8. Proceed to **Execute tasks**.
 

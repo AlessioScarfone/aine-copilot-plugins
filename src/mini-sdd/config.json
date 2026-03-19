@@ -3,5 +3,7 @@
     "ARTIFACT_MAIN_FOLDER": "mini-sdd",
     "SPECS_SUBFOLDER": "specs"
   },
-  "sharedAssets": []
+  "sharedAssets": [
+    { "asset": "assets/spec-template.md", "skills": ["mini-sdd-implement", "mini-sdd-spec"] }
+  ]
 }

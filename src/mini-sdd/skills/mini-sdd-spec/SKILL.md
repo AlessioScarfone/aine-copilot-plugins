@@ -47,6 +47,8 @@ Read the template from `./assets/spec-template.md` and fill it in using the gath
 - Confirm to the user:
   > "✅ Created spec `./{ARTIFACT_MAIN_FOLDER}/./{SPECS_SUBFOLDER}/<spec-name>.md` (status: todo)."
 
+NOTE: Maintanin the `## Tasks` section with the template comments for now — it will be populated during implementation.
+
 ---
 
 ## Update flow
