@@ -2,7 +2,22 @@
 
 Collection of GitHub Copilot Plugins, each designed to embed a specialized workflow directly into your editor. This repository hosts multiple plugins that share a build pipeline and can be installed independently.
 
-**Current plugins:**
+- [AINE Plugin Collection](#aine-plugin-collection)
+  - [Available plugins](#available-plugins)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+    - [Install from github repo](#install-from-github-repo)
+    - [Manual installation (local build):](#manual-installation-local-build)
+  - [Project Structure](#project-structure)
+  - [Development](#development)
+    - [Build](#build)
+    - [Plugin variables](#plugin-variables)
+    - [Shared assets](#shared-assets)
+    - [@embed directive](#embed-directive)
+    - [Create new plugin](#create-new-plugin)
+  - [VS Code Documentation](#vs-code-documentation)
+
+## Available plugins
 
 | Plugin | Description 
 |---|---|
