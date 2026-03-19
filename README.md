@@ -7,7 +7,7 @@ Collection of GitHub Copilot Plugins, each designed to embed a specialized workf
 | Plugin | Description 
 |---|---|
 | [`sdd-team`](src/sdd-team/README.md) | A full software-development team powered by Specification-Driven Development (SDD) |
-| [`mini-sdd`](src/mini-sdd/README.md) | A minimal spec-driven development framework — context, spec, implement |
+| [`mini-sdd`](src/mini-sdd/README.md) | A minimal spec-driven development framework — context -> spec -> implement |
 
 ---
 
@@ -36,24 +36,6 @@ Example:
 ```
 
 After installation, the agents and skills are immediately available in the Copilot Chat panel.
-
----
-
-## Plugins
-
-### sdd-team
-
-`sdd-team` brings a full virtual software-development team into your editor, powered by a Specification-Driven Development (SDD) workflow.
-
-→ See [src/sdd-team/README.md](src/sdd-team/README.md) for full documentation.
-
----
-
-### mini-sdd
-
-`mini-sdd` is a lightweight spec-driven framework with three skills: define project context, write feature specs, and implement them with task tracking.
-
-→ See [src/mini-sdd/README.md](src/mini-sdd/README.md) for full documentation.
 
 ---
 
@@ -177,7 +159,7 @@ The `@embed` directive lets you inline the contents of any file directly into a 
 Place the directive anywhere in a `.md`, `.txt`, `.yaml`, `.yml`, `.json`, or `.html` file inside a plugin:
 
 ```md
-<!-- @embed ./assets/my-template.md -->
+<!-- @embed assets/my-template.md -->
 ```
 
 During the build, the directive is replaced with the full contents of the referenced file. Paths are resolved **relative to the file that contains the directive**.
