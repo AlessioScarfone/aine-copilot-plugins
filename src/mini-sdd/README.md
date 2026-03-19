@@ -116,8 +116,6 @@ flowchart TD
     style SPEC fill:#7B68EE,color:#fff
     style IMPL fill:#50C878,color:#fff
     style DONE fill:#F5A623,color:#fff
-
-    
 ```
 
 1. **Initialize context** — Run `/mini-sdd-context` to capture the project's foundation.
