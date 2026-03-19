@@ -101,7 +101,7 @@ Implements a feature from an existing spec file.
 
 ```mermaid
 flowchart TD
-    CTX["🗂️ /mini-sdd-context Create project context"] --> SPEC
+    CTX["🗂️ /mini-sdd-context Create project context"] --> |"Create/Update spec"|SPEC
 
     SPEC["📝 /mini-sdd-spec Define/Update feature spec"] --> IMPL
     IMPL["⚙️ /mini-sdd-implement <spec> Generate tasks & implement"] --> spec-flow
@@ -110,7 +110,7 @@ flowchart TD
         TODO["📝 todo / todo-changed"] --> PROGRESS["🔁 in-progress"] --> DONE["✅ done"]
     end
 
-    DONE --> | Feature completed, ready for new spec | SPEC 
+    DONE -->|"🔄 auto-update context"| CTX
 
     style CTX fill:#4A90D9,color:#fff
     style SPEC fill:#7B68EE,color:#fff
@@ -123,7 +123,7 @@ flowchart TD
 1. **Initialize context** — Run `/mini-sdd-context` to capture the project's foundation.
 2. **Spec a feature** — Run `/mini-sdd-spec <feature>` to define what to build.
 3. **Implement** — Run `/mini-sdd-implement <spec-name>` to code it.
-4. **Update context** — Run `/mini-sdd-context` again if the feature changed the architecture or stack.
+4. **Context auto-updated** — On completion, `context.md` is automatically updated to reflect any architecture or stack changes introduced by the feature.
 5. **Repeat** for the next feature.
 
 ## Configuration

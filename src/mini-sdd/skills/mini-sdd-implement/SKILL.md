@@ -109,8 +109,13 @@ Changes made:
 - <file 2>: <what changed>
 ```
 
-4. Suggest next steps:
-   > "Run `/mini-sdd-context` to update the project context if this feature affects the architecture or tech stack."
+4. **Auto-update `context.md`**:
+   - Read `./{ARTIFACT_MAIN_FOLDER}/context.md`.
+   - Based on the completed spec and the changes made, identify which sections of `context.md` are affected (e.g., new tech stack entries, updated architecture components, changed project status, new key features).
+   - Update **only** the relevant sections — do not rewrite unaffected content.
+   - Set `Last updated` to today (`YYYY-MM-DD`).
+   - Confirm to the user:
+     > "✅ Updated `./{ARTIFACT_MAIN_FOLDER}/context.md` to reflect the completed feature."
 
 ---
 
