@@ -62,7 +62,7 @@ aine-team-copilot-plugin/
 │   ├── sdd-team/                 # sdd-team plugin source
 │   │   ├── plugin.json           # Plugin manifest (source)
 │   │   ├── config.json           # Build variables and shared asset mappings
-│   │   ├── assets/               # Shared assets (distributed to skills at build time)
+│   │   ├── shared-assets/               # Shared assets (distributed to skills at build time)
 │   │   │   └── assets/        # Templates shared across multiple skills
 │   │   ├── agents/               # Agent definitions (.agent.md)
 │   │   └── skills/               # Skill definitions (one subfolder per skill)
