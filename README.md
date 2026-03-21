@@ -7,7 +7,7 @@ Collection of GitHub Copilot Plugins, each designed to embed a specialized workf
   - [Requirements](#requirements)
   - [Installation](#installation)
     - [Install from github repo](#install-from-github-repo)
-    - [Manual installation (local build):](#manual-installation-local-build)
+    - [Manual installation (local build)](#manual-installation-local-build)
   - [Project Structure](#project-structure)
   - [Development](#development)
     - [Build](#build)
