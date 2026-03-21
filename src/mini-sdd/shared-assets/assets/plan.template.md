@@ -30,14 +30,23 @@ if there were no meaningful choices._
 
 _Ordered checkbox list.
 Each task is atomic, named (references the specific file/function), tagged with
-the acceptance criteria it covers, and ends with a **Done when:** binary check.
+the acceptance criteria it covers, and ends with a **Done when:** binary check. Group tasks in macro task.
 Tasks blocked on an open question are marked ⚠️._
 
-- [ ] [Task description
-referencing specific file/function] **(AC 1, 3)**. **Done when:** [observable, binary
-check]
 - [ ] [Task description] **(AC 2)**. **Done when:** [observable, binary
 check]
+
+Example:
+
+```
+### 1. Theme Infrastructure
+- [ ] 1.1 Create ThemeContext with light/dark state. (AC 1) **Done when:** ...
+- [ ] 1.2 ...
+
+### 2. UI Components
+- [ ] 2.1 Create ThemeToggle component. **Done when:** ...
+- [ ] 2.2 ...
+```
 
 ---
 
@@ -82,8 +91,7 @@ pattern in: `path/to/example.ts#handlerName`
 
 ### Commands
 
-_Migration commands, codegen steps, build
-flags needed during implementation._
+_Migration commands, codegen steps, build, rum test commad,flags needed during implementation._
 
 ```
 # example: db migration
