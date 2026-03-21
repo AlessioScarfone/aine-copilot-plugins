@@ -39,7 +39,7 @@ Collection of GitHub Copilot Plugins, each designed to embed a specialized workf
 
 [Configure plugin marketplaces](https://code.visualstudio.com/docs/copilot/customization/agent-plugins#_configure-plugin-marketplaces)
 
-### Manual installation (local build):
+### Manual installation (local build)
 
 Clone this repository, run `nvm use && npm ci && npm run build`. Then follow instruction here: [Use local plugins](https://code.visualstudio.com/docs/copilot/customization/agent-plugins#_use-local-plugins). 
 
