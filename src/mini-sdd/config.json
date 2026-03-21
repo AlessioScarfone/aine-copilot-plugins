@@ -2,7 +2,7 @@
   "variables": {
     "ARTIFACT_MAIN_FOLDER": "mini-sdd",
     "SPECS_SUBFOLDER": "specs",
-    "SKILL_ASSETS_NOTICE": "- **Asset path resolution**: Any `assets/`, `scripts/`, or `references/` paths in this skill are relative to the directory where this SKILL.md is installed — not the user's workspace. Derive the full absolute path by replacing `SKILL.md` with the referenced relative path in the location where this skill was loaded from."
+    "SKILL_ASSETS_NOTICE": "- **Asset path resolution**: Any `assets/`, `scripts/`, or `references/` paths in this skill are relative to the directory where this SKILL.md is installed — not the user's workspace. Derive the full absolute path from the path where this skill was loaded from."
   },
   "sharedAssets": [
     { "asset": "assets/spec.template.md", "skills": ["mini-sdd-spec"] },
