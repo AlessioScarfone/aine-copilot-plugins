@@ -108,7 +108,7 @@ The build script automatically discovers all plugin directories inside `src/` an
 - Places the final `plugin.json` at `dist/plugins/<plugin-name>/.github/plugin/plugin.json`
 - Applies variable substitutions defined in `config.json` (see [Plugin variables](#plugin-variables) below)
 
-To add a new plugin, create a new directory under `src/` with a `plugin.json` and any agents and skills — the build will pick it up automatically.
+To add a new plugin, create a new directory under `src/` with a `plugin.json` and any agents and skills — the build will pick it up automatically, or use the dedicated script `npm rum plugin:create`
 
 > [!WARNING]
 > Plugin does not support `prompts`, but you can include a `prompts/` folder in your > > plugin and it will be converted into a skill by the build process.
