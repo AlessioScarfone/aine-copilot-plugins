@@ -126,6 +126,8 @@ Scaffolds or updates `./{ARTIFACT_MAIN_FOLDER}/mini-sdd.config.yml` — the YAML
 
 The config file is **optional** — if it doesn't exist, all three skills run without hooks.
 
+> **Tip:** Run `/mini-sdd-init-config` at any time to create or update `mini-sdd.config.yml`. The skill walks you through all six hook events one by one, shows the current value for each (if the file already exists), and rewrites the file with your updated instructions. You can re-run it whenever you want to add, change, or remove hooks.
+
 **Example `mini-sdd.config.yml`:**
 ```yaml
 hooks:
