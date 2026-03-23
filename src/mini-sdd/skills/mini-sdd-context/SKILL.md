@@ -9,6 +9,21 @@ This file is the single source of truth read by every other mini-SDD skill. It m
 
 ---
 
+## Hook execution
+
+Before doing anything else, check for hook configuration:
+
+1. Attempt to read `./{ARTIFACT_MAIN_FOLDER}/mini-sdd.config.yml`.
+   - If the file does not exist, skip this section entirely and proceed to the **Entry point**.
+   - If it exists, parse the YAML and look for `hooks.context.pre` (list of strings).
+2. **Execute pre hooks**: for each instruction in `hooks.context.pre`, carry it out as an explicit step before starting the main workflow. Announce each hook as it runs:
+   > "⚙️ Pre-hook: \<instruction\>"
+3. After the skill's full workflow completes (including any confirmations), execute **post hooks** from `hooks.context.post` in the same way:
+   > "⚙️ Post-hook: \<instruction\>"
+4. If a hook instruction is ambiguous or cannot be executed, inform the user and skip it — never block the main workflow.
+
+---
+
 ## Entry point
 
 1. Check whether `./{ARTIFACT_MAIN_FOLDER}/context.md` already exists.

@@ -102,6 +102,45 @@ Executes the task list in `plan.md` for a given spec. Does **not** generate task
 
 ---
 
+### `/mini-sdd-init-config` — Hook Configuration
+
+Scaffolds or updates `./{ARTIFACT_MAIN_FOLDER}/mini-sdd.config.yml` — the YAML file that defines custom pre/post hook instructions for each mini-SDD step.
+
+**What hooks do:**
+- **pre hooks** run before a skill's main workflow (e.g., check git status, verify prerequisites)
+- **post hooks** run after a skill completes (e.g., update CHANGELOG, run linting)
+- Hooks are plain-text instructions executed by the AI model — no scripts or shell commands
+
+**Supported events:**
+
+| Step | Pre hook | Post hook |
+|------|----------|-----------|
+| `context` | `hooks.context.pre` | `hooks.context.post` |
+| `spec` | `hooks.spec.pre` | `hooks.spec.post` |
+| `implement` | `hooks.implement.pre` | `hooks.implement.post` |
+
+**When to use:**
+- First time setting up hooks on a project
+- Adding or editing existing hook instructions
+- Resetting the config to the default template
+
+The config file is **optional** — if it doesn't exist, all three skills run without hooks.
+
+**Example `mini-sdd.config.yml`:**
+```yaml
+hooks:
+  spec:
+    pre:
+      - "Check that the git working directory is clean before creating the spec."
+  implement:
+    pre:
+      - "Run the existing test suite and confirm it is green before starting."
+    post:
+      - "Run 'npm run lint && npm test' and fix any failures before closing the spec."
+```
+
+---
+
 ## Standard Workflow
 
 ```mermaid
@@ -139,6 +178,7 @@ Paths are configurable via `config.json`:
 ```
 {ARTIFACT_MAIN_FOLDER}/
 ├── context.md                          # Project context (created by mini-sdd-context)
+├── mini-sdd.config.yml                 # Hook configuration (created by mini-sdd-init-config, optional)
 └── {SPECS_SUBFOLDER}/                  # Feature specs (created by mini-sdd-spec)
     └── <spec-name>/
         ├── spec.md                     # Requirement contract (never modified during implementation)
@@ -151,6 +191,7 @@ Paths are configurable via `config.json`:
 your-project/
 └── mini-sdd/
     ├── context.md
+    ├── mini-sdd.config.yml     # Hook configuration (optional)
     └── specs/
         ├── user-authentication/
         │   ├── spec.md     # Requirement contract

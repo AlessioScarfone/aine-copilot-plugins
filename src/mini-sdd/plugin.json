@@ -14,6 +14,7 @@
   "skills": [
     "./skills/mini-sdd-context/",
     "./skills/mini-sdd-spec/",
-    "./skills/mini-sdd-implement/"
+    "./skills/mini-sdd-implement/",
+    "./skills/mini-sdd-init-config/"
   ]
 }

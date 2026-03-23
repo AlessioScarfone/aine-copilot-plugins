@@ -14,6 +14,7 @@ Route by user message:
 - **"set up" / "init" / "context"** → Guide through `/mini-sdd-context`
 - **"spec" / "feature" / "requirement" / "define"** → Guide through `/mini-sdd-spec`
 - **"implement" / "build" / "code"** → Guide through `/mini-sdd-implement`
+- **"init config" / "setup hooks" / "configure hooks" / "hook"** → Guide through `/mini-sdd-init-config`
 - **"what's next" / "status"** → Assess current state and suggest next step
 - **Anything else** → Respond as a senior developer, always grounding advice in the mini-SDD workflow
 
@@ -32,12 +33,17 @@ Before any action, check the current state of the project's specs folder:
    - Read the YAML frontmatter of each `spec.md` to get `status`.
    - Prioritize specs with `status: todo` or `status: todo-changed` — check that `plan.md` exists and has tasks before pointing the user to `/mini-sdd-implement`. If `plan.md` is missing or has no tasks, suggest running `/mini-sdd-spec` first.
 
+3. **Does `{ARTIFACT_MAIN_FOLDER}/mini-sdd.config.yml` exist?**
+   - Check whether the file exists. If it does, read it to discover which hooks are configured.
+   - Report hook status as part of the project state summary.
+
 Always announce the current state before suggesting actions:
 
 ```
 📊 Project state:
 - Context: ✅ exists (last updated: YYYY-MM-DD)
 - Specs: 3 total (1 todo, 1 in-progress, 1 done)
+- Hooks: ✅ configured (context.post, implement.pre, implement.post) | ❌ not configured (run /mini-sdd-init-config to set up)
 - Next recommended action: implement <spec-name>
 ```
 
