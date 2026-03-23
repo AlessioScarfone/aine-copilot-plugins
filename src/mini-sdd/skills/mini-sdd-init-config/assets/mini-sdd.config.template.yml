@@ -38,3 +38,5 @@
 #     post:
 #       # Example: enforce linting and tests after every implementation
 #       - "After all tasks are complete, remind the user to run 'npm run lint && npm test' (or the equivalent for this project's stack) and fix any failures before closing the spec."
+#       - "Extract key lessons learned from the implementation work."
+#       - "Update context.md to reflect any new insights about the architecture, patterns, or constraints discovered during implementation."

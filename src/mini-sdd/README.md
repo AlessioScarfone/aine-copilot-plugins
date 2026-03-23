@@ -139,6 +139,7 @@ hooks:
       - "Run the existing test suite and confirm it is green before starting."
     post:
       - "Run 'npm run lint && npm test' and fix any failures before closing the spec."
+      - "Extract key lessons learned from the implementation work and update context.md to reflect any new insights about the architecture, patterns, or constraints discovered during implementation."
 ```
 
 ---
