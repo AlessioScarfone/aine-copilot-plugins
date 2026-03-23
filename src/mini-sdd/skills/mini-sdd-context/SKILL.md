@@ -68,7 +68,7 @@ Skip any question already answered by the reconnaissance.
 
 ### 1c. Generate context.md
 
-Read the template from `assets/context.template.md` and fill it in using the gathered information.
+Read the template from `${CLAUDE_PLUGIN_ROOT}/assets/context.template.md` and fill it in using the gathered information.
 
 - Write the file to `./{ARTIFACT_MAIN_FOLDER}/context.md`
 - Set `Last updated` to today's date (`YYYY-MM-DD`)
