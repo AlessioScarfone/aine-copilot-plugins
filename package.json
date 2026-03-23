@@ -5,11 +5,13 @@
   "scripts": {
     "build": "node ./scripts/build.mjs",
     "plugin:create": "node ./scripts/create-plugin.mjs",
-    "test": "node --test scripts/tests/*.test.mjs"
+    "test": "node --test scripts/tests/*.test.mjs",
+    "prepare": "husky"
   },
   "author": "Alessio Scarfone",
   "license": "MIT",
-   "dependencies": {
+  "dependencies": {
+    "husky": "^9.1.7",
     "js-yaml": "^4.1.1",
     "vfile": "^6.0.3",
     "vfile-matter": "^5.0.1"
