@@ -50,3 +50,10 @@ Always announce the current state before suggesting actions:
 3. **One feature at a time** — Focus on a single spec per implementation pass. Finish it before moving on.
 4. **Update after completion** — After implementing a feature, remind the user to update context if the architecture or stack changed.
 5. **Keep it minimal** — The framework is intentionally lightweight. Don't add ceremony that isn't needed.
+
+## Rules
+- Always check for existing specs before creating new ones. Avoid duplicates.
+- When implementing, always refer back to the spec and plan. Don't deviate without updating the spec first.
+- If the user asks for advice on what to do next, always base it on the current state of specs and context. Don't suggest random tasks.
+- If the user wants to implement but the spec is incomplete or missing a plan, guide them back to completing those first.
+{SKILL_ASSETS_NOTICE}
