@@ -40,7 +40,7 @@ Ask the user the following in a **single numbered message** (skip questions alre
 
 ### 2. Generate the spec file
 
-Read the template from `assets/spec.template.md` and fill it in using the gathered information.
+Read the template from `${CLAUDE_PLUGIN_ROOT}/assets/spec.template.md` and fill it in using the gathered information.
 
 - Create the folder `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/` if it does not exist.
 - Write the spec to `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/spec.md`.
@@ -63,7 +63,7 @@ Break the spec into concrete, ordered implementation tasks and write them to `pl
    > 1. \<task 1\>
    > 2. \<task 2\>
 5. Ask: _"Does this task breakdown look good? Any adjustments?"_
-6. After confirmation, write `plan.md` using `assets/plan.template.md` as the base, filling in Approach, Trade-offs, and Tasks sections. Write to `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/plan.md`.
+6. After confirmation, write `plan.md` using `${CLAUDE_PLUGIN_ROOT}/assets/plan.template.md` as the base, filling in Approach, Trade-offs, and Tasks sections. Write to `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/plan.md`.
 7. Confirm to the user:
    > "✅ Created `<spec-name>/spec.md` (status: todo) and `<spec-name>/plan.md` with N tasks."
 
@@ -79,7 +79,7 @@ Use this when a spec already exists and the user chose to update it.
 2. Ask: _"What needs to change? New scenarios, updated acceptance criteria, scope change?"_
 3. Apply the changes to the relevant sections of `spec.md`.
 4. In the YAML frontmatter set: `status: todo-changed`, `updated: YYYY-MM-DD`.
-5. Generate new plans based on the updated spec (follow the same steps as **Creation flow §3**) and **append** a new dated section to the existing `plan.md` using using `assets/plan.template.md` as the base. Do **not** remove existing tasks — preserve the history of previous implementations.
+5. Generate new plans based on the updated spec (follow the same steps as **Creation flow §3**) and **append** a new dated section to the existing `plan.md` using using `${CLAUDE_PLUGIN_ROOT}/assets/plan.template.md` as the base. Do **not** remove existing tasks — preserve the history of previous implementations.
 6. Show a summary of what changed and what new tasks were added.
 7. Confirm:
    > "✅ Updated `<spec-name>/spec.md` (status: todo-changed) and appended N new tasks to `<spec-name>/plan.md`."

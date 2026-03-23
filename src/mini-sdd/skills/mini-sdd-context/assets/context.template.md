@@ -40,6 +40,9 @@
 - <!-- e.g. Must support 1000 concurrent users -->
 - <!-- or "None defined yet" -->
 
+## Critical Constraints
+- <!-- e.g. Must be built using TypeScript -->
+
 ## Notes
 
 <!-- Any additional context, constraints, or decisions worth recording -->
