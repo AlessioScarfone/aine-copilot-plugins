@@ -18,12 +18,17 @@ so explicitly — e.g. "the middleware will be mounted in the app entry point
 
 ## Tasks
 
+> Task FORMAT:
+> - [ ] 1.1 Pending task
+> - [x] 1.1 Completed task
+> - [ ]* 1.1 Optional task (nice-to-have, not blocking)
+
 ### 1. Theme Infrastructure
 - [ ] 1.1 Create ThemeContext with light/dark state. (AC 1) **Done when:** ...
 - [ ] 1.2 ...
 
 ### 2. UI Components
-- [ ] 2.1 Create ThemeToggle component. **Done when:** ...
+- [ ]* 2.1 Create ThemeToggle component. **Done when:** ...
 - [ ] 2.2 ...
 
 ---
