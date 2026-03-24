@@ -142,6 +142,17 @@ hooks:
       - "Extract key lessons learned from the implementation work and update context.md to reflect any new insights about the architecture, patterns, or constraints discovered during implementation."
 ```
 
+```mermaid
+flowchart LR
+   START((START)) --> PRE_HOOKS["Pre-hooks (optional)"] --> MAIN_WORKFLOW("Main workflow")
+   MAIN_WORKFLOW --> POST_HOOKS["Post-hooks (optional)"] --> END(((END)))
+
+   style PRE_HOOKS fill:#4A90D9,color:#fff,stroke-dasharray: 5 5,stroke-width: 2px
+   style MAIN_WORKFLOW fill:#7B68EE,color:#fff
+   style POST_HOOKS fill:#50C878,color:#fff,stroke-dasharray: 5 5,stroke-width: 2px
+   
+```
+
 ---
 
 ## Standard Workflow
