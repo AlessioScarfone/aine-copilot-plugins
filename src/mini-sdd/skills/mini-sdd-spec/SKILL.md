@@ -65,22 +65,53 @@ Read the template from `assets/spec.template.md` and fill it in using the gather
 
 Break the spec into concrete, ordered implementation tasks and write them to `plan.md`:
 
-1. Read the spec content: summary, scenarios, acceptance criteria, dependencies, technical notes.
-2. Read `./{ARTIFACT_MAIN_FOLDER}/context.md` (if present) for tech stack and architecture guidance.
-3. Break the spec into tasks. Each task should be:
-   - Small enough to complete in one focused step
-   - Actionable (starts with a verb: "Create...", "Add...", "Update...")
-   - Ordered by dependency
-   - Tagged with the acceptance criteria it covers (e.g., `**(AC 1, 3)**`)
-   - Accompanied by a binary **Done when:** check
-4. Present the task list to the user:
+1. Read `./{ARTIFACT_MAIN_FOLDER}/context.md` (if present) for tech stack and architecture guidance and any other additional context provided by the user.
+2. Read the spec content: summary, scenarios, acceptance criteria, dependencies, technical notes.
+3. Break the spec into tasks. Follow the **Task Rules** section for formatting, numbering, and content guidelines.
+4. If any open questions or assumptions were noted in the spec ask the user for clarification before finalizing the tasks.
+5. Present the task list to the user:
    > "📋 Tasks for `<spec-name>`:"
    > 1. \<task 1\>
    > 2. \<task 2\>
-5. Ask: _"Does this task breakdown look good? Any adjustments?"_
-6. After confirmation, write `plan.md` using `assets/plan.template.md` as the base, filling in Approach, Trade-offs, and Tasks sections. Write to `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/plan.md`.
-7. Confirm to the user:
+6. Ask: _"Does this task breakdown look good? Any adjustments?"_
+7. After confirmation, write `plan.md` using `assets/plan.template.md` as the base, filling all the sections. Write to `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/plan.md`.
+8. Confirm to the user:
    > "✅ Created `<spec-name>/spec.md` (status: todo) and `<spec-name>/plan.md` with N tasks."
+
+
+## Task Rules
+
+### Format
+- [ ] 1.1 Pending task
+- [x] 1.1 Completed task
+- [ ]* 1.1 Optional task (nice-to-have, not blocking)
+
+### Numbering
+- Top-level tasks: 1., 2., 3.
+- Sub-tasks: 2.1, 2.2, 2.3
+- Maximum 2 levels (no 2.1.1)
+- Parent tasks with sub-tasks are GROUP HEADERS (not directly executed)
+- Mark parent complete only when ALL sub-tasks are done
+- Tasks without sub-tasks are directly executable
+- Use sub-tasks when a feature has 3+ related implementation steps
+
+### Requirement References
+- Always include AC/Requirement reference: _(AC 1)_
+- Every requirement should be covered by at least one task
+
+### Task content
+Each task should include:
+
+- Clear objective - What to implement
+- Implementation details - Sub-bullets with specifics
+- Requirement reference - Traceability
+
+### Guidelines
+- Coding tasks ONLY - No deployment, user testing, documentation
+- Incremental progress - Each task builds on previous
+- Actionable by AI - Tasks should be specific enough for code generation
+- Include checkpoints - Periodic verification that tests pass
+- Test-driven where appropriate - Mark test tasks with * if optional
 
 NOTE: `spec.md` is the human-readable contract; `plan.md` tracks tasks and is used by `mini-sdd-implement`.
 
