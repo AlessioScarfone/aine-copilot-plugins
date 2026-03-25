@@ -89,10 +89,10 @@ When all tasks are checked:
 
 1. Review each acceptance criterion from the spec and check satisfied ones: `- [ ]` → `- [x]`.
 2. In the `spec.md` frontmatter set: `status: done`, `updated: YYYY-MM-DD`.
-3. Scan all other spec folders and find specs whose `requires:` contains `<spec-name>`.
-   - For each dependent spec, re-read all of its `requires` dependencies.
-   - If all of them are now `done`, note that the spec is now implementable.
-   - If at least one dependency is still not `done`, leave it unchanged.
+3. Scan all other spec folders and find specs in status not `done` whose `requires:` contains `<spec-name>` (the spec that was just completed) and update their statuses:
+   - Remove the completed spec from the list of unmet dependencies (`requires:` frontmatter field).
+   - If all of them are now `done`, so the requires list is empty, the spec is now implementable and update the status to `ready` (if it was previously blocked by this dependency).
+   - If at least one dependency is still not `done`, leave/update the status as `blocked`.
    - Summarize any specs that became implementable.
 4. Append a "Development Notes" section to `spec.md` summarizing what was implemented, files changed, and any important follow-ups. The notes should be concise and reference changed files.
 5. Show a completion summary:
