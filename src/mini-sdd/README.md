@@ -106,7 +106,34 @@ Executes the task list in `plan.md` for a given spec.
 
 ---
 
-### `/mini-sdd-init-config` — Hook Configuration
+## Standard Workflow
+
+```mermaid
+flowchart TD
+    START((START)) --> CTX["🗂️ /mini-sdd-context Create project context"] --> SPEC
+
+    SPEC["📝 /mini-sdd-spec Define spec + generate plan"] --> IMPL
+    IMPL["⚙️ /mini-sdd-implement Execute plan tasks"] --> spec-flow
+
+    subgraph spec-flow["Spec status lifecycle"]
+      READY["📝 ready"] --> PROGRESS["🔁 in-progress"] --> DONE["✅ done"]
+    end
+
+    DONE -->|"🔄 auto-update context"| END(((END))) -.->|repeat| SPEC
+
+    style CTX fill:#4A90D9,color:#fff
+    style SPEC fill:#7B68EE,color:#fff
+    style IMPL fill:#50C878,color:#fff
+    style DONE fill:#F5A623,color:#fff
+```
+
+1. **Initialize context** — Run `/mini-sdd-context` to capture the project's foundation.
+2. **Spec a feature** — Run `/mini-sdd-spec <feature>` to define the requirement and generate a `plan.md` with ordered tasks.
+3. **Implement** — Run `/mini-sdd-implement <spec-name>` to execute the tasks in `plan.md`.
+4. **Context auto-updated** — On completion, `context.md` is updated and development notes are appended to `spec.md`.
+5. **Repeat** for the next feature.
+
+## Customize Workflow with custom pre/post hooks
 
 Scaffolds or updates `./{ARTIFACT_MAIN_FOLDER}/mini-sdd.config.yml` — the YAML file that defines custom pre/post hook instructions for each mini-SDD step.
 
@@ -159,36 +186,9 @@ flowchart LR
 
 ---
 
-## Standard Workflow
+## Development Configuration
 
-```mermaid
-flowchart TD
-    START((START)) --> CTX["🗂️ /mini-sdd-context Create project context"] --> SPEC
-
-    SPEC["📝 /mini-sdd-spec Define spec + generate plan"] --> IMPL
-    IMPL["⚙️ /mini-sdd-implement Execute plan tasks"] --> spec-flow
-
-    subgraph spec-flow["Spec status lifecycle"]
-      READY["📝 ready"] --> PROGRESS["🔁 in-progress"] --> DONE["✅ done"]
-    end
-
-    DONE -->|"🔄 auto-update context"| END(((END))) -.->|repeat| SPEC
-
-    style CTX fill:#4A90D9,color:#fff
-    style SPEC fill:#7B68EE,color:#fff
-    style IMPL fill:#50C878,color:#fff
-    style DONE fill:#F5A623,color:#fff
-```
-
-1. **Initialize context** — Run `/mini-sdd-context` to capture the project's foundation.
-2. **Spec a feature** — Run `/mini-sdd-spec <feature>` to define the requirement and generate a `plan.md` with ordered tasks.
-3. **Implement** — Run `/mini-sdd-implement <spec-name>` to execute the tasks in `plan.md`.
-4. **Context auto-updated** — On completion, `context.md` is updated and development notes are appended to `spec.md`.
-5. **Repeat** for the next feature.
-
-## Configuration
-
-Paths are configurable via `config.json`:
+Artifacts paths are configurable via `config.json` in src folder, which defines the following variables:
 
 - `ARTIFACT_MAIN_FOLDER` — where `context.md` is written
 - `SPECS_SUBFOLDER` — where spec folders are created (default: `specs`). It is a subfolder under `ARTIFACT_MAIN_FOLDER`.
@@ -202,6 +202,9 @@ Paths are configurable via `config.json`:
         ├── spec.md                     # Requirement contract (never modified during implementation)
         └── plan.md                     # Approach, trade-offs, task checklist
 ```
+
+> [!NOTE]
+> You can customize these paths by editing `config.json` and run again the build as explained in the plugin collection [README - "Plugin variables"](../../README.md#plugin-variables)
 
 ## File Structure (after use)
 
