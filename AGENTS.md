@@ -43,7 +43,7 @@ aine-team-copilot-plugin/
 │       ├── agents/               # Agent definitions (.agent.md)
 │       └── skills/               # Skill definitions (one subfolder per skill)
 ├── dist/plugins/                   # Built output — one subfolder per plugin
-│   └── sdd-team/
+│   └── <your-new-plugin>/
 │       ├── .github/plugin/
 │       │   └── plugin.json       # Final plugin manifest
 │       ├── agents/
