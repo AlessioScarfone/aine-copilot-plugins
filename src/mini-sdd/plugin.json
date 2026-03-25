@@ -1,7 +1,7 @@
 {
   "name": "mini-sdd",
   "description": "Minimal spec-driven development framework — context, spec, implement.",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "keywords": [
     "sdd",
     "github-copilot",

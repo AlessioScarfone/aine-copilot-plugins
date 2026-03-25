@@ -31,14 +31,17 @@ Before doing anything else, check for hook configuration:
 1. Read `./{ARTIFACT_MAIN_FOLDER}/context.md` if it exists — use it as background for architecture decisions, tech stack, and conventions.
 2. Determine which spec to implement:
    - If a spec name is provided in the input (e.g., `/mini-sdd-implement user-authentication`), use it.
-   - If no name is provided, scan spec folders in `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/` and read each `spec.md` frontmatter. Present specs with status `todo`, `todo-changed`, or `in-progress` and ask the user to pick one.
+   - If no name is provided, scan spec folders in `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/` and read each `spec.md` frontmatter. Present specs with status `ready` or `in-progress` and ask the user to pick one.
+   - For specs with status `ready`, also evaluate whether all `requires` dependencies are already `done`.
+   - If some ready specs still have unmet `requires`, report them separately as not yet implementable.
    - If no specs exist, inform the user:
      > "No specs found in `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/`. Use `/mini-sdd-spec` to create one first."
 3. Read the spec folder at `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/`:
-   - Read `spec.md` YAML frontmatter to get `status`, `created`, and `updated`.
+   - Read `spec.md` YAML frontmatter to get `status`, `requires`, `created`, and `updated`.
    - Read `plan.md` to get the task list.
 4. Verify the spec status and decide the flow:
-   - `todo` or `todo-changed` → verify `plan.md` exists and has unchecked tasks, then proceed to **Execute tasks**.
+   - `ready` → verify `plan.md` exists and has unchecked tasks, then proceed to **Execute tasks**.
+     - Before proceeding, evaluate every entry in `requires:`. If at least one dependency is not `done`, stop and list the unmet dependencies with their current statuses. Tell the user the spec is not yet implementable even though its stored status is `ready`.
      - If `plan.md` is missing or has no tasks, inform the user:
        > "`plan.md` has no tasks for `<spec-name>`. Run `/mini-sdd-spec` to generate the plan first."
    - `in-progress` → proceed to **Resume implementation**.
@@ -86,8 +89,13 @@ When all tasks are checked:
 
 1. Review each acceptance criterion from the spec and check satisfied ones: `- [ ]` → `- [x]`.
 2. In the `spec.md` frontmatter set: `status: done`, `updated: YYYY-MM-DD`.
-3. Append a "Development Notes" section to `spec.md` summarizing what was implemented, files changed, and any important follow-ups. The notes should be concise and reference changed files.
-4. Show a completion summary:
+3. Scan all other spec folders and find specs whose `requires:` contains `<spec-name>`.
+   - For each dependent spec, re-read all of its `requires` dependencies.
+   - If all of them are now `done`, note that the spec is now implementable.
+   - If at least one dependency is still not `done`, leave it unchanged.
+   - Summarize any specs that became implementable.
+4. Append a "Development Notes" section to `spec.md` summarizing what was implemented, files changed, and any important follow-ups. The notes should be concise and reference changed files.
+5. Show a completion summary:
 
 ```
 ✅ Implementation complete: <spec-name>
@@ -113,7 +121,7 @@ Changes made:
 ## Error handling
 
 - **Spec not found**: List available specs and ask the user to choose.
-- **Blocked by dependency**: Inform the user and ask how to proceed.
+- **Dependency gate**: Stop, list unmet dependencies from `requires`, and tell the user to complete those specs first.
 - **Unclear requirement**: Ask for clarification before implementing.
 - **Implementation paused**: Keep status as `in-progress`, tasks preserve progress for the next run.
 
@@ -125,4 +133,4 @@ Changes made:
 - Follow the tech stack and conventions from `context.md`.
 - Write clean, idiomatic code — no unnecessary abstractions.
 - All progress tracking lives in `plan.md` located alongside `spec.md` in the spec folder.
-- Do not modify other specs or unrelated files.
+- Do not modify unrelated specs or unrelated files.

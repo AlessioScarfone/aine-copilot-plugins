@@ -57,7 +57,7 @@ Creates or updates a feature spec inside `specs/<spec-name>/`. Each spec lives i
 - Target user
 - Scenarios (GIVEN/WHEN/THEN format)
 - Acceptance criteria
-- Dependencies
+- Dependencies inferred from existing specs and context
 
 **What it produces:**
 - `spec.md` — filled from `spec.template.md`; the human-readable contract, never modified during implementation
@@ -71,34 +71,38 @@ Creates or updates a feature spec inside `specs/<spec-name>/`. Each spec lives i
 
 | Status | Set by | Meaning |
 |--------|--------|---------|
-| `todo` | `mini-sdd-spec` | Spec and plan just created |
-| `todo-changed` | `mini-sdd-spec` | Spec updated; new tasks appended to existing `plan.md` |
+| `ready` | `mini-sdd-spec` | Spec is ready to be implemented |
 | `in-progress` | `mini-sdd-implement` | Implementation started |
 | `done` | `mini-sdd-implement` | Implementation completed |
 
-If a spec already exists, the skill asks whether to update it (status → `todo-changed`, new tasks **appended** to `plan.md` without losing history) or create a new spec with a different name.
+If a spec already exists, the skill asks whether to update it or create a new spec with a different name. Updates refresh `updated`, append new tasks to `plan.md` without losing history, and keep the spec in `ready`.
+
+**Dependency handling:**
+- `requires:` lives in the `spec.md` frontmatter and lists spec names that must reach `done` first
+- Dependencies are inferred automatically from the existing specs and the new requirement
+- The user is asked only when the dependency relationship is ambiguous
+- A spec with unmet dependencies remains `ready`, but cannot be implemented until all entries in `requires:` are `done`
 
 ---
 
 ### `/mini-sdd-implement` — Implement
 
-Executes the task list in `plan.md` for a given spec. Does **not** generate tasks — that is done by `/mini-sdd-spec`.
+Executes the task list in `plan.md` for a given spec.
 
 **What it does:**
-1. Reads tasks from `plan.md` and executes them one by one
-2. Marks each task complete in `plan.md` as it goes (`- [ ]` → `- [x]`)
-3. Supports resuming across sessions — picks up from the first unchecked task in any `## Tasks` section
-4. Checks off acceptance criteria in `spec.md` on completion
-5. Appends a **Development Notes** section to `spec.md` summarising files changed and follow-ups
-6. Sets spec status: `in-progress` when work starts, `done` on completion
-7. Auto-updates `context.md` to reflect any architecture or stack changes
+1. Reads and executes tasks from `plan.md` one by one
+2. Tracks progress and updates spec status (`in-progress` → `done`)
+3. Checks off acceptance criteria as implementation completes
+4. Re-evaluates dependent specs and reports which ones are now implementable
+5. Auto-updates `context.md` to reflect architecture or stack changes
 
 **Task lifecycle:**
-- On first run (`todo` / `todo-changed`): reads tasks from `plan.md`, starts implementing
+- On first run (`ready`): reads tasks from `plan.md`, starts implementing
 - On resume (`in-progress`): finds first unchecked task across all `## Tasks` sections, continues
+- If the spec has unmet `requires`: stops and lists the unmet dependencies
 - If `plan.md` has no tasks: blocks and asks you to run `/mini-sdd-spec` first
 
-**Input:** Spec name (e.g., `/mini-sdd-implement user-auth`). If omitted, lists available specs with `todo`, `todo-changed`, or `in-progress` status.
+**Input:** Spec name (e.g., `/mini-sdd-implement user-auth`). If omitted, lists available specs with `ready` or `in-progress` status. Ready specs whose dependencies are not yet complete are shown as not implementable yet.
 
 ---
 
@@ -165,7 +169,7 @@ flowchart TD
     IMPL["⚙️ /mini-sdd-implement Execute plan tasks"] --> spec-flow
 
     subgraph spec-flow["Spec status lifecycle"]
-        TODO["📝 todo / todo-changed"] --> PROGRESS["🔁 in-progress"] --> DONE["✅ done"]
+      READY["📝 ready"] --> PROGRESS["🔁 in-progress"] --> DONE["✅ done"]
     end
 
     DONE -->|"🔄 auto-update context"| END(((END))) -.->|repeat| SPEC

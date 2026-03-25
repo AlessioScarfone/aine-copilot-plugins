@@ -50,8 +50,12 @@ Ask the user the following in a **single numbered message** (skip questions alre
 2. **Who is the user?** — Who benefits from this feature?
 3. **Key scenarios** — List 2–4 main scenarios or use cases.
 4. **Acceptance criteria** — How do we know it's done? Any edge cases?
-5. **Dependencies** — Does this require other features, APIs, or libraries?
-6. **Technical notes** — Any implementation hints, API details, or architectural considerations?
+5. **Technical notes** — Any implementation hints, API details, or architectural considerations?
+
+After collecting the requirements, inspect the existing specs under `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/` and infer whether this spec depends on other specs being completed first. Populate `requires:` automatically from that analysis.
+
+Ask the user about dependencies only if the relationship is ambiguous:
+> "I found that `<spec-name>` may need `<dependency-spec>` to be completed first. Should I mark it as a dependency?"
 
 ### 2. Generate the spec file
 
@@ -59,7 +63,9 @@ Read the template from `assets/spec.template.md` and fill it in using the gather
 
 - Create the folder `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/` if it does not exist.
 - Write the spec to `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/spec.md`.
-- In the `spec.md` YAML frontmatter set: `status: todo`, `created: YYYY-MM-DD`, `updated: YYYY-MM-DD`.
+- In the `spec.md` YAML frontmatter set: `requires: [<spec-name>, ...]` from the inferred dependencies, `created: YYYY-MM-DD`, `updated: YYYY-MM-DD`.
+- Set `status: ready`.
+- Treat unmet `requires` as a derived blocking condition during implementation, not as a separate stored status.
 
 ### 3. Generate the plan
 
@@ -76,7 +82,7 @@ Break the spec into concrete, ordered implementation tasks and write them to `pl
 6. Ask: _"Does this task breakdown look good? Any adjustments?"_
 7. After confirmation, write `plan.md` using `assets/plan.template.md` as the base, filling all the sections. Write to `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/plan.md`.
 8. Confirm to the user:
-   > "✅ Created `<spec-name>/spec.md` (status: todo) and `<spec-name>/plan.md` with N tasks."
+   > "✅ Created `<spec-name>/spec.md` (status: ready) and `<spec-name>/plan.md` with N tasks."
 
 
 ## Task Rules
@@ -124,11 +130,13 @@ Use this when a spec already exists and the user chose to update it.
 1. Read the current spec from `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/spec.md`.
 2. Ask: _"What needs to change? New scenarios, updated acceptance criteria, scope change?"_
 3. Apply the changes to the relevant sections of `spec.md`.
-4. In the YAML frontmatter set: `status: todo-changed`, `updated: YYYY-MM-DD`.
-5. Generate new plans based on the updated spec (follow the same steps as **Creation flow §3**) and **append** a new dated section to the existing `plan.md` using using `assets/plan.template.md` as the base. Do **not** remove existing tasks — preserve the history of previous implementations.
-6. Show a summary of what changed and what new tasks were added.
-7. Confirm:
-   > "✅ Updated `<spec-name>/spec.md` (status: todo-changed) and appended N new tasks to `<spec-name>/plan.md`."
+4. Re-inspect the other specs in `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/` and re-infer `requires:` from the updated spec content.
+5. In the YAML frontmatter set: `requires: [<spec-name>, ...]`, `updated: YYYY-MM-DD`, `status: ready`.
+   - If some `requires` are not yet `done`, keep that as a derived blocking condition for implementation.
+6. Generate new plans based on the updated spec (follow the same steps as **Creation flow §3**) and **append** a new dated section to the existing `plan.md` using using `assets/plan.template.md` as the base. Do **not** remove existing tasks — preserve the history of previous implementations.
+7. Show a summary of what changed, which dependencies were inferred, and what new tasks were added.
+8. Confirm:
+   > "✅ Updated `<spec-name>/spec.md` (status: ready) and appended N new tasks to `<spec-name>/plan.md`."
 
 ---
 
@@ -136,12 +144,11 @@ Use this when a spec already exists and the user chose to update it.
 
 | Status | Meaning |
 |--------|---------|
-| `todo` | Spec just created, not yet implemented |
-| `todo-changed` | Spec was updated after creation or after a previous implementation pass |
+| `ready` | Spec is ready to be implemented |
 | `in-progress` | Implementation has started (set by `mini-sdd-implement`) |
 | `done` | Implementation completed and verified (set by `mini-sdd-implement`) |
 
-> **Note**: This skill only sets `todo` and `todo-changed`. The `in-progress` and `done` statuses are managed by the `mini-sdd-implement` skill.
+> **Note**: This skill sets `ready`. Whether a spec is currently implementable is derived from `requires`: if any dependency is not `done`, implementation must stop until those dependencies are completed. The `in-progress` and `done` statuses are managed by the `mini-sdd-implement` skill.
 
 ---
 

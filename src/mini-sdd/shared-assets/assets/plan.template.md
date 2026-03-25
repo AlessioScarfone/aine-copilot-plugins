@@ -1,6 +1,6 @@
 ---
 spec-name: spec-name
-status: todo
+status: ready
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 ---
