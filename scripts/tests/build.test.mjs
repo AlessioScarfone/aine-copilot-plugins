@@ -184,46 +184,50 @@ describe("copySharedAssetsToSkills", () => {
     pluginSrc = path.join(tmpDir, "src");
     pluginDist = path.join(tmpDir, "dist");
     skillsDir = path.join(pluginDist, "skills");
-    fs.mkdirSync(path.join(pluginSrc, "assets", "templates"), { recursive: true });
+    // Implementation reads from pluginSrc/shared-assets/ (not pluginSrc/assets/)
+    fs.mkdirSync(path.join(pluginSrc, "shared-assets"), { recursive: true });
     fs.mkdirSync(path.join(skillsDir, "skill-a"), { recursive: true });
     fs.mkdirSync(path.join(skillsDir, "skill-b"), { recursive: true });
   });
   afterEach(() => { cleanup(tmpDir); });
 
   test("copies asset to specified skills only", () => {
-    fs.writeFileSync(path.join(pluginSrc, "assets", "templates", "prd.md"), "# PRD");
+    fs.mkdirSync(path.join(pluginSrc, "shared-assets", "assets"), { recursive: true });
+    fs.writeFileSync(path.join(pluginSrc, "shared-assets", "assets", "prd.md"), "# PRD");
     copySharedAssetsToSkills(pluginSrc, pluginDist, [
       { asset: "assets/prd.md", skills: ["skill-a"] },
     ]);
-    assert.ok(fs.existsSync(path.join(skillsDir, "skill-a", "templates", "prd.md")));
-    assert.ok(!fs.existsSync(path.join(skillsDir, "skill-b", "templates", "prd.md")));
+    assert.ok(fs.existsSync(path.join(skillsDir, "skill-a", "assets", "prd.md")));
+    assert.ok(!fs.existsSync(path.join(skillsDir, "skill-b", "assets", "prd.md")));
   });
 
   test('copies asset to all skills with wildcard "*"', () => {
-    fs.writeFileSync(path.join(pluginSrc, "assets", "templates", "common.md"), "# Common");
+    fs.mkdirSync(path.join(pluginSrc, "shared-assets", "assets"), { recursive: true });
+    fs.writeFileSync(path.join(pluginSrc, "shared-assets", "assets", "common.md"), "# Common");
     copySharedAssetsToSkills(pluginSrc, pluginDist, [
       { asset: "assets/common.md", skills: ["*"] },
     ]);
-    assert.ok(fs.existsSync(path.join(skillsDir, "skill-a", "templates", "common.md")));
-    assert.ok(fs.existsSync(path.join(skillsDir, "skill-b", "templates", "common.md")));
+    assert.ok(fs.existsSync(path.join(skillsDir, "skill-a", "assets", "common.md")));
+    assert.ok(fs.existsSync(path.join(skillsDir, "skill-b", "assets", "common.md")));
   });
 
   test("respects local wins — does not overwrite existing file", () => {
-    fs.mkdirSync(path.join(skillsDir, "skill-a", "templates"), { recursive: true });
-    fs.writeFileSync(path.join(skillsDir, "skill-a", "templates", "prd.md"), "local");
-    fs.writeFileSync(path.join(pluginSrc, "assets", "templates", "prd.md"), "shared");
+    fs.mkdirSync(path.join(skillsDir, "skill-a", "assets"), { recursive: true });
+    fs.writeFileSync(path.join(skillsDir, "skill-a", "assets", "prd.md"), "local");
+    fs.mkdirSync(path.join(pluginSrc, "shared-assets", "assets"), { recursive: true });
+    fs.writeFileSync(path.join(pluginSrc, "shared-assets", "assets", "prd.md"), "shared");
     copySharedAssetsToSkills(pluginSrc, pluginDist, [
       { asset: "assets/prd.md", skills: ["skill-a"] },
     ]);
     assert.equal(
-      fs.readFileSync(path.join(skillsDir, "skill-a", "templates", "prd.md"), "utf-8"),
+      fs.readFileSync(path.join(skillsDir, "skill-a", "assets", "prd.md"), "utf-8"),
       "local"
     );
   });
 
   test("copies a directory asset recursively", () => {
-    fs.mkdirSync(path.join(pluginSrc, "assets", "scripts"), { recursive: true });
-    fs.writeFileSync(path.join(pluginSrc, "assets", "scripts", "run.sh"), "#!/bin/sh");
+    fs.mkdirSync(path.join(pluginSrc, "shared-assets", "scripts"), { recursive: true });
+    fs.writeFileSync(path.join(pluginSrc, "shared-assets", "scripts", "run.sh"), "#!/bin/sh");
     copySharedAssetsToSkills(pluginSrc, pluginDist, [
       { asset: "scripts", skills: ["skill-a"] },
     ]);

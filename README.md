@@ -15,6 +15,7 @@ Collection of GitHub Copilot Plugins, each designed to embed a specialized workf
     - [Shared assets](#shared-assets)
     - [@embed directive](#embed-directive)
     - [Create new plugin](#create-new-plugin)
+    - [Review SKILL with TESSL](#review-skill-with-tessl)
   - [VS Code Documentation](#vs-code-documentation)
 
 ## Available plugins
@@ -196,6 +197,28 @@ npm run plugin:create
 ```
 
 This command scaffolds a new plugin directory under `src/` with a basic `plugin.json`. You can then customize these files to build your plugin.
+
+### Review SKILL with TESSL
+
+Validate a skill (or all skills in a plugin) against the [tessl](https://tessl.io) spec. Run `npm run build` first to populate `dist/plugins/`.
+
+```bash
+npm run skill:review
+```
+
+The CLI will prompt you to pick a plugin and a skill (or "All skills" for an aggregated report).
+
+For non-interactive use — e.g. in CI:
+
+```bash
+Usage: npm run skill:review -- [options]
+
+Options:
+  -p, --plugin <name>   Plugin to review (must exist in dist/plugins/)
+  -s, --skill  <name>   Single skill to review
+  -a, --all             Review all skills in the plugin and print a summary table
+  -j, --json            Output raw JSON (single skill) or aggregated JSON (--all)
+```
 
 
 ---

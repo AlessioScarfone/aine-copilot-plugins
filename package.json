@@ -6,6 +6,8 @@
     "build": "node ./scripts/build.mjs",
     "plugin:create": "node ./scripts/create-plugin.mjs",
     "test": "node --test scripts/tests/*.test.mjs",
+    "tessl:review-skill": "npx tessl skill review",
+    "skill:review": "node ./scripts/review-skill.mjs",
     "prepare": "husky"
   },
   "author": "Alessio Scarfone",
@@ -13,6 +15,7 @@
   "dependencies": {
     "husky": "^9.1.7",
     "js-yaml": "^4.1.1",
+    "prompts": "^2.4.2",
     "vfile": "^6.0.3",
     "vfile-matter": "^5.0.1"
   }
