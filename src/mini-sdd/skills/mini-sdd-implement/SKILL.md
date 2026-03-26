@@ -21,12 +21,15 @@ Check `./{ARTIFACT_MAIN_FOLDER}/mini-sdd.config.yml` for `hooks.implement.pre` a
 
 1. Read `./{ARTIFACT_MAIN_FOLDER}/context.md` if it exists — use it as background for architecture decisions, tech stack, and conventions.
 2. Determine which spec to implement:
-   - If a spec name is provided in the input (e.g., `/mini-sdd-implement user-authentication`), use it.
-   - If no name is provided, scan spec folders in `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/` and read each `spec.md` frontmatter. Present specs with status `ready` or `in-progress` and ask the user to pick one.
-   - For specs with status `ready`, also evaluate whether all `requires` dependencies are already `done`.
-   - If some ready specs still have unmet `requires`, report them separately as not yet implementable.
-   - If no specs exist, inform the user:
-     > "No specs found in `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/`. Use `/mini-sdd-spec` to create one first."
+   2.1 If a spec name is provided in the input (e.g., `/mini-sdd-implement user-authentication`), use it.
+   2.2 If no name is provided, scan spec folders in `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/` and read each `spec.md` frontmatter. 
+      - For specs with status `ready`, also evaluate if it has any `requires` dependencies. If some ready specs still have unmet `requires`,it is not yet implementable.
+      - Present all ready not blocked and in-progress specs: 
+      > `<spec-name>` → `status` (ready/in-progress) and ask the user to choose which one to implement.
+      - If no specs exist, inform the user:
+      > "No specs found in `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/`. Use `/mini-sdd-spec` to create one first."
+3. Once a spec is selected, output:
+   > "Selected spec: `<spec-name>`"
 3. Read the spec folder at `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/<spec-name>/`:
    - Read `spec.md` YAML frontmatter to get `status`, `requires`, `created`, and `updated`.
    - Read `plan.md` to get the task list.
