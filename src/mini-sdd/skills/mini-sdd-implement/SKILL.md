@@ -1,6 +1,6 @@
 ---
 name: mini-sdd-implement
-description: 'Implement a feature from an existing spec file. Use when executing development work defined in a spec, coding a feature, or completing a specified requirement. Do not use for creating specs, updating project context, or proposing new features.'
+description: 'Implement a feature from an existing spec file — write code, create tests, and update files to make a spec done. Use when executing development work defined in a spec, building or developing a feature, coding from a spec, or when asked to "implement the spec", "code this up", "develop the feature", or "follow the specification". Do not use for creating specs, updating project context, or proposing new features.'
 ---
 
 Implement a feature based on an existing spec in `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/`.
@@ -13,16 +13,7 @@ Reads the task list from the spec's `plan.md`, executes tasks one by one, tracks
 
 ## Hook execution
 
-Before doing anything else, check for hook configuration:
-
-1. Attempt to read `./{ARTIFACT_MAIN_FOLDER}/mini-sdd.config.yml`.
-   - If the file does not exist, skip this section entirely and proceed to the **Entry point**.
-   - If it exists, parse the YAML and look for `hooks.implement.pre` (list of strings).
-2. **Execute pre hooks**: for each instruction in `hooks.implement.pre`, carry it out as an explicit step before starting the main workflow. Announce each hook as it runs:
-   > "⚙️ Pre-hook: \<instruction\>"
-3. After the skill's full workflow completes (including any confirmations), execute **post hooks** from `hooks.implement.post` in the same way:
-   > "⚙️ Post-hook: \<instruction\>"
-4. If a hook instruction is ambiguous or cannot be executed, inform the user and skip it — never block the main workflow.
+Check `./{ARTIFACT_MAIN_FOLDER}/mini-sdd.config.yml` for `hooks.implement.pre` and `hooks.implement.post` entries. Run pre-hooks before the Entry point; run post-hooks after the full workflow completes. See [references/hooks.md](./references/hooks.md) for the full execution rules.
 
 ---
 
@@ -64,7 +55,9 @@ Used when the spec is `in-progress`.
 
 ## Execute tasks
 
-Before starting, set `spec.md` frontmatter to `status: in-progress`, `updated: YYYY-MM-DD`.
+> **Frontmatter convention**: always write `updated: <today's date>` to `spec.md` whenever you modify it.
+
+Before starting, set `spec.md` frontmatter to `status: in-progress`.
 
 For each unchecked task in `plan.md` in order:
 
@@ -73,7 +66,7 @@ For each unchecked task in `plan.md` in order:
 2. Implement the code changes required for this task.
 3. Keep changes minimal and focused on the task.
 4. Mark the task complete **in `plan.md`**: `- [ ]` → `- [x]`.
-5. Update `spec.md` frontmatter: `updated: YYYY-MM-DD`.
+5. Update `spec.md` frontmatter (`updated`).
 6. Continue to the next unchecked task.
 
 **Pause if:**
@@ -88,7 +81,7 @@ For each unchecked task in `plan.md` in order:
 When all tasks are checked:
 
 1. Review each acceptance criterion from the spec and check satisfied ones: `- [ ]` → `- [x]`.
-2. In the `spec.md` frontmatter set: `status: done`, `updated: YYYY-MM-DD`.
+2. In the `spec.md` frontmatter set: `status: done`.
 3. Scan all other spec folders and find specs in status not `done` whose `requires:` contains `<spec-name>` (the spec that was just completed) and update their statuses:
    - Remove the completed spec from the list of unmet dependencies (`requires:` frontmatter field).
    - If all of them are now `done`, so the requires list is empty, the spec is now implementable and update the status to `ready` (if it was previously blocked by this dependency).

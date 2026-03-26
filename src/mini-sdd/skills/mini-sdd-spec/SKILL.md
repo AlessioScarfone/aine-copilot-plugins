@@ -1,6 +1,6 @@
 ---
 name: mini-sdd-spec
-description: 'Create or update a feature spec describing a single requirement with scenarios and acceptance criteria. Use when defining a new feature, capturing a requirement, or refining an existing spec. Do not use for implementing code or updating project context.'
+description: 'Create or update a feature spec — define acceptance criteria, write scenarios, and generate a task plan for a single requirement. Use when defining a new feature, capturing a requirement, writing a user story, drafting a spec, or refining an existing spec. Do not use for implementing code or updating project context.'
 ---
 
 Create or update a feature specification file in `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/`.
@@ -11,16 +11,7 @@ Each spec captures a single feature or requirement with clear scenarios and acce
 
 ## Hook execution
 
-Before doing anything else, check for hook configuration:
-
-1. Attempt to read `./{ARTIFACT_MAIN_FOLDER}/mini-sdd.config.yml`.
-   - If the file does not exist, skip this section entirely and proceed to the **Entry point**.
-   - If it exists, parse the YAML and look for `hooks.spec.pre` (list of strings).
-2. **Execute pre hooks**: for each instruction in `hooks.spec.pre`, carry it out as an explicit step before starting the main workflow. Announce each hook as it runs:
-   > "⚙️ Pre-hook: \<instruction\>"
-3. After the skill's full workflow completes (including any confirmations), execute **post hooks** from `hooks.spec.post` in the same way:
-   > "⚙️ Post-hook: \<instruction\>"
-4. If a hook instruction is ambiguous or cannot be executed, inform the user and skip it — never block the main workflow.
+Check `./{ARTIFACT_MAIN_FOLDER}/mini-sdd.config.yml` for `hooks.spec.pre` and `hooks.spec.post` entries. Run pre-hooks before the Entry point; run post-hooks after the full workflow completes. See [references/hooks.md](./references/hooks.md) for the full execution rules.
 
 ---
 
@@ -73,7 +64,7 @@ Break the spec into concrete, ordered implementation tasks and write them to `pl
 
 1. Read `./{ARTIFACT_MAIN_FOLDER}/context.md` (if present) for tech stack and architecture guidance and any other additional context provided by the user.
 2. Read the spec content: summary, scenarios, acceptance criteria, dependencies, technical notes.
-3. Break the spec into tasks. Follow the **Task Rules** section for formatting, numbering, and content guidelines.
+3. Break the spec into tasks following the rules in [references/task-rules.md](./references/task-rules.md).
 4. If any open questions or assumptions were noted in the spec ask the user for clarification before finalizing the tasks.
 5. Present the task list to the user:
    > "📋 Tasks for `<spec-name>`:"
@@ -87,39 +78,7 @@ Break the spec into concrete, ordered implementation tasks and write them to `pl
 
 ## Task Rules
 
-### Format
-- [ ] 1.1 Pending task
-- [x] 1.1 Completed task
-- [ ]* 1.1 Optional task (nice-to-have, not blocking)
-
-### Numbering
-- Top-level tasks: 1., 2., 3.
-- Sub-tasks: 2.1, 2.2, 2.3
-- Maximum 2 levels (no 2.1.1)
-- Parent tasks with sub-tasks are GROUP HEADERS (not directly executed)
-- Mark parent complete only when ALL sub-tasks are done
-- Tasks without sub-tasks are directly executable
-- Use sub-tasks when a feature has 3+ related implementation steps
-
-### Requirement References
-- Always include AC/Requirement reference: _(AC 1)_
-- Every requirement should be covered by at least one task
-
-### Task content
-Each task should include:
-
-- Clear objective - What to implement
-- Implementation details - Sub-bullets with specifics
-- Requirement reference - Traceability
-
-### Guidelines
-- Coding tasks ONLY - No deployment, user testing, documentation
-- Incremental progress - Each task builds on previous
-- Actionable by AI - Tasks should be specific enough for code generation
-- Include checkpoints - Periodic verification that tests pass
-- Test-driven where appropriate - Mark test tasks with * if optional
-
-NOTE: `spec.md` is the human-readable contract; `plan.md` tracks tasks and is used by `mini-sdd-implement`.
+See [references/task-rules.md](./references/task-rules.md) for the full format, numbering, and content guidelines.
 
 ---
 
@@ -142,13 +101,7 @@ Use this when a spec already exists and the user chose to update it.
 
 ## Status lifecycle
 
-| Status | Meaning |
-|--------|---------|
-| `ready` | Spec is ready to be implemented |
-| `in-progress` | Implementation has started (set by `mini-sdd-implement`) |
-| `done` | Implementation completed and verified (set by `mini-sdd-implement`) |
-
-> **Note**: This skill sets `ready`. Whether a spec is currently implementable is derived from `requires`: if any dependency is not `done`, implementation must stop until those dependencies are completed. The `in-progress` and `done` statuses are managed by the `mini-sdd-implement` skill.
+This skill sets `status: ready`. The `in-progress` and `done` statuses are managed exclusively by `mini-sdd-implement`. Whether a spec is currently implementable is derived from `requires:` — if any dependency is not `done`, implementation must wait.
 
 ---
 

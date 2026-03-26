@@ -6,6 +6,9 @@
   },
   "sharedAssets": [
     { "asset": "assets/spec.template.md", "skills": ["mini-sdd-spec"] },
-    { "asset": "assets/plan.template.md", "skills": ["mini-sdd-spec", "mini-sdd-implement"] }
+    { "asset": "assets/plan.template.md", "skills": ["mini-sdd-spec", "mini-sdd-implement"] },
+    { "asset": "references/hooks.md", "skills": ["mini-sdd-context", "mini-sdd-implement", "mini-sdd-spec"] },
+    { "asset": "references/task-rules.md", "skills": ["mini-sdd-spec"] },
+    { "asset": "references/hook-interview.md", "skills": ["mini-sdd-init-config"] }
   ]
 }
