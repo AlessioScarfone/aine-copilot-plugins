@@ -1,6 +1,6 @@
 ---
 name: sdd-explore
-description: 'Enter explore mode to think through ideas, investigate problems, and clarify requirements. Use when brainstorming solutions, evaluating options, or researching before committing to a design. Do not use for generating deliverable documents or implementing code.'
+description: 'Open-ended thinking partner mode — investigate problems, map codebase architecture, compare options, visualize tradeoffs, and capture decisions in SDD artifacts. Use when brainstorming solutions, evaluating options, or researching before committing to a design. Do not use for generating deliverable documents or implementing code.'
 ---
 
 Enter explore mode. Think deeply. Visualize freely. Follow the conversation wherever it goes.
@@ -21,11 +21,10 @@ Enter explore mode. Think deeply. Visualize freely. Follow the conversation wher
 ## The Stance
 
 - **Curious, not prescriptive** - Ask questions that emerge naturally, Do not follow a script
-- **Open threads, not interrogations** - Surface multiple interesting directions and let the user follow what resonates. Do not funnel them through a single path of questions.
-- **Visual** - Use ASCII diagrams liberally when they'd help clarify thinking
-- **Adaptive** - Follow interesting threads, pivot when new information emerges
-- **Patient** - Do not rush to conclusions, let the shape of the problem emerge
-- **Grounded** - Explore the actual codebase when relevant, Do not just theorize
+- **Open threads, not interrogations** — Surface multiple interesting directions, let the user follow what resonates
+- **Visual** — Use ASCII diagrams liberally when they'd help clarify thinking
+- **Adaptive** — Follow interesting threads, pivot when new information emerges
+- **Grounded** — Explore the actual codebase when relevant, don't just theorize
 
 ---
 
@@ -138,11 +137,8 @@ In case of proposal scope changes or creation, be sure to update all the relevan
 
 ## What You Do not Have To Do
 
-- Follow a script
-- Ask the same questions every time
-- Produce a specific artifact
-- Reach a conclusion
-- Stay on topic if a tangent is valuable
+- Follow a script or produce a specific artifact
+- Reach a conclusion or stay on topic if a tangent is valuable
 - Be brief (this is thinking time)
 
 ---
@@ -163,11 +159,9 @@ When things crystallize, you might offer a summary - but it's optional. Sometime
 ## Guardrails
 
 {SKILL_ASSETS_NOTICE}
-- **Do not implement** - Never write code or implement features. Creating spec-driven artifacts is fine, writing application code is not.
-- **Do not fake understanding** - If something is unclear, dig deeper
-- **Do not rush** - Discovery is thinking time, not task time
-- **Do not force structure** - Let patterns emerge naturally
-- **Do not auto-capture** - Offer to save insights, Do not just do it
-- **Do visualize** - A good diagram is worth many paragraphs
-- **Do explore the codebase** - Ground discussions in reality
-- **Do question assumptions** - Including the user's and your own
+- **Do not implement** — never write application code; creating spec-driven artifacts is fine
+- **Do not auto-capture** — offer to save insights, do not just do it
+- **Do not rush or force structure** — let patterns emerge naturally
+- **Do visualize** — a good ASCII diagram is worth many paragraphs
+- **Do explore the codebase** — ground discussions in reality, not theory
+- **Do question assumptions** — including the user's and your own

@@ -1,6 +1,6 @@
 ---
 name: sdd-archive
-description: 'Archive a completed change in the SDD workflow. Use when a change has been verified and is ready to be closed out and moved to the archive. Do not use for changes that are still in progress, unverified, or not yet implemented.'
+description: 'Close out a completed SDD change — syncs delta specs to main specs, moves the change directory to the archive folder, and updates the tracker status to archived. Use when a change is verified and ready to finish, close ticket, mark complete, or close out. Do not use for changes still in progress, unverified, or not yet implemented.'
 ---
 
 Archive a completed change in the SDD workflow. Automatically syncs all delta specs and moves the change to the archive — no confirmation prompts.
@@ -98,39 +98,15 @@ Archive a completed change in the SDD workflow. Automatically syncs all delta sp
 **Output On Success**
 
 ```
-## Archive Complete
+## Archive Complete [with warnings]
 
 **Change:** <change-name>
 **Archived to:** {ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/archive/YYYY-MM-DD-<name>/
-**Specs synced:** spec-a, spec-b
+**Specs synced:** spec-a, spec-b  ← or "No delta specs" if none
 
-All artifacts complete. All tasks complete.
-```
-
-**Output On Success (No Delta Specs)**
-
-```
-## Archive Complete
-
-**Change:** <change-name>
-**Archived to:** {ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/archive/YYYY-MM-DD-<name>/
-**Specs:** No delta specs
-
-All artifacts complete. All tasks complete.
-```
-
-**Output On Success With Warnings**
-
-```
-## Archive Complete (with warnings)
-
-**Change:** <change-name>
-**Archived to:** {ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/archive/YYYY-MM-DD-<name>/
-**Specs synced:** spec-a, spec-b
-
-**Warnings:**
-- Archived with 2 incomplete artifacts: <list>
-- Archived with 3 incomplete tasks
+[Warnings: (only if present)
+- Archived with N incomplete artifacts: <list>
+- Archived with N incomplete tasks]
 ```
 
 **Output On Error (Archive Exists)**
@@ -151,8 +127,6 @@ Target archive directory already exists.
 
 **Guardrails**
 {SKILL_ASSETS_NOTICE}
-- Always prompt for change selection if not provided
-- Check artifact completion by listing files in the change directory
-- Never block or prompt — proceed automatically, surface warnings in the summary
+- Always prompt for change selection if not provided and cannot be inferred
+- Never block or prompt during archiving — proceed automatically, surface warnings in the summary
 - Always sync all delta specs before archiving; never skip sync
-- Show clear summary of everything that happened

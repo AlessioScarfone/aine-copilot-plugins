@@ -1,6 +1,6 @@
 ---
 name: sdd-verify
-description: 'Verify implementation matches change artifacts before archiving. Use when a change has been implemented and needs a structured review against its spec, design, and tasks before marking it done. Do not use for implementing changes, creating artifacts, or archiving without prior verification.'
+description: 'Compare code changes against spec requirements, validate task completion, and check design alignment before archiving a change. Use when a change has been implemented and you want to review my changes, check before merge, validate my implementation, or get a QA check before closing out. Do not use for implementing changes, creating artifacts, or archiving without prior verification.'
 ---
 
 Verify that an implementation matches the change artifacts (specs, tasks, design).
@@ -25,26 +25,13 @@ Before writing, read the shared project documents for context:
 
 2. **Inspect the change directory**
 
-   List files in `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/` to understand which artifacts are present:
-   - `proposal.md` — change scope and goals
-   - `design.md` — technical approach
-   - `tasks.md` — implementation steps
-   - `specs/` — capability specs (if any)
+   List files in `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/` to see which artifacts are present (`proposal.md`, `design.md`, `tasks.md`, `specs/`).
 
 3. **Load all available artifacts**
 
    Read all files found in `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/` and its subdirectories.
 
-4. **Initialize verification report structure**
-
-   Create a report structure with three dimensions:
-   - **Completeness**: Track tasks and spec coverage
-   - **Correctness**: Track requirement implementation and scenario coverage
-   - **Coherence**: Track design adherence and pattern consistency
-
-   Each dimension can have CRITICAL, WARNING, or SUGGESTION issues.
-
-5. **Verify Completeness**
+4. **Verify Completeness**
 
    **Task Completion**:
    - If tasks.md exists in contextFiles, read it
@@ -64,7 +51,7 @@ Before writing, read the shared project documents for context:
        - Add CRITICAL issue: "Requirement not found: <requirement name>"
        - Recommendation: "Implement requirement X: <description>"
 
-6. **Verify Correctness**
+5. **Verify Correctness**
 
    **Requirement Implementation Mapping**:
    - For each requirement from delta specs:
@@ -83,7 +70,7 @@ Before writing, read the shared project documents for context:
        - Add WARNING: "Scenario not covered: <scenario name>"
        - Recommendation: "Add test or implementation for scenario: <description>"
 
-7. **Verify Coherence**
+6. **Verify Coherence**
 
    **Design Adherence**:
    - If design.md exists in contextFiles:
@@ -101,9 +88,10 @@ Before writing, read the shared project documents for context:
      - Add SUGGESTION: "Code pattern deviation: <details>"
      - Recommendation: "Consider following project pattern: <example>"
 
-8. **Generate Verification Report**
+7. **Generate Verification Report**
 
-   **Summary Scorecard**:
+   Use three issue severities: **CRITICAL** (must fix before archive), **WARNING** (should fix), **SUGGESTION** (nice to fix).
+
    ```
    ## Verification Report: <change-name>
 
@@ -115,54 +103,21 @@ Before writing, read the shared project documents for context:
    | Coherence    | Followed/Issues  |
    ```
 
-   **Issues by Priority**:
-
-   1. **CRITICAL** (Must fix before archive):
-      - Incomplete tasks
-      - Missing requirement implementations
-      - Each with specific, actionable recommendation
-
-   2. **WARNING** (Should fix):
-      - Spec/design divergences
-      - Missing scenario coverage
-      - Each with specific recommendation
-
-   3. **SUGGESTION** (Nice to fix):
-      - Pattern inconsistencies
-      - Minor improvements
-      - Each with specific recommendation
+   List issues by severity, each with a specific, actionable recommendation and file/line reference where applicable.
 
    **Final Assessment**:
    - If CRITICAL issues: "X critical issue(s) found. Fix before archiving."
    - If only warnings: "No critical issues. Y warning(s) to consider. Ready for archive (with noted improvements)."
    - If all clear: "All checks passed. Ready for archive."
 
-9. **Update tracker on full pass**
+8. **Update tracker on full pass**
 
    If the Final Assessment has **no CRITICAL issues** (all clear or warnings only), follow the **`sdd-tracker` skill** to set the change status to `verified` with changelog note `"Verification passed"` and suggest proceeding with archiving.
 
    If CRITICAL issues were found, do **not** update the tracker — the status remains unchanged.
 
-**Verification Heuristics**
+**Verification approach**: Focus on objective checkboxes for completeness; use keyword search and reasonable inference for correctness (avoid false CRITICAL — prefer SUGGESTION over WARNING, WARNING over CRITICAL when uncertain); check for glaring inconsistencies in coherence, not style.
 
-- **Completeness**: Focus on objective checklist items (checkboxes, requirements list)
-- **Correctness**: Use keyword search, file path analysis, reasonable inference - Do not require perfect certainty
-- **Coherence**: Look for glaring inconsistencies, Do not nitpick style
-- **False Positives**: When uncertain, prefer SUGGESTION over WARNING, WARNING over CRITICAL
-- **Actionability**: Every issue must have a specific recommendation with file/line references where applicable
+**Graceful degradation**: Verify only what exists — tasks only (if no specs/design), tasks + specs (if no design), or all three dimensions (full artifacts). Always note which checks were skipped.
 
-**Graceful Degradation**
-
-- If only tasks.md exists: verify task completion only, skip spec/design checks
-- If tasks + specs exist: verify completeness and correctness, skip design
-- If full artifacts: verify all three dimensions
-- Always note which checks were skipped and why
-
-**Output Format**
-
-Use clear markdown with:
-- Table for summary scorecard
-- Grouped lists for issues (CRITICAL/WARNING/SUGGESTION)
-- Code references in format: `file.ts:123`
-- Specific, actionable recommendations
-- No vague suggestions like "consider reviewing"
+**Output format**: Use markdown tables for the scorecard; `file.ts:123` notation for code references; specific, actionable recommendations (no vague suggestions like "consider reviewing").

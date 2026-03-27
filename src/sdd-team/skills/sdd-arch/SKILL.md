@@ -1,6 +1,6 @@
 ---
 name: sdd-arch
-description: 'Create or update the shared architecture document using the Architect agent. Use when designing system architecture, defining technical decisions, or updating the architecture doc. Do not use for implementing features, writing PRDs, or designing UX.'
+description: 'Create or update the shared architecture document — select tech stack, define API patterns, establish naming conventions, map project structure, and record architectural decisions with rationale. Use when designing system architecture, making technical decisions, or updating the architecture doc. Do not use for implementing features, writing PRDs, or designing UX.'
 ---
 
 Create or update the shared architecture document at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`.
@@ -84,6 +84,15 @@ Facilitate decisions across these categories (skip what's already decided by sta
 
 For each decision: present options with trade-offs, get user input, verify current versions, record choice with rationale.
 
+> **Decision record format** (for each item in `architecture.md`):
+> ```
+> | Decision | Choice | Rationale |
+> |---|---|---|
+> | Database | PostgreSQL (Supabase) | Team familiarity, built-in auth, real-time subscriptions |
+> | Auth | Supabase Auth (JWT) | Free tier, social providers, row-level security |
+> | API style | REST + tRPC | Type-safe client, auto-generated TS types |
+> ```
+
 ### Step 5 — Implementation patterns & consistency rules
 
 Define patterns to prevent implementation conflicts:
@@ -152,9 +161,9 @@ Structured improvement of an existing architecture document.
 1. Follow approved change plan systematically, section by section.
 2. For each change: load current section → apply modification → verify consistency with rest of document.
 3. **Verify current technology versions** for any tech stack changes — never trust hardcoded versions.
-4. Ensure all cross-references remain valid (e.g., if a pattern changes, update all sections that reference it).
+4. Ensure cross-references remain valid (if a pattern changes, update all sections that reference it).
 5. Show progress after each major section update.
-6. Final coherence check: re-run Validation (Step 7 above) on the updated document to catch new inconsistencies.
+6. Final coherence check: re-run Step 7 of the Architecture Workflow on the updated document.
 
 ### Step 4 — Completion
 

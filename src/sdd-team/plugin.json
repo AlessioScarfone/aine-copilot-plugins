@@ -1,7 +1,7 @@
 {
   "name": "sdd-team",
   "description": "SDD Team is a collection of agents and skills designed to collaboratively maintain and implement software using SDD approach.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "keywords": [
     "sdd",
     "github-copilot",

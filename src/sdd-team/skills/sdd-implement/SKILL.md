@@ -1,6 +1,6 @@
 ---
 name: sdd-implement
-description: 'Implement tasks from a change. Use when executing development tasks defined in a change spec, coding features, or making a change ready for verification. Do not use for proposing new changes, designing architecture, or verifying completed work.'
+description: 'Write code, modify files, run tests, and mark tasks done to implement a change from its spec. Use when executing development tasks defined in a change spec, building a feature, coding this up, making the changes, or developing from a spec. Do not use for proposing new changes, designing architecture, or verifying completed work.'
 ---
 
 > [!IMPORTANT]
@@ -35,30 +35,27 @@ Before writing, read the shared project documents for context:
    - `tasks.md` — implementation steps
    - `specs/` — capability specs (if any)
 
-3. **Read the tasks and context**
+3. **Read all change context**
 
-   Read `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/tasks.md` to get the task list and progress.
+   Read `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/tasks.md` first to get the task list and progress.
 
-   **Handle states:**
+   Also read all available artifacts:
+   - `proposal.md` — change scope and goals
+   - `design.md` — technical approach and decisions
+   - `specs/` — capability specifications (if any)
+
+   **Handle task states:**
    - If `tasks.md` is missing: show message, suggest using `/sdd-propose` first
    - If all tasks are marked `[x]`: congratulate, suggest archiving
    - Otherwise: proceed to implementation
 
-4. **Read context files**
-
-   Read all available artifacts from `{ARTIFACT_MAIN_FOLDER}/{CHANGE_SUBFOLDER}/<name>/`:
-   - `proposal.md` — change scope and goals
-   - `design.md` — technical approach and decisions
-   - `tasks.md` — task list and progress
-   - `specs/` — capability specifications (if any)
-
-5. **Show current progress**
+4. **Show current progress**
 
    Display:
    - Progress: "N/M tasks complete"
    - Remaining tasks overview
 
-6. **Implement tasks (loop until done or blocked)**
+5. **Implement tasks (loop until done or blocked)**
 
    **Before starting the first task**, follow the **`sdd-tracker` skill** — set change `status` to `in-progress` and changelog entry "Implementation started on YYYY-MM-DD".
 
@@ -75,7 +72,7 @@ Before writing, read the shared project documents for context:
    - Error or blocker encountered → report and wait for guidance
    - User interrupts
 
-7. **On completion or pause, show status**
+6. **On completion or pause, show status**
 
    Display:
    - Tasks completed this session
@@ -134,7 +131,7 @@ All tasks complete!. Proceed with verify
 What would you like to do?
 ```
 
-8. **Proceed with verify**
+7. **Proceed with verify**
 
 After update tasks and sdd-tracker, run **`/sdd-verify <change-name>`** skill to confirm implementation matches the spec.
 

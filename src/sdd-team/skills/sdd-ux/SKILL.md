@@ -1,6 +1,6 @@
 ---
 name: sdd-ux
-description: 'Create or update the shared UX design document using the UX Designer agent. Use when defining UX flows, wireframes, or interaction design for the product. Do not use for architecture decisions, product requirements, or feature implementation.'
+description: 'Create or update the shared UX design document — define user flows, create wireframe mockups, document interaction patterns, specify navigation and component inventory, and produce an HTML/CSS prototype. Use when defining UX flows, wireframes, or interaction design for the product. Do not use for architecture decisions, product requirements, or feature implementation.'
 ---
 
 Create or update the shared UX design document at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md`.
@@ -42,6 +42,8 @@ This is a **shared project document** — not tied to any specific change. It de
 Full guided UX design — 6 sequential sections that build the spec document, culminating in an HTML prototype.  
 Use the PRD as primary input — do not re-discover what it already covers.
 
+> **C/R/A protocol applies to every section:** present content, await user Confirmation, Revision request, or Abandon — never auto-advance without an explicit C.
+
 ### Section 1 — Project Vision
 
 **Purpose:** Understand what we're designing, for whom, and why. Synthesize from PRD — ask only about UX-specific gaps.
@@ -51,9 +53,7 @@ Use the PRD as primary input — do not re-discover what it already covers.
 2. Any brand, style, or existing design system constraints?
 3. What does "success" look like for a first prototype?
 
-After the user answers: synthesize a **Project Vision** section combining PRD context + UX answers. Present C/R/A.
-
-**On C:** Confirm "Project Vision" is locked and move to Section 2.
+After the user answers: synthesize a **Project Vision** section combining PRD context + UX answers. Present and await C/R/A before advancing.
 
 ---
 
@@ -75,7 +75,7 @@ After the user answers: synthesize a **Project Vision** section combining PRD co
 | Form interaction | Modal / Side panel / Inline / Separate page |
 | Feedback & states | Toast notifications / Inline validation / Status banners |
 
-For each: name it, state recommendation with 1-sentence rationale, list 1-2 alternatives. Build a **Decisions Log**. Present C/R/A when all decisions are resolved.
+For each: name it, state recommendation with 1-sentence rationale, list 1-2 alternatives. Build a **Decisions Log**. Present and await C/R/A when all decisions are resolved.
 
 ---
 
@@ -95,7 +95,7 @@ Draft a component inventory in table format:
 
 Include 8–15 components appropriate to the project. Add 1-line notes for anything non-standard.
 
-Present C/R/A. On C, move to Section 4.
+Present component inventory and await C/R/A.
 
 ---
 
@@ -122,7 +122,7 @@ For each screen, produce a **text wireframe** using ASCII characters and clear l
 
 Label every zone. Add brief annotation bullets below each wireframe (max 3 bullets per screen).
 
-Present C/R/A. On C, move to Section 5.
+Present wireframes and await C/R/A.
 
 ---
 
@@ -145,7 +145,7 @@ Browser target:       Modern browsers (Chrome, Firefox, Safari, Edge)
 Accessibility:        ARIA labels, semantic HTML, keyboard navigation for nav
 ```
 
-Ask: "Anything to add or remove from this scope?" Present C/R/A. On C, move to Section 6.
+Ask: "Anything to add or remove from this scope?" Present and await C/R/A.
 
 ---
 
@@ -178,7 +178,7 @@ Deliver the complete HTML as a single fenced code block. After the code block, l
 
 Save as `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-[project-name].html`.
 
-Present C/R/A. On C, move to Section 7.
+Present and await C/R/A.
 
 ---
 

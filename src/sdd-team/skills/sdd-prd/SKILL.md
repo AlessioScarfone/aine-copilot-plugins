@@ -1,6 +1,6 @@
 ---
 name: sdd-prd
-description: 'Create or update the shared PRD using the PM agent. Use when defining product requirements, revising the product vision, or updating success criteria and functional requirements. Do not use for architecture decisions, UX design, or implementing features.'
+description: 'Create or update the shared PRD — discover product vision, map user journeys, define functional requirements, and write success criteria and NFRs. Use when defining product requirements, revising the product vision, or updating the PRD. Do not use for architecture decisions, UX design, or implementing features.'
 ---
 
 Create or update the shared PRD at `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`.
@@ -81,7 +81,7 @@ Draft the Executive Summary using insights from Steps 2–3:
 - **What Makes This Special:** product differentiator, core insight, why users choose it
 - **Project Classification:** type, domain, complexity, greenfield/brownfield
 
-Present draft. Refine collaboratively until approved. Append to output file.
+> **For each section (Steps 4–12):** present draft, refine collaboratively, then append to output file.
 
 ### Step 5 — Success Criteria
 
@@ -93,7 +93,7 @@ Facilitate defining what "winning" looks like:
 4. **Challenge vague metrics:** "10,000 users" → "What kind of users? Doing what?" / "Fast" → "How fast, specifically?"
 5. **Scope negotiation:** MVP (must work) vs Growth (competitive) vs Vision (dream).
 
-Present drafted content. Refine with user. Append: Success Criteria + Product Scope table.
+Present drafted content. Refine with user. Append.
 
 ### Step 6 — User Journey mapping
 
@@ -112,20 +112,11 @@ Target: 3–4 compelling narrative journeys minimum. Present and refine. Append.
 
 ### Step 7 — Domain requirements (optional)
 
-**Skip if domain complexity is low.** For medium/high complexity:
-
-1. Compliance/regulatory requirements (HIPAA, PCI-DSS, GDPR, SOX, etc.)
-2. Technical constraints (security, privacy, encryption, audit logging)
-3. Integration requirements (EMR systems, payment processors, etc.)
-4. Domain-specific risks and mitigations
-
-Present findings. Append if applicable.
+**Skip if domain complexity is low.** For medium/high complexity: compliance (HIPAA, PCI-DSS, GDPR), security constraints, integration requirements, domain-specific risks. Present and append if applicable.
 
 ### Step 8 — Innovation discovery (optional)
 
-**Skip if no genuine innovation signals detected.** Listen for: "nothing like this exists", "rethinking how X works", novel technology combinations.
-
-If detected: explore what's genuinely novel, validate with market context, define validation approach and risk fallbacks. Append if applicable.
+**Skip if no genuine innovation signals detected.** If signals present ("nothing like this exists", novel tech combinations): explore what's novel, validate with market context, define risk fallbacks. Append if applicable.
 
 ### Step 9 — Project-type deep dive
 
@@ -141,50 +132,39 @@ Present and append.
 
 ### Step 10 — Scoping exercise
 
-1. **Review** all PRD content built so far — synthesize implications.
+1. **Review** all PRD content built so far.
 2. **MVP strategy:** minimum that makes users say "this is useful"? Fastest path to validated learning?
-3. **Feature prioritization:** Must-have (product fails without it) vs Nice-to-have. For each: *Without this, does the product fail? Can this be manual initially?*
-4. **Phased roadmap:** Phase 1 (MVP core value), Phase 2 (growth features), Phase 3 (expansion).
-5. **Risk analysis:** technical, market, resource risks — with mitigation strategies.
+3. **Feature prioritization:** Must-have vs Nice-to-have. Ask: *Without this, does the product fail?*
+4. **Phased roadmap:** Phase 1 (MVP), Phase 2 (growth), Phase 3 (expansion).
+5. **Risk analysis:** technical, market, resource risks with mitigation strategies.
 
-Present and refine. Append.
+Present and append.
 
 ### Step 11 — Functional Requirements
 
 **This is THE CAPABILITY CONTRACT for the entire product.** What's not listed here won't exist.
 
-1. **Extract capabilities** from all previous sections.
-2. **Organize by capability area** (5–8 areas): "User Management" not "Authentication System".
+1. Extract capabilities from all previous sections.
+2. Organize by capability area (5–8 areas): "User Management" not "Authentication System".
 3. **Format:** `FR#: [Actor] can [capability] [context/constraint]`. Target 20–50 FRs.
-4. **Altitude check:** each FR states WHAT capability exists, NOT HOW to implement.
-5. **Self-validate:**
-   - Every capability from MVP scope covered?
-   - Domain-specific requirements included?
-   - Could a UX designer read ONLY these FRs and know what to design?
-   - Could an architect read ONLY these FRs and know what to support?
+4. **Altitude check:** WHAT capability exists, NOT HOW to implement.
+5. **Self-validate:** Every MVP capability covered? Domain requirements included? Readable by UX designer and architect?
 
 Present and refine collaboratively. Append.
 
 ### Step 12 — Non-Functional Requirements
 
-Define quality attributes — **only categories that actually matter for this product:**
+Define quality attributes — **only those that matter for this product.** Make each measurable: NOT "fast" → "User actions complete within 2 seconds". Skip irrelevant categories.
 
-1. **Assess relevance:** Performance? Security? Scalability? Accessibility? Integration? Reliability?
-2. **For each relevant category:** make requirements specific and measurable.
-3. **From vague to specific:** NOT "the system should be fast" → "User actions complete within 2 seconds".
-4. **Skip irrelevant categories** to prevent requirement bloat.
-
-Present and refine. Append.
+Present and append.
 
 ### Step 13 — Polish & completion
 
 1. Read complete document start to finish.
-2. **Polish:** improve flow/transitions, reduce duplication, ensure consistent terminology, verify ## Level 2 headers.
-3. **Quality check:** information density, zero fluff, no anti-patterns ("the system will allow users to..." → "Users can...").
-4. Preserve all essential content — consolidate, Do not remove.
-5. Save final `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`.
-6. Present a **completion recap**: sections created, key decisions captured, PRD quality assessment.
-7. Suggest: "`/arch` for architecture or `/ux` for UX design."
+2. Polish: flow, de-duplication, consistent terminology, `##` Level 2 headers.
+3. Quality check: zero fluff, no anti-patterns ("the system will allow" → "Users can").
+4. Save final `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`.
+5. Present a **completion recap** and suggest `/arch` or `/ux` next.
 
 ---
 

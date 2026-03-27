@@ -1,6 +1,6 @@
 ---
 name: sdd-help
-description: 'Learn about the SDD process and artifacts — quick overview, deep dives into each document type, team roles, and skill commands. Use when onboarding to SDD, looking up how a skill works, or asking about roles and process stages. Do not use for creating or editing SDD documents or implementing changes.'
+description: 'Learn about the SDD process — get a quick overview, deep dives into each artifact type (PRD, architecture, UX, changes, specs), team roles, and available skill commands. Use when onboarding to SDD, looking up how a skill works, or asking about roles and process stages. Do not use for creating or editing SDD documents or implementing changes.'
 ---
 
 Answer questions about the Specification-Driven Development (SDD) approach, its artifacts, and how to use the `sdd-team` skills effectively.

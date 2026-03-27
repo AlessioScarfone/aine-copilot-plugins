@@ -1,9 +1,9 @@
 ---
 name: sdd-init
-description: 'Initialize SDD on an existing (brownfield) project — generates shared docs by inspecting the codebase and interviewing the user. Use when adopting SDD on a project that already has code but no SDD artifacts. Do not use for greenfield projects starting from scratch or for updating already-initialized SDD documents.'
+description: 'Set up SDD on an existing project — inspects the codebase, interviews the user, and generates prd.md, architecture.md, ux.md (if a UI exists), and sdd-tracker.yml. Use when adopting SDD on legacy code or an existing codebase that has no SDD artifacts yet. Do not use for new (greenfield) projects or for updating SDD documents that already exist.'
 ---
 
-Bootstrap the SDD workflow on a **brownfield** project — one where code already exists and no SDD documents have been created yet.
+Bootstrap the SDD workflow on a **brownfield** project — existing code, no SDD documents yet.
 
 This skill reverse-engineers the shared project documents from the existing codebase and a targeted conversation with the user, then writes them to the standard SDD locations so the full SDD workflow can proceed normally.
 
@@ -119,14 +119,12 @@ Use the **TodoWrite tool** to track pipeline progress through the phases below.
 #### Phase 1 — Generate PRD
 
 Launch a **subagent** (via `runSubagent`) with a prompt that:
- 
- - Instructs it to read `sdd-team/agents/sdd-pm.agent.md` (**sdd-team:sdd-pm.agent**) and adopt the PM agent persona
-- Provides the full Reconnaissance Report (Step 1) and gap-filling answers (Step 2) as input
+
+- Instructs it to read `sdd-team/agents/sdd-pm.agent.md` and adopt the PM agent persona
+- Provides the Reconnaissance Report and gap-filling answers as input
 - Instructs it to use `assets/prd.md` as the document structure
-- States the key constraint: **this is a brownfield PRD** — it documents the current state of the product, not a greenfield vision. Sections such as Success Criteria and Scope should reflect what the product _already does_, with placeholders where the information is unknown.
-- Sets `Context: brownfield` in the Executive Summary classification block
-- Instructs it to write to `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md`
-- Instructs it to set the `Last updated` date to today
+- States: **brownfield context** — document what the product _already does_; use placeholders only for genuinely unknown info. Set `Context: brownfield` in the Executive Summary.
+- Instructs it to write to `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prd.md` and set `Last updated` to today
 - Asks for a one-paragraph summary of what was written
 
 Use the returned summary as context for Phase 2.
@@ -136,14 +134,12 @@ Use the returned summary as context for Phase 2.
 #### Phase 2 — Generate Architecture doc
 
 Launch a **subagent** (via `runSubagent`) with a prompt that:
- 
- - Instructs it to read `sdd-team/agents/sdd-architect.agent.md` (**sdd-team:sdd-architect.agent**) and adopt the Architect agent persona
-- Provides the full Reconnaissance Report and the Phase 1 summary as input
+
+- Instructs it to read `sdd-team/agents/sdd-architect.agent.md` and adopt the Architect agent persona
+- Provides the Reconnaissance Report and Phase 1 summary as input
 - Instructs it to use `assets/architecture.md` as the document structure
-- States the key constraint: **this is a brownfield architecture doc** — it documents decisions that were _already made_ in the codebase, not future decisions. Every decision row should be filled with what is actually in use; use "unknown / not documented" only if genuinely unclear after reading the source.
-- Instructs it to focus especially on: actual tech stack (from package manifests), database/ORM in use, auth approach found in code, API style and route structure, any documented conventions or linting rules
-- Instructs it to write to `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md`
-- Instructs it to set the `Last updated` date to today
+- States: **brownfield context** — document decisions already made in the codebase. Fill every row from what is actually in use; use "unknown / not documented" only if genuinely unclear after reading the source. Focus on: tech stack, database/ORM, auth approach, API style, and any conventions found in linting or docs.
+- Instructs it to write to `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/architecture.md` and set `Last updated` to today
 - Asks for a one-paragraph summary of what was written
 
 ---
@@ -155,13 +151,12 @@ Launch a **subagent** (via `runSubagent`) with a prompt that:
 - The user confirmed in Step 2 that a UX doc is needed
 
 Launch a **subagent** (via `runSubagent`) with a prompt that:
- 
- - Instructs it to read `sdd-team/agents/sdd-ux.agent.md` (**sdd-team:sdd-ux.agent**) and adopt the UX Designer agent persona
-- Provides the Reconnaissance Report, the PRD summary (Phase 1), and the architecture summary (Phase 2) as input
+
+- Instructs it to read `sdd-team/agents/sdd-ux.agent.md` and adopt the UX Designer agent persona
+- Provides the Reconnaissance Report, PRD summary (Phase 1), and architecture summary (Phase 2) as input
 - Instructs it to use `assets/ux.md` and `assets/prototype-template.html` as document structure
-- States the key constraint: **this is a brownfield UX doc** — it documents the design patterns, components, and flows that _already exist_ in the product. The prototype should reflect the current UI, not a redesign.
-- Instructs it to write `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` and `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-[project-name].html`
-- Instructs it to set the `Last updated` date to today
+- States: **brownfield context** — document the design patterns, components, and flows that _already exist_. The prototype reflects the current UI, not a redesign.
+- Instructs it to write `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/ux.md` and `{ARTIFACT_MAIN_FOLDER}/{SHARED_SUBFOLDER}/prototype-[project-name].html`, and set `Last updated` to today
 
 If this phase is skipped, note it in the completion summary.
 
