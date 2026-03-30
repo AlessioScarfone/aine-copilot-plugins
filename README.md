@@ -16,6 +16,7 @@ Collection of GitHub Copilot Plugins, each designed to embed a specialized workf
     - [@embed directive](#embed-directive)
     - [Create new plugin](#create-new-plugin)
     - [Review SKILL with TESSL](#review-skill-with-tessl)
+    - [Evaluate a skill](#evaluate-a-skill)
   - [VS Code Documentation](#vs-code-documentation)
 
 ## Available plugins
@@ -220,6 +221,35 @@ Options:
   -j, --json            Output raw JSON (single skill) or aggregated JSON (--all)
 ```
 
+
+### Evaluate a skill
+
+Skills can be evaluated with a draft-test-review-iterate loop powered by the [skill-creator](https://github.com/anthropics/skills) skill. The loop runs test prompts against the skill and a no-skill baseline, grades assertions automatically, and opens an interactive viewer so you can review outputs and leave feedback.
+
+**Prerequisites**: install `skill-creator` globally:
+
+```bash
+npx skills add https://github.com/anthropics/skills --skill skill-creator
+```
+
+**Example prompt** (paste into Copilot Chat with the skill-creator active):
+
+```
+I already have a skill in #file:src/mini-sdd — I want to create evals for the
+#file:src/mini-sdd/skills/mini-sdd-context skill. Read #file:src/mini-sdd/README.md
+for context on what the skill is supposed to do.
+```
+
+The skill-creator will:
+1. Propose 2–3 realistic test cases for you to approve
+2. Create input fixture files under `skills/<skill-name>/evals/files/`
+3. Save test cases to `skills/<skill-name>/evals/evals.json`
+4. Spawn parallel subagent runs — one with the skill, one baseline — per test case
+5. Draft and grade assertions while runs are in progress
+6. Aggregate results into `<skill-name>-workspace/iteration-1/benchmark.json`
+7. Open a static HTML viewer (`/tmp/<skill-name>-review.html`) for qualitative review
+
+After reviewing, tell the skill-creator what you'd like to improve and ask for another iteration. Repeat until satisfied.
 
 ---
 

@@ -1,3 +1,5 @@
 node_modules
 .DS_Store
 plugins
+src/**/*-workspace
+.agents/skills/skill-creator

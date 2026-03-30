@@ -1,0 +1,63 @@
+{
+  "skill_name": "mini-sdd-spec",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to spec a CSV export feature. The user should be able to download all their tasks as a CSV file via GET /tasks/export.",
+      "expected_output": "spec.md and plan.md are created at mini-sdd/specs/csv-export/. spec.md has status: ready, filled Summary/Scenarios/Acceptance Criteria sections using GIVEN/WHEN/THEN format, and a non-placeholder created date. plan.md has at least one concrete task.",
+      "files": [
+        "evals/files/eval-1/package.json",
+        "evals/files/eval-1/mini-sdd/context.md"
+      ],
+      "expectations": [
+        "mini-sdd/specs/csv-export/spec.md is created",
+        "spec.md frontmatter status is 'ready'",
+        "spec.md frontmatter created is not a placeholder (YYYY-MM-DD)",
+        "spec.md contains a ## Summary section",
+        "spec.md contains at least one GIVEN/WHEN/THEN scenario",
+        "spec.md contains at least two acceptance criteria (AC1, AC2)",
+        "mini-sdd/specs/csv-export/plan.md is created",
+        "plan.md contains at least one task (- [ ])"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Update the search-notes spec to also support filtering by tag. Add a `?tag=` query parameter that returns only notes tagged with the given value.",
+      "expected_output": "spec.md updated field is refreshed, the new tag-filter scenario / acceptance criteria are added, and existing content is preserved. plan.md has a new dated section appended with new tasks — old tasks are untouched.",
+      "files": [
+        "evals/files/eval-2/package.json",
+        "evals/files/eval-2/mini-sdd/context.md",
+        "evals/files/eval-2/mini-sdd/specs/search-notes/spec.md",
+        "evals/files/eval-2/mini-sdd/specs/search-notes/plan.md"
+      ],
+      "expectations": [
+        "spec.md updated field is changed from 2026-03-15 (not left as original)",
+        "spec.md status remains 'ready'",
+        "spec.md still contains the original Scenario 1 (keyword search) content",
+        "spec.md contains a new scenario or acceptance criterion related to tag filtering",
+        "plan.md still contains the original four tasks from the first iteration",
+        "plan.md contains new tasks appended in a new section (not replacing the old ones)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want to spec a create-post feature. Authors should be able to publish a new blog post with a title and body. Only registered users can create posts.",
+      "expected_output": "spec.md and plan.md are created at mini-sdd/specs/create-post/. spec.md status is 'ready' and requires: [user-registration] is set because posts require an existing user — either inferred automatically or confirmed with the user.",
+      "files": [
+        "evals/files/eval-3/package.json",
+        "evals/files/eval-3/mini-sdd/context.md",
+        "evals/files/eval-3/mini-sdd/specs/user-registration/spec.md",
+        "evals/files/eval-3/mini-sdd/specs/user-registration/plan.md"
+      ],
+      "expectations": [
+        "mini-sdd/specs/create-post/spec.md is created",
+        "spec.md frontmatter status is 'ready'",
+        "spec.md frontmatter requires contains 'user-registration'",
+        "spec.md contains a ## Summary section describing post creation",
+        "spec.md contains at least one scenario covering the happy path (author publishes a post)",
+        "mini-sdd/specs/create-post/plan.md is created",
+        "plan.md contains at least one task (- [ ])"
+      ]
+    }
+  ]
+}

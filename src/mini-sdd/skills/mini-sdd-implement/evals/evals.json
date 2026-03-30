@@ -1,0 +1,65 @@
+{
+  "skill_name": "mini-sdd-implement",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Implement the delete-task spec.",
+      "expected_output": "All three tasks in plan.md are checked off. spec.md status is set to 'done'. Source files (tasks-store.js, tasks route, test file) are created. Acceptance criteria in spec.md are checked. A 'Development Notes' section is appended to spec.md. context.md Last updated date is updated.",
+      "files": [
+        "evals/files/eval-1/package.json",
+        "evals/files/eval-1/mini-sdd/context.md",
+        "evals/files/eval-1/mini-sdd/specs/delete-task/spec.md",
+        "evals/files/eval-1/mini-sdd/specs/delete-task/plan.md",
+        "evals/files/eval-1/src/app.js"
+      ],
+      "expectations": [
+        "All tasks in plan.md are checked (- [x])",
+        "spec.md frontmatter status is 'done'",
+        "spec.md contains a 'Development Notes' section",
+        "All acceptance criteria in spec.md are checked (- [x])",
+        "context.md Last updated field is updated (not left as 2026-03-20)",
+        "A DELETE route or handler is present somewhere in the output files"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Continue implementing the get-note-by-id spec.",
+      "expected_output": "The skill detects the in-progress state, shows resumption progress (2/4 tasks done), and implements only the two remaining unchecked test tasks. All tasks end up checked. spec.md status becomes 'done'. Dev notes are appended. The already-checked tasks are NOT re-run.",
+      "files": [
+        "evals/files/eval-2/package.json",
+        "evals/files/eval-2/mini-sdd/context.md",
+        "evals/files/eval-2/mini-sdd/specs/get-note-by-id/spec.md",
+        "evals/files/eval-2/mini-sdd/specs/get-note-by-id/plan.md",
+        "evals/files/eval-2/src/routes/notes.js"
+      ],
+      "expectations": [
+        "The skill announces it is resuming (shows progress like '2/4 tasks complete' or similar)",
+        "The two already-checked tasks are still checked and were not re-run",
+        "All four tasks in plan.md are checked (- [x]) at the end",
+        "spec.md frontmatter status is 'done'",
+        "spec.md contains a 'Development Notes' section",
+        "A Jest test file for the GET /notes/:id route is written"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Implement the create-post spec.",
+      "expected_output": "The skill reads create-post's spec.md, detects that 'user-registration' in requires is not yet done (status: ready), and stops without implementing anything. It lists the unmet dependency and its current status, and informs the user to implement user-registration first.",
+      "files": [
+        "evals/files/eval-3/package.json",
+        "evals/files/eval-3/mini-sdd/context.md",
+        "evals/files/eval-3/mini-sdd/specs/user-registration/spec.md",
+        "evals/files/eval-3/mini-sdd/specs/user-registration/plan.md",
+        "evals/files/eval-3/mini-sdd/specs/create-post/spec.md",
+        "evals/files/eval-3/mini-sdd/specs/create-post/plan.md"
+      ],
+      "expectations": [
+        "The skill does NOT start implementing create-post (no source files written)",
+        "create-post/spec.md status is NOT changed to 'in-progress' or 'done'",
+        "The skill mentions 'user-registration' as an unmet dependency",
+        "The skill informs the user they need to implement the dependency first",
+        "The skill mentions the current status of the unmet dependency (ready or blocked)"
+      ]
+    }
+  ]
+}

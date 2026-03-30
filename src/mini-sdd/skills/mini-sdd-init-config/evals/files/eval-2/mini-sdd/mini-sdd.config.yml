@@ -1,0 +1,4 @@
+hooks:
+  spec:
+    pre:
+      - "Before creating the spec, check if there are any uncommitted changes in the working directory and remind the user to commit or stash them."

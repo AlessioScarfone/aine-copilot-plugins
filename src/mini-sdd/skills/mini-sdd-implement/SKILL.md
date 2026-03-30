@@ -23,7 +23,7 @@ Check `./{ARTIFACT_MAIN_FOLDER}/mini-sdd.config.yml` for `hooks.implement.pre` a
 2. Determine which spec to implement:
    2.1 If a spec name is provided in the input (e.g., `/mini-sdd-implement user-authentication`), use it.
    2.2 If no name is provided, scan spec folders in `./{ARTIFACT_MAIN_FOLDER}/{SPECS_SUBFOLDER}/` and read each `spec.md` frontmatter. 
-      - For specs with status `ready`, also evaluate if it has any `requires` dependencies. If some ready specs still have unmet `requires`,it is not yet implementable.
+      - For specs with status `ready`, also evaluate if it has any `requires` dependencies. If some ready specs still have unmet `requires` (corresponding spec not done), it is not yet implementable.
       - Present all ready not blocked and in-progress specs: 
       > `<spec-name>` → `status` (ready/in-progress) and ask the user to choose which one to implement.
       - If no specs exist, inform the user:
@@ -90,7 +90,7 @@ When all tasks are checked:
    - If all of them are now `done`, so the requires list is empty, the spec is now implementable and update the status to `ready` (if it was previously blocked by this dependency).
    - If at least one dependency is still not `done`, leave/update the status as `blocked`.
    - Summarize any specs that became implementable.
-4. Append a "Development Notes" section to `spec.md` summarizing what was implemented, files changed, and any important follow-ups. The notes should be concise and reference changed files.
+4. Write a `## Development Notes` section to `spec.md` — this is always required, including when resuming a previous session. Check whether a `## Development Notes` section already exists: if it does, replace its content; if not, append a new one. Summarize what was implemented across **all** tasks (not just the current session), list every file changed with a short description, and note any important follow-ups. Keep it concise.
 5. Show a completion summary:
 
 ```
@@ -104,13 +104,15 @@ Changes made:
 - <file 2>: <what changed>
 ```
 
-5. **Auto-update `context.md`**:
-   - Read `./{ARTIFACT_MAIN_FOLDER}/context.md`.
-   - Based on the completed spec and the changes made, identify which sections of `context.md` are affected (e.g., new tech stack entries, updated architecture components, changed project status, new key features).
-   - Update **only** the relevant sections — do not rewrite unaffected content.
-   - Set `Last updated` to today (`YYYY-MM-DD`).
-   - Confirm to the user:
-     > "✅ Updated `./{ARTIFACT_MAIN_FOLDER}/context.md` to reflect the completed feature."
+## After completion
+
+**Auto-update `context.md`**:
+- Read `./{ARTIFACT_MAIN_FOLDER}/context.md`.
+- Based on the completed spec and the changes made, identify which sections of `context.md` are affected (e.g., new tech stack entries, updated architecture components, changed project status, new key features).
+- Update **only** the relevant sections — do not rewrite unaffected content.
+- Set `Last updated` to today (`YYYY-MM-DD`).
+- Confirm to the user:
+   > "✅ Updated `./{ARTIFACT_MAIN_FOLDER}/context.md` to reflect the completed feature."
 
 ---
 

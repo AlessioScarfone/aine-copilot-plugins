@@ -1,0 +1,60 @@
+{
+  "skill_name": "mini-sdd-init-config",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Set up hooks for this project. Before creating or updating a spec, check that the git working directory is clean. After every implementation is done, run 'npm test' and fix any failures before closing the spec.",
+      "expected_output": "mini-sdd/mini-sdd.config.yml is created containing only two hook events: spec.pre with a git-clean-check instruction and implement.post with an npm-test instruction. All other events (context.pre, context.post, spec.post, implement.pre) are omitted from the file. The skill prints the final YAML and confirms it was saved.",
+      "files": [
+        "evals/files/eval-1/package.json",
+        "evals/files/eval-1/mini-sdd/context.md"
+      ],
+      "expectations": [
+        "mini-sdd/mini-sdd.config.yml is created",
+        "The file contains a spec.pre hook",
+        "The spec.pre instruction mentions 'git' or 'working directory' or 'clean' or 'uncommitted'",
+        "The file contains an implement.post hook",
+        "The implement.post instruction mentions 'npm test' or 'test'",
+        "context.pre, context.post, spec.post, and implement.pre are NOT present in the file",
+        "The skill shows the final written file content",
+        "The skill confirms the file was saved with a success message"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Update the hooks config. Keep the existing spec.pre hook. Add a new post-context hook: after writing context.md, update the root README.md Overview section to match the new product description.",
+      "expected_output": "The skill reads the existing mini-sdd.config.yml, shows a summary of the current hooks, then updates the file. The resulting config preserves the original spec.pre instruction and adds a new context.post entry about updating the README. The skill shows the final file content and confirms the save.",
+      "files": [
+        "evals/files/eval-2/package.json",
+        "evals/files/eval-2/mini-sdd/context.md",
+        "evals/files/eval-2/mini-sdd/mini-sdd.config.yml"
+      ],
+      "expectations": [
+        "The skill reads and shows a summary of the current config before making changes",
+        "mini-sdd/mini-sdd.config.yml is updated (overwritten)",
+        "The file contains a context.post hook",
+        "The context.post instruction mentions 'README' or 'Overview'",
+        "The original spec.pre instruction is still present in the updated file",
+        "The skill shows the final written file content",
+        "The skill confirms the file was saved with a success message"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Initialize the mini-sdd config file, but I don't need any hooks right now.",
+      "expected_output": "mini-sdd/mini-sdd.config.yml is created with a minimal valid structure containing only a top-level 'hooks: {}' block (or equivalent). No hook event lists are written. The skill notes that no hooks are active and confirms the file was saved.",
+      "files": [
+        "evals/files/eval-3/package.json",
+        "evals/files/eval-3/mini-sdd/context.md"
+      ],
+      "expectations": [
+        "mini-sdd/mini-sdd.config.yml is created",
+        "The file is valid YAML (no syntax errors)",
+        "The file contains a top-level 'hooks' key",
+        "No hook event sublists are written (no spec.pre, implement.post, etc.)",
+        "The skill notes that no hooks are active or 0 hook events are configured",
+        "The skill confirms the file was saved with a success message"
+      ]
+    }
+  ]
+}

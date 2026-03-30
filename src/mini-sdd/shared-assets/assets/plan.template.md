@@ -1,6 +1,5 @@
 ---
 spec-name: spec-name
-status: ready
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 ---

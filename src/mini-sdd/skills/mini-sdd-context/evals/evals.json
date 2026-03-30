@@ -1,0 +1,60 @@
+{
+  "skill_name": "mini-sdd-context",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm setting up mini-SDD on this project for the first time. Please run mini-sdd-context to bootstrap the project context.",
+      "expected_output": "A mini-sdd/context.md file that correctly identifies the project as a Node.js/Fastify REST API, includes PostgreSQL and Vitest in the tech stack, captures key features from the README, and follows the context.template.md structure.",
+      "files": [
+        "evals/files/eval-1/package.json",
+        "evals/files/eval-1/README.md",
+        "evals/files/eval-1/src/index.js"
+      ],
+      "expectations": [
+        "context.md is created at the output path",
+        "context.md follows the template structure with sections: Product, Key Features, Architecture, Tech Stack, Non-Functional Requirements",
+        "Fastify is mentioned in the tech stack",
+        "PostgreSQL is mentioned in the tech stack",
+        "Vitest is mentioned as the test runner",
+        "The Last updated date field is populated (not a placeholder like YYYY-MM-DD)",
+        "drizzle-orm or Drizzle ORM is mentioned in the document"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I just finished implementing user authentication with JWT tokens and a PostgreSQL users table. Update the project context to reflect these changes.",
+      "expected_output": "The existing mini-sdd/context.md is updated: JWT auth and PostgreSQL are added to tech stack/features/components, the Last updated date becomes 2026-03-30, and all unchanged sections are preserved verbatim.",
+      "files": [
+        "evals/files/eval-2/package.json",
+        "evals/files/eval-2/mini-sdd/context.md",
+        "evals/files/eval-2/src/routes/auth.js"
+      ],
+      "expectations": [
+        "context.md is written to the output path",
+        "The Last updated date is 2026-03-30",
+        "JWT or jsonwebtoken is mentioned in the document",
+        "PostgreSQL is mentioned in the tech stack or architecture section",
+        "MongoDB is still present in the document (original data not lost)",
+        "bcrypt or password hashing is mentioned",
+        "All four original features are preserved: Product catalog, Stock level tracking, Reorder alerts, CSV import/export"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want to use mini-SDD on this project. Set up the context file.",
+      "expected_output": "A mini-sdd/context.md is created for the Python CLI dbsnap tool. The skill handles the absence of a README gracefully, infers project info from pyproject.toml and main.py, asks targeted questions, and produces a complete context file.",
+      "files": [
+        "evals/files/eval-3/pyproject.toml",
+        "evals/files/eval-3/main.py"
+      ],
+      "expectations": [
+        "context.md is created at the output path (skill did not crash or refuse due to missing README)",
+        "dbsnap is mentioned as the project name",
+        "PostgreSQL or psycopg2 is mentioned in the tech stack",
+        "click is mentioned in the tech stack",
+        "Both snapshot and diff commands are mentioned as features or key capabilities",
+        "The document is complete (no placeholder sections are missing — unknown fields are either inferred or explicitly marked)"
+      ]
+    }
+  ]
+}

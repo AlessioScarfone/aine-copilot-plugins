@@ -1,0 +1,16 @@
+{
+  "name": "blog-api",
+  "version": "1.0.0",
+  "description": "A REST API for a blog platform",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "fastify": "^4.26.0"
+  },
+  "devDependencies": {
+    "vitest": "^1.4.0"
+  }
+}
