@@ -102,9 +102,9 @@ function substituteVariablesInDir(dir, variables) {
   }
 }
 
-function copyIfExists(src, dest) {
+function copyIfExists(src, dest, options = {}) {
   if (fs.existsSync(src)) {
-    fs.cpSync(src, dest, { recursive: true });
+    fs.cpSync(src, dest, { recursive: true, ...options });
   }
 }
 
@@ -152,10 +152,13 @@ function buildPlugin(pluginName) {
   }
 
   // Copy agents, prompts, skills, templates directly from src into dist/{name}/
+  // Exclude *-workspace directories (used for evals and local experiments)
+  const skipWorkspaceDirs = (srcPath) => !path.basename(srcPath).endsWith("-workspace");
   for (const subdir of PLUGIN_SUBDIRS) {
     copyIfExists(
       path.join(src, subdir),
-      path.join(dest, subdir)
+      path.join(dest, subdir),
+      { filter: skipWorkspaceDirs }
     );
   }
 
