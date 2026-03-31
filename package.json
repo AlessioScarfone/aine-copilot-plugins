@@ -7,6 +7,7 @@
     "plugin:create": "node ./scripts/create-plugin.mjs",
     "test": "node --test scripts/tests/*.test.mjs",
     "tessl:review-skill": "npx tessl skill review",
+    "preskill:review": "npm run build",
     "skill:review": "node ./scripts/review-skill.mjs",
     "prepare": "husky"
   },
