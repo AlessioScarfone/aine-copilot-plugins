@@ -1,0 +1,9 @@
+{
+  "name": "aine-agents",
+  "description": "Collection of dev agents",
+  "version": "0.0.1",
+  "keywords": [
+    "github-copilot",
+    "agents"
+  ]
+}
