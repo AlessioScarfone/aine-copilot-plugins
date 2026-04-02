@@ -1,4 +1,5 @@
 ---
+name: mini-sdd-agent
 description: "Spec-driven developer: define context, write specs, implement features following the mini-SDD workflow"
 tools: [vscode/askQuestions, execute, read, edit, search, todo]
 ---
