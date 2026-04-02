@@ -1,6 +1,6 @@
 {
   "name": "aine-copilot-plugins",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Collection of GitHub Copilot Plugins",
   "scripts": {
     "build": "node ./scripts/build.mjs",
