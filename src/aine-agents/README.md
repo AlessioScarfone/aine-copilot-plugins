@@ -47,6 +47,27 @@ An end-to-end feature workflow for existing codebases. The skill:
 - pure refactoring work
 - tasks that only need a spec or plan without implementation
 
+### `/code-review` — Multi-Perspective Code Review
+
+Spawns three parallel reviewer agents — each focused on a different quality dimension — and consolidates their findings into a single prioritized report.
+
+| Reviewer | Focus |
+|---|---|
+| Simplicity & DRY | Unnecessary complexity, duplicated logic, dead code |
+| Bugs & Correctness | Logic errors, null handling, race conditions, security issues |
+| Conventions & Abstractions | Naming, pattern violations, missing tests, import issues |
+
+**Flexible scope:** unstaged changes, staged changes, branch diff, specific files, or a PR.
+
+**Use when:**
+- reviewing code before committing or pushing
+- auditing changes on a branch or PR
+- wanting a second pair of eyes on recent work
+
+**Do not use for:**
+- implementing features or writing new code
+- refactoring existing code
+
 ## Recommended Workflow
 
 1. Start with `/feature-dev <request>` when the request is still ambiguous or architectural choices matter.

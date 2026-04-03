@@ -1,9 +1,13 @@
 {
   "name": "aine-agents",
   "description": "Collection of dev agents",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [
     "github-copilot",
     "agents"
+  ],
+  "skills": [
+    "./skills/feature-dev/",
+    "./skills/code-review/"
   ]
 }

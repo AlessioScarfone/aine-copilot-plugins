@@ -1,0 +1,42 @@
+{
+  "skill_name": "code-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "review my changes before I push",
+      "expected_output": "Determines scope from unstaged changes, launches 3 parallel code-reviewer agents (simplicity, bugs, conventions), consolidates findings into a single prioritized report grouped by severity",
+      "files": [],
+      "expectations": [
+        "Output contains '## Code Review Summary' header",
+        "Output lists a 'Reviewers:' line naming the three perspectives (simplicity/DRY, bugs/correctness, conventions/abstractions)",
+        "Output identifies at least 2 changed files by name",
+        "Output includes at least one 'Flagged by:' attribution line showing multi-reviewer perspective",
+        "Output flags the missing 'agents' array in plugin.json"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "can you do a code review comparing my branch to main? I've been working on the auth module and want to make sure I haven't introduced any regressions",
+      "expected_output": "Uses branch diff (git diff main...HEAD), launches 3 parallel code-reviewer agents, produces consolidated report. Falls back to recent commit diff when no branch diverges, and notes the auth module was not found",
+      "files": [],
+      "expectations": [
+        "Output explicitly states what diff scope was used (e.g. branch diff or fallback commit diff)",
+        "Output uses a fallback diff strategy when no branch divergence exists, and explains this to the user",
+        "Output notes that the 'auth module' mentioned by the user was not found in the diff",
+        "Output contains at least one structured severity section (Critical, Important, or Minor)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "check src/aine-agents/skills/code-review/SKILL.md and src/aine-agents/plugin.json for any issues — I refactored the error handling and I'm not confident it's right",
+      "expected_output": "Scopes review to the two specified files, reads them directly (not via git diff), launches 3 parallel code-reviewer agents, produces consolidated report focused on the specified files",
+      "files": [],
+      "expectations": [
+        "Output mentions both specified files by name (SKILL.md and plugin.json)",
+        "Output reads file contents directly rather than relying solely on git diff",
+        "Output flags the missing 'agents' array in plugin.json as a Critical or Important issue",
+        "Output contains severity-classified sections (Critical/Important/Minor headings)"
+      ]
+    }
+  ]
+}
