@@ -186,6 +186,25 @@ flowchart LR
 
 ---
 
+## `mini-sdd-guide` — Autonomous Framework Knowledge Base
+
+A background knowledge skill that is **not a slash command**. It is automatically loaded by any agent whenever the conversation mentions a mini-SDD topic — skill names, file names, framework concepts, or spec-related terms.
+
+**It does not create or modify any files and requires no user invocation.**
+
+**What it provides:**
+- Full framework overview and workflow lifecycle
+- Per-skill behavioral reference (`mini-sdd-context`, `mini-sdd-spec`, `mini-sdd-implement`, `mini-sdd-init-config`)
+- File structure and variable reference (`ARTIFACT_MAIN_FOLDER`, `SPECS_SUBFOLDER`)
+- Spec lifecycle, status values, dependency rules, and task format
+- Hook system reference and config format
+- Logic for assessing current project state and determining the next recommended action
+
+**Trigger topics** (automatic activation):
+`mini-SDD`, `mini-sdd-context`, `mini-sdd-spec`, `mini-sdd-implement`, `mini-sdd-init-config`, `context.md`, `spec.md`, `plan.md`, `ARTIFACT_MAIN_FOLDER`, `SPECS_SUBFOLDER`, hooks config, spec-driven development
+
+---
+
 ## Development Configuration
 
 Artifacts paths are configurable via `config.json` in src folder, which defines the following variables:
