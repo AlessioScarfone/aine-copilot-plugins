@@ -1,4 +1,4 @@
-# aine-agents
+# aine-misc
 
 Specialized engineering agents for existing codebases, plus a guided feature delivery skill that moves from exploration to implementation and review.
 
@@ -24,6 +24,7 @@ Example requests:
 | Code Explorer | `code-explorer` | Traces existing features end-to-end, maps architecture layers, and returns the key files needed to understand a feature area. |
 | Code Architect | `code-architect` | Produces implementation blueprints with concrete files to create or modify, component responsibilities, data flow, and build sequence. |
 | Code Reviewer | `code-reviewer` | Reviews changes for bugs, logic flaws, security issues, and convention violations, reporting only high-confidence findings. |
+| QA | `qa` | Conducts quality assurance checks, ensuring that features meet requirements and function correctly. |
 
 ## Skills
 
@@ -47,6 +48,13 @@ An end-to-end feature workflow for existing codebases. The skill:
 - pure refactoring work
 - tasks that only need a spec or plan without implementation
 
+## Recommended Workflow
+
+1. Start with `/feature-dev <request>` when the request is still ambiguous or architectural choices matter.
+2. Let the skill explore the codebase and gather clarifying questions.
+3. Choose one of the proposed implementation approaches.
+4. Approve implementation only after the scope and trade-offs are clear.
+
 ### `/code-review` — Multi-Perspective Code Review
 
 Spawns three parallel reviewer agents — each focused on a different quality dimension — and consolidates their findings into a single prioritized report.
@@ -68,12 +76,8 @@ Spawns three parallel reviewer agents — each focused on a different quality di
 - implementing features or writing new code
 - refactoring existing code
 
-## Recommended Workflow
-
-1. Start with `/feature-dev <request>` when the request is still ambiguous or architectural choices matter.
-2. Let the skill explore the codebase and gather clarifying questions.
-3. Choose one of the proposed implementation approaches.
-4. Approve implementation only after the scope and trade-offs are clear.
+## `/caveman` — Ultra-Compressed Communication
+Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler, articles, and pleasantries while keeping full technical accuracy. Use when user says "caveman mode", "talk like caveman", "use caveman", "less tokens", "be brief", or invokes `/caveman`
 
 ## VS Code Documentation
 

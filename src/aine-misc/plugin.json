@@ -1,5 +1,5 @@
 {
-  "name": "aine-agents",
+  "name": "aine-misc",
   "description": "Collection of dev agents",
   "version": "0.0.3",
   "keywords": [
@@ -8,6 +8,7 @@
   ],
   "skills": [
     "./skills/feature-dev/",
-    "./skills/code-review/"
+    "./skills/code-review/",
+    "./skills/caveman"
   ]
 }
