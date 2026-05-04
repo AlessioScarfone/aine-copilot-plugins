@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!-- ==================================================================
+     ONE-PAGER · English · kami parchment design system
+     design plugin — DESIGN.md typesetting for GitHub Copilot
+     ================================================================== -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>design — DESIGN.md Typesetting Plugin for GitHub Copilot</title>
+<meta name="author" content="Alessio Scarfone">
+<meta name="description" content="Drop a DESIGN.md, get a pixel-faithful HTML document styled entirely from your design tokens.">
+<meta name="keywords" content="design plugin, DESIGN.md, typesetting, Copilot, one-pager">
+<meta name="generator" content="Kami">
+<style>
+  @page {
+    size: A4;
+    margin: 15mm 18mm 15mm 18mm;
+    background: #f5f4ed;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #f5f4ed;
+    --ivory:     #faf9f5;
+    --sand:      #e8e6dc;
+    --near-black:#141413;
+    --dark-warm: #3d3d3a;
+    --olive:     #504e49;
+    --stone:     #6b6a64;
+    --brand:     #1B365D;
+    --border:    #e8e6dc;
+    --border-soft:#e5e3d8;
+    --tag-bg:    #E4ECF5;
+    --serif: Charter, Georgia, Palatino, "Times New Roman", serif;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+
+  html, body { background: var(--parchment); }
+  @media screen { body { max-width: 210mm; margin: 0 auto; padding: 15mm 18mm; } }
+  body { color: var(--near-black); font-family: var(--serif); font-size: 10pt; line-height: 1.45; }
+
+  .header { border-left: 2.5pt solid var(--brand); border-radius: 1.5pt; padding-left: 8pt; margin-bottom: 14pt; display: flex; align-items: flex-end; justify-content: space-between; gap: 20pt; }
+  .title-block { flex: 1; }
+  .eyebrow { font-size: 9pt; color: var(--brand); letter-spacing: 1pt; text-transform: uppercase; margin-bottom: 4pt; font-weight: 500; }
+  h1 { font-family: var(--serif); font-size: 26pt; font-weight: 500; color: var(--near-black); line-height: 1.12; letter-spacing: -0.3pt; margin-bottom: 5pt; }
+  .subtitle { font-size: 11.5pt; color: var(--olive); line-height: 1.4; }
+  .meta { font-size: 9pt; color: var(--stone); text-align: right; line-height: 1.5; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  .metrics { display: flex; gap: 16pt; margin-bottom: 18pt; padding: 4pt 0 6pt 0; border-bottom: 0.3pt dotted var(--border); }
+  .metric { flex: 1; background: transparent; padding: 0; display: flex; align-items: baseline; gap: 5pt; break-inside: avoid; }
+  .metric-value { font-family: var(--serif); font-size: 22pt; font-weight: 500; color: var(--brand); line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; letter-spacing: -0.3pt; }
+  .metric-label { font-size: 9pt; color: var(--olive); line-height: 1.3; }
+
+  section { margin-bottom: 16pt; break-inside: avoid; }
+  section:last-of-type { margin-bottom: 0; }
+  h2 { font-family: var(--serif); font-size: 14pt; font-weight: 500; color: var(--near-black); margin-bottom: 5pt; }
+  h2 .sub { font-size: 9pt; color: var(--stone); font-weight: 400; margin-left: 6pt; }
+  p { margin-bottom: 6pt; line-height: 1.45; }
+  p:last-child { margin-bottom: 0; }
+
+  .lead { font-size: 11.5pt; line-height: 1.55; color: var(--dark-warm); margin-bottom: 14pt; }
+  .hl { color: var(--brand); font-weight: 500; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18pt; }
+
+  ul.dash { list-style: none; margin: 0; padding: 0; }
+  ul.dash li { position: relative; padding-left: 14pt; margin-bottom: 4pt; line-height: 1.45; font-size: 9.5pt; }
+  ul.dash li::before { content: "\2013"; position: absolute; left: 0; color: var(--brand); }
+
+  .timeline { display: flex; gap: 12pt; margin-top: 6pt; }
+  .tl-step { flex: 1; break-inside: avoid; }
+  .tl-year { font-family: var(--serif); font-size: 10pt; font-weight: 500; color: var(--brand); margin-bottom: 2pt; letter-spacing: 0.3pt; text-transform: uppercase; }
+  .tl-head { font-size: 9.5pt; font-weight: 500; color: var(--near-black); margin-bottom: 2pt; }
+  .tl-body { font-size: 8.5pt; color: var(--olive); line-height: 1.45; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9pt; margin: 6pt 0; break-inside: avoid; }
+  table th { text-align: left; font-weight: 500; color: var(--dark-warm); padding: 3pt 6pt; border-bottom: 1pt solid var(--border); }
+  table td { padding: 2.5pt 6pt; border-bottom: 0.3pt solid var(--border-soft); vertical-align: top; }
+
+  .callout { background: transparent; border-left: 1.8pt solid var(--brand); padding: 4pt 0 4pt 14pt; margin: 10pt 0; font-size: 10pt; line-height: 1.55; color: var(--olive); break-inside: avoid; }
+  .callout .hl { color: var(--brand); }
+
+  code { font-family: var(--mono); font-size: 8.5pt; background: var(--sand); color: var(--brand); padding: 0.5pt 4pt; border-radius: 2pt; }
+
+  .footer { margin-top: 16pt; padding-top: 6pt; border-top: 0.3pt dotted var(--border); font-size: 8.5pt; color: var(--stone); display: flex; justify-content: space-between; font-variant-numeric: tabular-nums; letter-spacing: 0.3pt; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="title-block">
+    <div class="eyebrow">Copilot Plugin · design</div>
+    <h1>Documents from<br>your DESIGN.md</h1>
+    <div class="subtitle">Drop a design system. Get a pixel-faithful, print-ready document.</div>
+  </div>
+  <div class="meta">
+    2026.05.04<br>
+    v1.0
+  </div>
+</div>
+
+<div class="metrics">
+  <div class="metric">
+    <div class="metric-value">2</div>
+    <div class="metric-label">typesetting skills</div>
+  </div>
+  <div class="metric">
+    <div class="metric-value">7</div>
+    <div class="metric-label">document types</div>
+  </div>
+  <div class="metric">
+    <div class="metric-value">0</div>
+    <div class="metric-label">external stylesheets</div>
+  </div>
+  <div class="metric">
+    <div class="metric-value">∞</div>
+    <div class="metric-label">design systems</div>
+  </div>
+</div>
+
+<p class="lead">
+  The <span class="hl">design</span> plugin turns any <span class="hl">DESIGN.md</span> into a production-ready HTML document. Tokens map directly to CSS — colors, type scale, shadows, radius — with <span class="hl">no templates overriding your brand</span> and no external dependencies.
+</p>
+
+<div class="two-col">
+  <section>
+    <h2>typeset-free<span class="sub">maximum fidelity</span></h2>
+    <p>Builds from scratch. Every CSS value is derived from DESIGN.md tokens.</p>
+    <ul class="dash">
+      <li>Dark-mode and screen-first design systems</li>
+      <li>Brand-specific typefaces and component patterns</li>
+      <li>All CSS inline — single self-contained file</li>
+      <li>Best when visual precision beats layout predictability</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>typeset-print<span class="sub">template-backed</span></h2>
+    <p>Maps tokens onto battle-tested print templates. Page breaks and WeasyPrint quirks handled.</p>
+    <ul class="dash">
+      <li>Resumes, equity reports, changelogs</li>
+      <li>WeasyPrint-safe — no rendering surprises</li>
+      <li>Reliable A4 layout across all document types</li>
+      <li>Best when print predictability matters most</li>
+    </ul>
+  </section>
+</div>
+
+<section>
+  <h2>Supported document types</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>User says</th>
+        <th>Type</th>
+        <th>Page target</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>"one-pager / product brief / pitch"</td><td>One-pager</td><td>1 page</td></tr>
+      <tr><td>"white paper / report / technical doc"</td><td>Long-doc</td><td>4–8 pages</td></tr>
+      <tr><td>"letter / cover letter / memo"</td><td>Letter</td><td>1 page</td></tr>
+      <tr><td>"resume / CV / curriculum vitae"</td><td>Resume</td><td>1–2 pages</td></tr>
+      <tr><td>"slides / deck / presentation"</td><td>Slides</td><td>8–20 slides</td></tr>
+      <tr><td>"equity report / investment memo"</td><td>Equity report</td><td>2–4 pages</td></tr>
+      <tr><td>"changelog / release notes"</td><td>Changelog</td><td>1–3 pages</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>How DESIGN.md is loaded<span class="sub">both skills</span></h2>
+  <div class="timeline">
+    <div class="tl-step">
+      <div class="tl-year">Auto</div>
+      <div class="tl-head">Root discovery</div>
+      <div class="tl-body">Silently checks for <code>DESIGN.md</code> in the project root. No flag needed.</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-year">@file</div>
+      <div class="tl-head">Path or attachment</div>
+      <div class="tl-body">Use <code>@file</code> or type a path to point at any DESIGN.md.</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-year">Inline</div>
+      <div class="tl-head">Paste content</div>
+      <div class="tl-body">Paste DESIGN.md text directly in the message — used as-is.</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-year">Ask</div>
+      <div class="tl-head">One prompt</div>
+      <div class="tl-body">If none of the above match, the skill asks once and then proceeds.</div>
+    </div>
+  </div>
+</section>
+
+<div class="callout">
+  Community design systems ready to use: <span class="hl">nexu-io/open-design</span> — Raycast, Linear, Vercel and more — at <span class="hl">github.com/nexu-io/open-design/tree/main/design-systems</span>. Drop any of them into your project root and typesetting starts immediately.
+</div>
+
+<div class="footer">
+  <span>design · https://github.com/AlessioScarfone/aine-copilot-plugins</span>
+</div>
+
+</body>
+</html>

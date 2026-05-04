@@ -1,5 +1,7 @@
 # design
 
+![design plugin one-pager](public/kami-page.png)
+
 DESIGN.md-driven document typesetting for Latin-script languages. Provide any [DESIGN.md](https://designmd.ai/what-is-design-md) file and produce professional print documents — one-pagers, resumes, letters, reports, and slide decks — styled to your design system.
 
 Supports English, Italian, Spanish, French, German, Portuguese, Dutch, Polish, and other Latin-script languages. Does not support CJK scripts.
