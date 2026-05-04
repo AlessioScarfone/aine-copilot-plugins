@@ -1,0 +1,16 @@
+{
+  "name": "design",
+  "description": "DESIGN.md-driven document typesetting for Latin-script languages. Two skills: typeset-free generates self-contained HTML from any DESIGN.md; typeset-kami overlays a DESIGN.md onto Kami print templates. Both auto-discover DESIGN.md in the project root.",
+  "version": "0.1.0",
+  "keywords": [
+    "github-copilot",
+    "design",
+    "typeset",
+    "documents",
+    "pdf"
+  ],
+  "skills": [
+    "./skills/typeset-free/",
+    "./skills/typeset-print/"
+  ]
+}

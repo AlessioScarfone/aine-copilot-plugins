@@ -1,0 +1,7 @@
+{
+  "variables": {},
+  "sharedAssets": [
+    { "asset": "assets/templates", "skills": ["typeset-print"] },
+    { "asset": "assets/diagrams",  "skills": ["typeset-print"] }
+  ]
+}
