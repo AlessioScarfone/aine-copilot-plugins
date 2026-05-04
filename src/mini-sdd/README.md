@@ -1,6 +1,8 @@
+<!-- 
 # mini-sdd
+A minimal spec-driven development framework for GitHub Copilot. Three skills, one workflow: define context, write specs, implement features. -->
 
-A minimal spec-driven development framework for GitHub Copilot. Three skills, one workflow: define context, write specs, implement features.
+[![mini-sdd lifecycle](public/kami-page.png)](public/kami-page.html)
 
 ## Quick Start
 
