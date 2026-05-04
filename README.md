@@ -25,7 +25,8 @@ Collection of GitHub Copilot Plugins, each designed to embed a specialized workf
 |---|---|
 | [`sdd-team`](src/sdd-team/README.md) | A full software-development team powered by Specification-Driven Development (SDD) |
 | [`mini-sdd`](src/mini-sdd/README.md) | A minimal spec-driven development framework — context -> spec -> implement |
-| [`aine-agents`](src/aine-agents/README.md) | Specialist engineering agents for code exploration, architecture planning, and high-signal code review, plus a guided `/feature-dev` workflow |
+| [`aine-misc`](src/aine-misc/README.md) | Specialist engineering agents for code exploration, architecture planning, and high-signal code review, plus a guided `/feature-dev` workflow |
+| [`design`](src/design/README.md) | DESIGN.md-driven document typesetting for Latin-script languages, producing professional print documents styled to your design system |
 
 ---
 
